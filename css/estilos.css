@@ -10,29 +10,25 @@ color: antiquewhite;
 font-family: "Montserrat", sans-serif;}
 
 /*-----header----*/
-.navbar{list-style: none;
-    display: flex; 
-    justify-content: space-around; 
-    
-}
-header nav ul li a {text-decoration: none;color: antiquewhite;}
-header nav li {
-    padding: 20px;
-}
+
+.custom-navbar {background-color: rgba(29, 34, 35, 0.705);}
+.custom-navbar .navbar-brand,
+.custom-navbar .nav-link {color: antiquewhite;}
+.custom-navbar .nav-link:hover {color: antiquewhite;}
+.custom-navbar .navbar-nav .nav-link.active {color: antiquewhite;}
 
 
 /*----------main--------s*/
-main h1 {font-size: 50px;
-font-style: italic;text-align: center;
-font-weight: 500;}
 
 .titulo{background-image: url(../img/SEGUROS.jpg);background-position:center ;background-repeat: no-repeat;background-size: cover;background-attachment: fixed;
 height: 600px;}
 
-.titulo h1 {padding-top: 30px;}
+.titulo h1 {padding-top: 30px;font-size: 50px;
+font-style: italic;text-align: center;
+font-weight: 500;}
 
 .info {text-align: center;
-height: 300px;
+height: 400px;
 padding: 20px;
 background-color: rgba(29, 34, 35, 0.705);}
 
@@ -41,7 +37,7 @@ background-color: rgba(29, 34, 35, 0.705);}
 .info h4 {padding-top: 30px;font-weight: 400; font-size: 20px;}
 .info p {padding-top: 30px; font-size: 20;}
 
-.subtitulo h2 {padding-top: 30px; font-size: 30px; text-align: center; font-weight: 300;}
+.subtitulo h2 {padding-top: 30px; font-size: 30px; text-align: center; font-weight: 300; font-weight: 400; font-style: italic;}
 
 .grid-destacados div {border-color: black;
 border-style: solid;
@@ -57,53 +53,34 @@ grid-template-rows: 300px 300px;
 gap: 10px;
 grid-auto-rows: 250px;
 margin-top: 50px;
+row-gap: 20px;}
+
+.grid-destacados h3 {font-size: 18px;}
+
+.grid-item { width: 100%;
+height: 200px;
+background-color: rgb(2, 2, 2);
+font-size: 14px;
+text-align: center;}
+
+.mapa-container {position: relative;
+height: 65vh;
 flex-wrap: wrap;}
 
-
-.grid-item {
-    width: 100%;
-    height: 200px;
-    background-color: rgb(2, 2, 2);
-    font-size: 16px;
-    text-align: center;
-    
-
+#mapa {width: 100%;
+height: 100%;
 }
 
-@media (max-width: 768px) {
-    .navbar{
-        display: grid;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-    }
-}
-
-
-    .mapa-container {
-        position: relative;
-        width: 100%;
-        height: 65vh;
-        flex-wrap: wrap;
-    }
-
-    #mapa {width: 100%;
-        height: 100%;
-    border: 0;
-    }
-
-    .contact-box {flex-wrap: wrap;
-    position: absolute;
-    margin: 20px;
-    margin-left: 60%;
-    margin-top: 10%;
-    padding: 60px;
-    background-color: rgba(255, 249, 249, 0.9);
-    color: black; font-size: 14px;
+.contact-box {flex-wrap: wrap;
+position: absolute;
+margin: 20px;
+margin-left: 60%;
+margin-top: 10%;
+padding: 60px;
+background-color: rgba(255, 249, 249, 0.9);
+color: black; font-size: 14px;
 max-width: 300px;
-z-index: 1;
-}
-
+z-index: 1;}
 
 .contact-box h4 {font-size: 18px;} 
 
@@ -112,31 +89,76 @@ margin-top: 30px;
 margin-bottom: 30px;
 margin-left: 10px;}
 
-.boton a {color: antiquewhite; text-decoration: none; border: solid; border-color: rgb(107, 234, 155); background-color: rgb(0, 0, 0);
+.boton a {color: antiquewhite; text-decoration: none; border: solid; border-color: rgb(30, 80, 95); background-color: rgb(0, 0, 0);
 margin-top: 20px; padding: 10px;
 display: inline-block;}
 
 .bi{color: antiquewhite;}
 
 .whatsapp {position: fixed;
-bottom: 50px; ;
+bottom: 50px;
 right: 15px;}
 
-
-
-/* Estilos para pantallas pequeñas (móviles) */
+/* ----Responsive ---- */
 @media screen and (max-width: 678px) {.contact-box {flex-wrap: wrap;
     margin: 20px auto;
     padding: 20px;
     background-color: rgba(255, 249, 249, 0.9);
-    color: black; font-size: 12px;
-}}
+    color: black; font-size: 12px;}}
 
 @media screen and (max-width: 613px){.info {text-align: center;
 height: 500px;
 padding: 20px;
 background-color: rgba(29, 34, 35, 0.705);
-font-size: 12;
-}
+font-size: 12px;}}
 
-}
+@media screen and (max-width: 453px){.info {
+height: 500px;
+padding: 10px;
+font-size: 12px;}}
+
+@media screen and (max-width: 974px){.grid-destacados {grid-template-columns: 1fr 1fr;}}
+
+@media screen and (max-width: 586px){.grid-destacados {grid-template-columns: 1fr;}}
+
+@media screen and (max-width: 453px){.subtitulo h2 {padding-top: 50px; font-size: 20px;}}
+
+@media screen and (max-width:1025px){.flex-contenido div {flex-wrap: wrap;}}
+
+
+
+/*--------------Pagina Companias -----------*/
+.titulocompanias {margin: 20px; text-align: center;padding: 20px;}
+.subtitulocompanias {margin-top: 50px;font-size: 18px; text-align: center;}
+
+.flex-contenido {margin-top: 100px; width: 80%; margin-left: auto; margin-right: auto;}
+
+
+.flex-contenido img {width: 200px; height: 200px;}
+
+.flex-contenido div {
+border: solid; display: flex; flex-direction: row;
+align-items: center; gap: 50px; padding: 20px; justify-content: center;margin: 20px; border-style: solid; border-color: rgb(34, 80, 95); }
+
+.carousel img {height: 550px;
+object-fit: cover;}
+
+
+/*--------------Pagina Productos -----------*/
+.titulo-productos {margin: 30px;
+text-align: center; padding: 10px;}
+
+.grid-lista {display: grid;
+grid-template-columns: 1fr 1fr;
+justify-items: center;
+align-items: baseline;}
+
+/*--------------Pagina siniestros -----------*/
+
+.titulo-siniestros {margin: 30px;
+text-align: center; padding: 10px;}
+
+.titulo-siniestros h2 {margin-top: 50px;}
+
+/*--------------Pagina Contacto -----------*/
+.titulo-contacto {text-align: center; margin: 30px;}

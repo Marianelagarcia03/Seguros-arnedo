@@ -5,28 +5,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>segurosjuanmanuelarnedo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
     <!----CSS---->
     <link rel="stylesheet" href="./css/estilos.css">
-
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
     </style>
-
-
 </head>
 
 <body>
-    <header><!----cabecera--->
-        <nav><!----barra de navegacion--->
-            <ul class="navbar">
-                <li><a href="./index.html">Inicio</a></li>
-                <li><a href="./pages/companias.html">Companias</a></li>
-                <li><a href="./pages/productos.html">Seguros</a></li>
-                <li><a href="./pages/contacto.html">Contacto</a></li>
-                <li><a href="./pages/siniestros.html">Siniestros</a></li>
-            </ul>
+    <header>
+        <nav class="navbar navbar-expand-lg custom-navbar">
+            <div class="container-fluid">
+                <!-- Título del sitio -->
+                <span class="navbar-brand mb-0 h1">P y T Brokers Juan Manuel Arnedo</span>
+                <!-- Botón para colapsar el menú en pantallas pequeñas -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <!-- Elementos del menú -->
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="./index.html">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./pages/companias.html" target="_blank">Compañias</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./pages/productos.html" target="_blank">Productos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./pages/siniestros.html" target="_blank">Siniestros</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./pages/contacto.html" target="_blank">Contacto</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </nav>
     </header>
+
     <main><!----estructura principal--->
         <section class="titulo">
             <h1>Confianza Asegurada</h1>
@@ -42,24 +64,22 @@
                 patrimonio y tranquilidad.</p>
         </section>
         <br>
-
         <section>
             <div class="subtitulo">
                 <h2>Conoce mas sobre nuestros seguros</h2>
             </div>
-
             <div class="grid-destacados">
-                <div class="grid-item">
+                <div class="grid-item 1">
                     <img src="./img/seguroauto.jpg" alt="">
                     <h3>Auto</h3>
                     <p>Asegura tu auto y maneja tranquilo</p>
                 </div>
-                <div class="grid-item">
+                <div class="grid-item 2">
                     <img src="./img/seghogar2.jpg" alt="">
                     <h3>Hogar</h3>
                     <p>Tu casa siempre protegida, confianza y respaldo en cada situacion</p>
                 </div>
-                <div class="grid-item">
+                <div class="grid-item 3">
                     <img src="./img/seguropersonaldeaccidentes.jpg" alt="">
                     <h3>Vida y Accidentes personales</h3>
                     <p>Trabaja tranquilo y seguro, disfruta de una vida sin preocupaciones para vos y tu familia</p>
@@ -81,9 +101,6 @@
                 </div>
             </div>
             <br>
-
-
-
         </section>
         <section class="ubicacion">
             <div class="contact-box">
@@ -105,13 +122,11 @@
                 <a href="https://www.whatsapp.com/"><img src="./img/icons8-whatsapp-96.png" alt=""></a>
             </div>
         </section>
-
     </main>
     <footer>
         <div class="contacto">
             <h4>P&T SEGUROS Juan Manuel Arnedo</h4>
             <p>Ciudad de Córdoba, Provincia de Córdoba, Argentina.<br>
-
                 E-mail:
                 juanmanuelarnedo@gmail.com</p>
             <div class="boton">
@@ -132,12 +147,12 @@
                     class="bi bi-facebook" viewBox="0 0 16 16">
                     <path
                         d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951" />
-
             </a>
-
             </svg>
             <div>
             </div>
-
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
+        crossorigin="anonymous"></script>
 </body>
