@@ -1,0 +1,171 @@
+.titulo h1 {
+@extend %titulo-base;
+padding: 30px;
+font-size: nth($tamaños, 7);
+}
+
+
+
+.info{text-align: center;
+height: 400px;
+padding: 20px;
+background-color: rgba(29, 34, 35, 0.705);
+    h2 {padding-top: 30px;
+font-size:nth($tamaños, 6);
+font-weight: 500;}
+
+    h3 {padding-top: 30px;
+font-weight: 400;
+font-size:nth($tamaños, 5);}
+
+    h4 {padding-top: 30px;
+font-weight: 400;
+font-size:nth($tamaños, 4);}
+
+    p {padding-top: 30px;
+font-size: nth($tamaños, 3);}
+}
+
+.subtitulo {
+h2 {padding-top: 30px;
+font-size:nth($tamaños, 6); 
+@extend %titulo-base}}
+
+.grid-destacados { 
+width: 100%;
+display: grid ;
+grid-template-columns: 1fr 1fr 1fr;
+grid-template-rows: 300px 300px;
+gap: 10px;
+grid-auto-rows: 250px;
+margin-top: 50px;
+row-gap: 20px;
+}
+
+.grid-item { width: 100%;
+background-color: $color-principal;
+font-size: nth($tamaños, 2);
+text-align: center;
+display: flex;
+flex-direction: column;
+align-items: center;
+
+img {width: 50%;
+height: 200px;
+object-fit: cover;}
+
+h3 {font-size:nth($tamaños, 3);
+margin-top: 10px; 
+margin-bottom: 0px;}
+
+p{font-size:nth($tamaños, 2);
+margin-top: 0;}
+}
+
+.contact-box { position: absolute;
+margin: 20px;
+margin-left: 60%;
+margin-top: 10%;
+padding: 60px;
+background-color: rgba(255, 249, 249, 0.9);
+color:$color-principal; font-size:nth($tamaños, 1);
+max-width: 300px;
+z-index: 1;
+
+h4 {font-size:nth($tamaños, 3);}
+
+p {font-size:nth($tamaños, 1);}
+}
+
+.mapa-container {position: relative;
+height: 65vh;
+flex-wrap: wrap;
+#mapa {width: 100%;
+height: 100%;}
+}
+
+.whatsapp {
+a {position: fixed;
+bottom: 50px; right: 15px;}
+}
+
+
+//------Pagina Companñias------//
+
+.titulocompanias {background-image: url(../img/todoslosseguros.jpg);
+background-position:center ;
+background-repeat: no-repeat;
+background-size: cover;
+background-attachment: fixed;
+height: 600px; text-align: center;}
+
+.titulocompanias h1 {padding: 20px;
+@extend %titulo-base;
+font-size: nth($tamaños, 7);}
+
+.subtitulocompanias {margin-top: 50px;
+font-size: nth($tamaños, 2);
+padding: 20px; 
+text-align: center;}
+
+.flex-contenido {margin-top: 100px;
+width: 80%;
+margin-left: auto;
+margin-right: auto;}
+
+.flex-contenido img {width: 200px; height: 200px;object-fit: fill;}
+
+.flex-contenido div { @include flex( flex, row, center, center,nowrap);
+gap: 50px;
+margin: 20px;
+padding: 50px;
+border-style: solid;
+border-color: $color-terciario;
+background-color: rgba(34, 80, 95, 0.223); }
+
+.carousel img {height: 550px;
+object-fit: cover;}
+
+
+/*--------------Pagina Productos -----------*/
+.titulo-productos {
+    h1{margin: 30px; 
+    @extend %titulo-base;
+padding: 10px;}
+
+h2 {text-align: center;}
+
+p {text-align: center;
+}
+}
+
+.grid-lista {display: grid;
+grid-template-columns: 1fr 1fr;
+justify-items: center;
+align-items: baseline;}
+
+/*--------------Pagina siniestros -----------*/
+.titulo-siniestros {margin: 30px;
+@extend %titulo-base;
+padding: 10px;}
+
+.titulo-siniestros h2 {margin-top: 50px;}
+
+
+/*--------------Pagina Contacto -----------*/
+.titulo-contacto {text-align: center;
+margin: 60px;}
+.formulario-contacto {margin: 50px;
+text-align: center;}
+.subtitulo-mapa { margin: 50px;
+margin-top: 100px;
+text-align: center;}
+.grid-centro {display: grid;
+width: 80%;
+margin: auto;
+grid-template-columns: 1fr 1fr}
+.grid-centro iframe {width: 100%;}
+.grid-horarios {align-content: center;
+font-size:nth($tamaños, 3);
+background-color:$color-terciario;
+padding: 20px;}

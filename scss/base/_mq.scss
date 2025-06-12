@@ -1,0 +1,59 @@
+@media screen and (max-width: 678px) {.contact-box {flex-wrap: wrap;
+margin: 20px auto;
+margin-top: 30%;
+padding: 20px;
+background-color: rgba(255, 249, 249, 0.9);
+color: black; font-size: 12px;}}
+
+@media screen and (max-width: 613px){.info {text-align: center;
+height: 500px;
+padding: 20px;
+background-color: rgba(29, 34, 35, 0.705);
+font-size: 12px;}}
+
+@media screen and (max-width: 453px){.info {height: 500px;
+padding: 10px;
+font-size: 12px;}}
+
+@media screen and (max-width: 974px){.grid-destacados {grid-template-columns: 1fr 1fr;}}
+
+@media screen and (max-width: 586px){.grid-destacados {grid-template-columns: 1fr;}}
+
+@media screen and (max-width: 453px){.subtitulo h2 {padding-top: 50px;
+font-size: 20px;}}
+
+@media screen and (max-width:1025px){.flex-contenido div {flex-wrap: wrap;}}
+
+@media screen and (max-width:1025px){.navbar-toggler-icon {
+filter: invert(100%)}}
+
+
+//-------Pagina Compañias------//
+@media screen and (max-width:870px){.flex-contenido div {font-size: 14px;}}
+@media screen and (max-width:448px){.navbar-brand { font-size: 1rem;
+white-space: normal;
+text-align: left;
+max-width: 200px;}}
+
+@media screen and (max-width: 768px) {.titulocompanias {background-attachment:scroll;
+height: 400;}
+}
+
+
+/*--------------Pagina Productos -----------*/
+
+
+
+
+
+
+/*--------------Pagina siniestros -----------*/
+
+
+
+
+
+/*--------------Pagina Contacto -----------*/
+@media screen and (max-width:680px){.grid-centro {grid-template-columns: 1fr;
+grid-template-rows: 1fr;}}
+@media screen and (max-width:680px){.grid-horarios {font-size: 14px;}}

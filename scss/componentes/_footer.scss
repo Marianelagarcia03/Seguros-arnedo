@@ -1,0 +1,29 @@
+.contacto {display: block;
+margin-top: 30px;
+margin-bottom: 30px;
+margin-left: 10px;
+    }
+
+.boton a {color: rgb(0, 0, 0);
+text-decoration: none;
+border: solid;
+border-style: ridge;
+background-color: rgb(161, 244, 176);
+margin-top: 20px;
+padding: 10px;
+font-weight: 500;}
+
+.boton a:hover {
+background-color: rgb(34, 80, 95);
+color: antiquewhite;
+cursor: pointer;}
+
+
+    .flex-redes {display: flex;
+justify-content:space-between;
+flex-wrap: wrap;}
+
+
+
+
+.bi{color: antiquewhite;}

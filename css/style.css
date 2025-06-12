@@ -1,0 +1,399 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+.titulo-siniestros, .titulo-productos h1, .titulocompanias h1, .subtitulo h2, .titulo h1 {
+  font-style: italic;
+  font-weight: 500;
+  text-align: center;
+}
+
+/*---Reset---*/
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: black;
+  font-size: 16px;
+  color: antiquewhite;
+  font-family: "Montserrat", sans-serif;
+}
+
+.carousel-caption {
+  color: black;
+  font-weight: 500;
+  font-style: italic;
+}
+
+#texto-claro {
+  color: white;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.custom-navbar {
+  background-color: rgba(29, 34, 35, 0.705);
+}
+
+.custom-navbar .navbar-brand,
+.custom-navbar .nav-link {
+  color: antiquewhite;
+}
+
+.custom-navbar .nav-link:hover {
+  color: rgb(34, 80, 95);
+}
+
+.custom-navbar .navbar-nav .nav-link.active {
+  color: antiquewhite;
+}
+
+.custom-navbar .navbar-nav .nav-link.active:hover {
+  color: rgb(34, 80, 95);
+}
+
+.titulo h1 {
+  padding: 30px;
+  font-size: 50px;
+}
+
+.info {
+  text-align: center;
+  height: 400px;
+  padding: 20px;
+  background-color: rgba(29, 34, 35, 0.705);
+}
+.info h2 {
+  padding-top: 30px;
+  font-size: 30px;
+  font-weight: 500;
+}
+.info h3 {
+  padding-top: 30px;
+  font-weight: 400;
+  font-size: 25px;
+}
+.info h4 {
+  padding-top: 30px;
+  font-weight: 400;
+  font-size: 20px;
+}
+.info p {
+  padding-top: 30px;
+  font-size: 18px;
+}
+
+.subtitulo h2 {
+  padding-top: 30px;
+  font-size: 30px;
+}
+
+.grid-destacados {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 300px 300px;
+  gap: 10px;
+  grid-auto-rows: 250px;
+  margin-top: 50px;
+  row-gap: 20px;
+}
+
+.grid-item {
+  width: 100%;
+  background-color: black;
+  font-size: 16px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.grid-item img {
+  width: 50%;
+  height: 200px;
+  object-fit: cover;
+}
+.grid-item h3 {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
+.grid-item p {
+  font-size: 16px;
+  margin-top: 0;
+}
+
+.contact-box {
+  position: absolute;
+  margin: 20px;
+  margin-left: 60%;
+  margin-top: 10%;
+  padding: 60px;
+  background-color: rgba(255, 249, 249, 0.9);
+  color: black;
+  font-size: 14px;
+  max-width: 300px;
+  z-index: 1;
+}
+.contact-box h4 {
+  font-size: 18px;
+}
+.contact-box p {
+  font-size: 14px;
+}
+
+.mapa-container {
+  position: relative;
+  height: 65vh;
+  flex-wrap: wrap;
+}
+.mapa-container #mapa {
+  width: 100%;
+  height: 100%;
+}
+
+.whatsapp a {
+  position: fixed;
+  bottom: 50px;
+  right: 15px;
+}
+
+.titulocompanias {
+  background-image: url(../img/todoslosseguros.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 600px;
+  text-align: center;
+}
+
+.titulocompanias h1 {
+  padding: 20px;
+  font-size: 50px;
+}
+
+.subtitulocompanias {
+  margin-top: 50px;
+  font-size: 16px;
+  padding: 20px;
+  text-align: center;
+}
+
+.flex-contenido {
+  margin-top: 100px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.flex-contenido img {
+  width: 200px;
+  height: 200px;
+  object-fit: fill;
+}
+
+.flex-contenido div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 50px;
+  margin: 20px;
+  padding: 50px;
+  border-style: solid;
+  border-color: rgb(34, 80, 95);
+  background-color: rgba(34, 80, 95, 0.223);
+}
+
+.carousel img {
+  height: 550px;
+  object-fit: cover;
+}
+
+/*--------------Pagina Productos -----------*/
+.titulo-productos h1 {
+  margin: 30px;
+  padding: 10px;
+}
+.titulo-productos h2 {
+  text-align: center;
+}
+.titulo-productos p {
+  text-align: center;
+}
+
+.grid-lista {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  align-items: baseline;
+}
+
+/*--------------Pagina siniestros -----------*/
+.titulo-siniestros {
+  margin: 30px;
+  padding: 10px;
+}
+
+.titulo-siniestros h2 {
+  margin-top: 50px;
+}
+
+/*--------------Pagina Contacto -----------*/
+.titulo-contacto {
+  text-align: center;
+  margin: 60px;
+}
+
+.formulario-contacto {
+  margin: 50px;
+  text-align: center;
+}
+
+.subtitulo-mapa {
+  margin: 50px;
+  margin-top: 100px;
+  text-align: center;
+}
+
+.grid-centro {
+  display: grid;
+  width: 80%;
+  margin: auto;
+  grid-template-columns: 1fr 1fr;
+}
+
+.grid-centro iframe {
+  width: 100%;
+}
+
+.grid-horarios {
+  align-content: center;
+  font-size: 18px;
+  background-color: rgb(34, 80, 95);
+  padding: 20px;
+}
+
+.contacto {
+  display: block;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-left: 10px;
+}
+
+.boton a {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  border: solid;
+  border-style: ridge;
+  background-color: rgb(161, 244, 176);
+  margin-top: 20px;
+  padding: 10px;
+  font-weight: 500;
+}
+
+.boton a:hover {
+  background-color: rgb(34, 80, 95);
+  color: antiquewhite;
+  cursor: pointer;
+}
+
+.flex-redes {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.bi {
+  color: antiquewhite;
+}
+
+@media screen and (max-width: 678px) {
+  .contact-box {
+    flex-wrap: wrap;
+    margin: 20px auto;
+    margin-top: 30%;
+    padding: 20px;
+    background-color: rgba(255, 249, 249, 0.9);
+    color: black;
+    font-size: 12px;
+  }
+}
+@media screen and (max-width: 613px) {
+  .info {
+    text-align: center;
+    height: 500px;
+    padding: 20px;
+    background-color: rgba(29, 34, 35, 0.705);
+    font-size: 12px;
+  }
+}
+@media screen and (max-width: 453px) {
+  .info {
+    height: 500px;
+    padding: 10px;
+    font-size: 12px;
+  }
+}
+@media screen and (max-width: 974px) {
+  .grid-destacados {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media screen and (max-width: 586px) {
+  .grid-destacados {
+    grid-template-columns: 1fr;
+  }
+}
+@media screen and (max-width: 453px) {
+  .subtitulo h2 {
+    padding-top: 50px;
+    font-size: 20px;
+  }
+}
+@media screen and (max-width: 1025px) {
+  .flex-contenido div {
+    flex-wrap: wrap;
+  }
+}
+@media screen and (max-width: 1025px) {
+  .navbar-toggler-icon {
+    filter: invert(100%);
+  }
+}
+@media screen and (max-width: 870px) {
+  .flex-contenido div {
+    font-size: 14px;
+  }
+}
+@media screen and (max-width: 448px) {
+  .navbar-brand {
+    font-size: 1rem;
+    white-space: normal;
+    text-align: left;
+    max-width: 200px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .titulocompanias {
+    background-attachment: scroll;
+    height: 400;
+  }
+}
+/*--------------Pagina Productos -----------*/
+/*--------------Pagina siniestros -----------*/
+/*--------------Pagina Contacto -----------*/
+@media screen and (max-width: 680px) {
+  .grid-centro {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+  }
+}
+@media screen and (max-width: 680px) {
+  .grid-horarios {
+    font-size: 14px;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
