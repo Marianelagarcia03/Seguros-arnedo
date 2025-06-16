@@ -5,6 +5,13 @@
   text-align: center;
 }
 
+.subtitulocompanias {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+}
+
 /*---Reset---*/
 * {
   margin: 0;
@@ -128,7 +135,7 @@ body {
   margin-left: 60%;
   margin-top: 10%;
   padding: 60px;
-  background-color: rgba(255, 249, 249, 0.9);
+  background-color: rgba(255, 255, 255, 0.855);
   color: black;
   font-size: 14px;
   max-width: 300px;
@@ -141,10 +148,26 @@ body {
   font-size: 14px;
 }
 
+.contact-box {
+  animation-name: slidein;
+  animation-duration: 3s;
+}
+@keyframes slidein {
+  from {
+    margin-left: 75%;
+    width: 300px;
+  }
+  to {
+    margin-left: 60%;
+    width: 300px;
+  }
+}
+
 .mapa-container {
   position: relative;
   height: 65vh;
   flex-wrap: wrap;
+  margin-bottom: 80px;
 }
 .mapa-container #mapa {
   width: 100%;
@@ -156,15 +179,9 @@ body {
   bottom: 50px;
   right: 15px;
 }
-
-.titulocompanias {
-  background-image: url(../img/todoslosseguros.jpg);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-  height: 600px;
-  text-align: center;
+.whatsapp a:hover {
+  transform: scale(1.2);
+  transition: 1s;
 }
 
 .titulocompanias h1 {
@@ -173,14 +190,21 @@ body {
 }
 
 .subtitulocompanias {
-  margin-top: 50px;
-  font-size: 16px;
-  padding: 20px;
+  background-image: url(../img/zurich.jpg);
+  margin-top: 40px;
+  padding: 60px;
+  height: 600px;
+}
+.subtitulocompanias div h3 {
+  font-style: italic;
+  color: black;
   text-align: center;
+  margin-left: 100px;
+  margin-right: 100px;
 }
 
 .flex-contenido {
-  margin-top: 100px;
+  margin-top: 80px;
   width: 80%;
   margin-left: auto;
   margin-right: auto;
@@ -204,6 +228,12 @@ body {
   border-style: solid;
   border-color: rgb(34, 80, 95);
   background-color: rgba(34, 80, 95, 0.223);
+  background: #01131c;
+  background: linear-gradient(319deg, rgb(1, 19, 28) 0%, rgb(12, 78, 117) 59%, rgb(8, 97, 115) 100%);
+  transition: all 0.3s ease;
+}
+.flex-contenido div:hover {
+  transform: scale(1.02);
 }
 
 .carousel img {
@@ -215,12 +245,46 @@ body {
 .titulo-productos h1 {
   margin: 30px;
   padding: 10px;
+  margin-bottom: 50px;
 }
 .titulo-productos h2 {
   text-align: center;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-style: italic;
 }
 .titulo-productos p {
   text-align: center;
+  margin-bottom: 80px;
+  margin-top: 10px;
+}
+
+.subtitulo-productos h3 {
+  margin: 20px;
+  font-style: italic;
+  text-align: center;
+}
+
+.grid-productos {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 100px 100px 100px 100px;
+  justify-content: space-around;
+  align-items: center;
+  gap: 10px;
+}
+
+.grid-caja {
+  border-style: solid;
+  border-color: rgb(34, 80, 95);
+  background-color: rgba(34, 80, 95, 0.223);
+  font-size: 14px;
+  height: 100px;
+  text-align: center;
+  font-weight: 100;
+  align-content: center;
+  background: #01131c;
+  background: linear-gradient(319deg, rgb(1, 19, 28) 0%, rgb(12, 78, 117) 59%, rgb(8, 97, 115) 100%);
 }
 
 .grid-lista {
@@ -228,6 +292,32 @@ body {
   grid-template-columns: 1fr 1fr;
   justify-items: center;
   align-items: baseline;
+}
+
+.cotizacion {
+  margin-top: 80px;
+  margin-bottom: 100px;
+  display: flex;
+  justify-content: center;
+}
+.cotizacion a {
+  text-decoration: none;
+  color: antiquewhite;
+  background-color: rgb(51, 141, 153);
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 60px;
+  border-radius: 12px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+.cotizacion a:hover {
+  width: 350px;
+  background-color: rgb(34, 100, 110);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 /*--------------Pagina siniestros -----------*/
@@ -240,21 +330,75 @@ body {
   margin-top: 50px;
 }
 
+.listas h4 {
+  margin-left: 10px;
+}
+.listas ol {
+  list-style-type: decimal;
+}
+.listas li {
+  margin-top: 20px;
+}
+
+.video {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  margin-bottom: 100px;
+}
+
 /*--------------Pagina Contacto -----------*/
 .titulo-contacto {
   text-align: center;
   margin: 60px;
+  font-style: italic;
 }
 
 .formulario-contacto {
-  margin: 50px;
+  background-image: url("../img/fondopantallacontacto.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 60px;
+  min-height: 100vh;
+}
+.formulario-contacto form {
+  margin: 50px auto;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 90%;
+  max-width: 500px;
+  flex-wrap: wrap;
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.formulario-contacto form input[type=email] {
+  height: 40px;
+}
+.formulario-contacto form textarea {
+  height: 150px;
+}
+.formulario-contacto form input[type=submit] {
+  background-color: white;
+  width: 100px;
+  color: black;
+  margin-left: 40%;
+}
+.formulario-contacto form input[type=submit]:hover {
+  background-color: rgb(34, 80, 95);
+  color: antiquewhite;
+  transition: 1s;
 }
 
 .subtitulo-mapa {
   margin: 50px;
   margin-top: 100px;
   text-align: center;
+  font-style: italic;
 }
 
 .grid-centro {
@@ -275,34 +419,69 @@ body {
   padding: 20px;
 }
 
+.telefonos h2 {
+  margin-top: 10%;
+  text-align: center;
+  margin-bottom: 50px;
+  font-style: italic;
+}
+
+.flex-numeros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 20px;
+  margin-bottom: 80px;
+}
+
 .contacto {
   display: block;
   margin-top: 30px;
   margin-bottom: 30px;
-  margin-left: 10px;
+  text-align: center;
 }
 
 .boton a {
-  color: rgb(0, 0, 0);
+  color: antiquewhite;
   text-decoration: none;
-  border: solid;
+  border: antiquewhite;
   border-style: ridge;
-  background-color: rgb(161, 244, 176);
+  background-color: rgb(34, 80, 95);
   margin-top: 20px;
   padding: 10px;
   font-weight: 500;
+  border-radius: 10px;
 }
 
 .boton a:hover {
-  background-color: rgb(34, 80, 95);
+  background-color: rgb(43, 163, 137);
   color: antiquewhite;
   cursor: pointer;
+  transition-duration: 1s;
 }
 
 .flex-redes {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+}
+.flex-redes div a {
+  display: inline-block;
+  animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .bi {
@@ -376,13 +555,44 @@ body {
   }
 }
 @media screen and (max-width: 768px) {
-  .titulocompanias {
-    background-attachment: scroll;
+  .titulocompanias h1 {
+    font-size: 2rem;
     height: 400;
   }
 }
+@media screen and (max-width: 760px) {
+  .subtitulocompanias div h3 {
+    font-size: 1.5rem;
+    height: 400;
+    margin-left: 0%;
+    margin-right: 0%;
+  }
+}
 /*--------------Pagina Productos -----------*/
+@media screen and (max-width: 690px) {
+  .grid-productos {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 100px 100px 100px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .grid-productos {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 100px 100px;
+  }
+}
+@media screen and (max-width: 416px) {
+  .grid-productos {
+    grid-template-columns: 1fr;
+    grid-template-rows: 100px;
+  }
+}
 /*--------------Pagina siniestros -----------*/
+@media screen and (max-width: 600px) {
+  .listas {
+    font-size: 14px;
+  }
+}
 /*--------------Pagina Contacto -----------*/
 @media screen and (max-width: 680px) {
   .grid-centro {

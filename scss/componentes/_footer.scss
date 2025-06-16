@@ -1,29 +1,40 @@
 .contacto {display: block;
 margin-top: 30px;
 margin-bottom: 30px;
-margin-left: 10px;
-    }
+text-align: center;
+}
 
-.boton a {color: rgb(0, 0, 0);
+.boton a {color: $color-secundario;
 text-decoration: none;
-border: solid;
+border: $color-secundario;
 border-style: ridge;
-background-color: rgb(161, 244, 176);
+background-color: rgb(34, 80, 95);
 margin-top: 20px;
 padding: 10px;
-font-weight: 500;}
+font-weight: 500;
+border-radius: 10px;}
 
-.boton a:hover {
-background-color: rgb(34, 80, 95);
-color: antiquewhite;
-cursor: pointer;}
+.boton a:hover {background-color: rgb(43, 163, 137);
+color: $color-secundario;
+cursor: pointer;
+transition-duration: 1s;
+}
 
-
-    .flex-redes {display: flex;
+.flex-redes {display: flex;
 justify-content:space-between;
-flex-wrap: wrap;}
+flex-wrap: wrap; 
 
+div { 
+    a {display: inline-block;
+animation: pulse 1.5s infinite;
+}
 
+@keyframes pulse {
+0% { transform: scale(1); opacity: 1; }
+50% { transform: scale(1.1); opacity: 0.7; }
+100% { transform: scale(1); opacity: 1; }
+}
+}
+}
 
-
-.bi{color: antiquewhite;}
+.bi{color: $color-secundario;}

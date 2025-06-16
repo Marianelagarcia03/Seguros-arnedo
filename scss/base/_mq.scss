@@ -3,7 +3,7 @@ margin: 20px auto;
 margin-top: 30%;
 padding: 20px;
 background-color: rgba(255, 249, 249, 0.9);
-color: black; font-size: 12px;}}
+color: $color-principal; font-size: 12px;}}
 
 @media screen and (max-width: 613px){.info {text-align: center;
 height: 500px;
@@ -35,20 +35,26 @@ white-space: normal;
 text-align: left;
 max-width: 200px;}}
 
-@media screen and (max-width: 768px) {.titulocompanias {background-attachment:scroll;
+@media screen and (max-width: 768px) {.titulocompanias h1{font-size: 2rem;
 height: 400;}
 }
-
+@media screen and (max-width: 760px) {.subtitulocompanias div h3{font-size: 1.5rem;
+height: 400; margin-left: 0%; margin-right: 0%;}
+}
 
 /*--------------Pagina Productos -----------*/
+@media screen and (max-width:690px){.grid-productos {grid-template-columns: 1fr 1fr 1fr;
+grid-template-rows: 100px 100px 100px;}}
 
+@media screen and (max-width:500px){.grid-productos {grid-template-columns: 1fr 1fr;
+grid-template-rows: 100px 100px;}}
 
-
-
+@media screen and (max-width:416px){.grid-productos {grid-template-columns: 1fr;
+grid-template-rows: 100px;}}
 
 
 /*--------------Pagina siniestros -----------*/
-
+@media screen and (max-width:600px){.listas {font-size: 14px;}}
 
 
 
