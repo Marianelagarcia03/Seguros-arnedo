@@ -1,6 +1,8 @@
 .custom-navbar {background-color: rgba(29, 34, 35, 0.705);}
 .custom-navbar .navbar-brand,
-.custom-navbar .nav-link {color: antiquewhite;}
+.custom-navbar .nav-link {color: antiquewhite; margin-left: 10px;}
 .custom-navbar .nav-link:hover {color: rgb(34, 80, 95);}
 .custom-navbar .navbar-nav .nav-link.active {color: antiquewhite;}
 .custom-navbar .navbar-nav .nav-link.active:hover {color: rgb(34, 80, 95);}
+
+.me-2{border-radius: 10px;}
