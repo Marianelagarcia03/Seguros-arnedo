@@ -1,7 +1,7 @@
 .titulo h1 {
 @extend %titulo-base;
 font-style: normal;
-padding: 0px;
+padding: 5px;
 font-size: nth($tamaños, 7);
 }
 
@@ -64,20 +64,24 @@ margin-bottom: 5px;}
 
 p{font-size:nth($tamaños, 2);
 margin-top: 0;}
-}
+
+transition: all 0.2s ease;
+&:hover {
+transform: scale(1.05)
+}}
 
 .contact-box { position: absolute;
-margin: 20px;
 margin-left: 60%;
 margin-top: 10%;
-padding: 60px;
-background-color: rgba(255, 255, 255, 0.855);
-color:$color-principal; font-size:nth($tamaños, 1);
+padding: 50px;
+background-color: rgba(29, 34, 35, 0.705);
+font-size:nth($tamaños, 1);
 max-width: 300px;
 z-index: 1;
 border-radius: 10px;
+color: white;
 
-h4 {font-size:nth($tamaños, 3);}
+h4 {font-size:nth($tamaños, 3); color: white; font-weight: 500;}
 
 p {font-size:nth($tamaños, 1);}
 }
@@ -164,25 +168,15 @@ h1{margin: 10px;
 padding: 10px;
 margin-bottom: 20px;}}
 
-/*h2{text-align: center; 
-    margin-top: 20px;
-    margin-bottom: 20px;
-    font-style: italic;
-    font-size:nth($tamaños, 4);
-    background-color:rgba(29, 34, 35, 0.705);
-    padding: 30px;}
-    }*/
-
-
 .subtitulo-productos h2 {font-style: italic;
-    background-color: rgb(21, 24, 24);
-    padding: 10px;
+background-color: rgb(21, 24, 24);
+padding: 10px;
 text-align: center;}
 
 .subtitulo-productos-2 h2 {margin-top: 30px;
-    font-style: italic;
-    background-color: rgb(21, 24, 24); 
-    padding: 10px;
+font-style: italic;
+background-color: rgb(21, 24, 24); 
+padding: 10px;
 text-align: center;} 
 
 .grid-productos {display: grid;
@@ -207,8 +201,8 @@ border-radius: 10px;
 }
 
 .cotizacion {
-margin-top: 80px;
-margin-bottom: 100px;
+margin-top: 50px;
+margin-bottom: 50px;
 display: flex;
 justify-content: center;
 
@@ -273,44 +267,7 @@ justify-content: center;
 margin-top: 50px;
 margin-bottom: 100px;}
 
-/*.telefonos h2{margin-top: 20px;
-text-align: center;
-margin-bottom: 0px;
-font-style: italic;
-padding: 20px;
-background-color: rgba(29, 34, 35, 0.705);}
-
-.flex-numeros{
-display: flex;
-flex-direction: column;
-flex-wrap: wrap;
-gap: 20px;
-margin-bottom: 10px;
-padding: 50px;
-font-size: nth($tamaños, 3);
-}
-
-.flex-item {
-    width: 100%;
-height: auto;
-padding: 20px;
-flex-grow: 1;
-background-color:rgb(34, 80, 95);
-border-radius: 20px;
-border: 3px;
-border-style: solid;
-border-color: rgba(29, 34, 35, 0.705);
-
-h3 {padding: 5px; text-align: center;}
-
-p {margin-top: 10px; padding: 5px;}}*/
-
-
-
-
-.telefonos-utiles
-
-h2 {
+.telefonos-utiles h2 {
 margin-top: 20px;
 text-align: center;
 margin-bottom: 0px;
@@ -322,31 +279,24 @@ background-color: rgba(29, 34, 35, 0.705);}
 display: grid;
 grid-template-columns: 1fr 1fr 1fr 1fr;
 gap: 20px;
+margin: 10px;
 }
 
-.telefono-card {
-    margin-top: 20px;
+.telefono-tarjeta {
+margin-top: 20px;
 background-color: rgb(21, 24, 24);
 padding: 20px;
 border-radius: 10px;
-transition: transform 0.2s ease;
-}
 
-.telefono-card:hover {
-  transform: translateY(-5px);
-}
-
-.telefono-card h3 {
-  margin-bottom: 10px;
+h3 {margin-bottom: 10px;
 color: rgb(15, 141, 155);
-  font-size: nth($tamaños, 5);
-  font-weight: 500;
-}
+font-size: nth($tamaños, 5);
+font-weight: 500;}
+transition: all 0.2s ease;
+&:hover {
+transform: scale(1.05)
+}}
 
-.telefono-card p {
-  margin: 0;
-  line-height: 1.5;
-}
 
 
 
@@ -355,18 +305,19 @@ color: rgb(15, 141, 155);
 .titulo-contacto {text-align: center;
 margin: 10px; font-style: italic;}
 
-.formulario-contacto {background-image: url(../img/pexels-introspectivedsgn-4065814.jpg);
+.formulario-contacto {background-image: url(../img/pexels-karolina-grabowska-5387294.jpg);
 background-size: cover;
 background-position: center;
 background-repeat: no-repeat;  padding: 60px;
 min-height: 100vh;
 
-form {margin: 20px auto;
+form {margin-top: 20px;
+    margin-left: 30%;
 text-align: center;
 display: flex;
 flex-direction: column;
 gap: 10px;
-width: 90%;
+width: 100%;
 max-width: $form-max-width;
 flex-wrap: wrap;
 padding: 20px;
@@ -410,14 +361,15 @@ height:100%;}}
 .horarios {
 position: absolute;
 top: 30%; 
-right: 50px;
+right: 20%;
 padding: 40px;
 background-color: rgba(0, 0, 0, 0.6);
 color: $color-secundario;
-font-size: nth($tamaños, 1);
+font-size: nth($tamaños, 2);
 max-width: 300px;
 z-index: 1;
 border-radius: 10px;
+
 }
 
 
