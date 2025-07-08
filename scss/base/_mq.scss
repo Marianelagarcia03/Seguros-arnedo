@@ -5,9 +5,19 @@ padding: 20px;
 background-color: rgba(29, 34, 35, 0.705);
 font-size: 12px;}}
 
-@media screen and (max-width: 453px){.info {height: 500px;
+@media screen and (max-width: 700px){.info {height: 420px;
 padding: 10px;
 font-size: 12px;}}
+
+@media screen and (max-width: 650px){.info {height: 500px;}}
+@media screen and (max-width: 445px){.info {height: 550px;}}
+@media screen and (max-width: 425px){.info {height: 600px;
+h2 {font-size: nth($tamaños,4);}
+h3 {font-size: nth($tamaños,3);}
+h4 {font-size: nth($tamaños,3);}
+p {font-size: nth($tamaños,3);}}
+}
+
 
 @media screen and (max-width: 974px){.grid-destacados {grid-template-columns: 1fr 1fr;}}
 
@@ -35,7 +45,6 @@ font-size: 12px;}}
 @media (max-height: 500px) {.contact-box {margin-top: 0px;padding: 0px;}}
 
 @media screen and (max-width: 600px){.flex-redes {margin-top: 20px;}}
-
 
 
 //-------Pagina Compañias------//
@@ -70,6 +79,16 @@ grid-template-rows: 100px;}}
 @media screen and (max-width:540px){.grid-numeros {grid-template-columns: 1fr 1fr;}}
 
 @media screen and (max-width:350px){.grid-numeros {grid-template-columns: 1fr;}}
+
+@media screen and (max-width:980px){.titulo-siniestros { h1 {color:$color-principal; margin-top: 0px;}
+p {margin-top: 200px;}}}
+
+@media screen and (max-width:800px){.titulo-siniestros { h1 {color:$color-principal; margin-top: 0px;}
+p {margin-top: 300px; font-size: nth($tamaños,2);}}}
+
+@media screen and (max-width:500px){.titulo-siniestros {
+p {margin-top: 350px; font-size: nth($tamaños,2);}}}
+
 /*--------------Pagina Contacto -----------*/
 @media screen and (max-width:680px){.grid-centro {grid-template-columns: 1fr;
 grid-template-rows: 1fr;}}

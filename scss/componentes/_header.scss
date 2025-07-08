@@ -1,8 +1,8 @@
 .custom-navbar {background-color: rgba(29, 34, 35, 0.705); z-index: 1050;}
 .custom-navbar .navbar-brand,
-.custom-navbar .nav-link {color: antiquewhite; margin-left: 10px;}
-.custom-navbar .nav-link:hover {color: rgb(34, 80, 95);}
-.custom-navbar .navbar-nav .nav-link.active {color: antiquewhite;}
-.custom-navbar .navbar-nav .nav-link.active:hover {color: rgb(34, 80, 95);}
+.custom-navbar .nav-link {color:$color-secundario; margin-left: 10px;}
+.custom-navbar .nav-link:hover {color:$color-terciario;}
+.custom-navbar .navbar-nav .nav-link.active {color:$color-secundario;}
+.custom-navbar .navbar-nav .nav-link.active:hover {color:$color-terciario;}
 
 .me-2{border-radius: 10px;}

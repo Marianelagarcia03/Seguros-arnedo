@@ -1,19 +1,14 @@
-.titulo h1 {
-@extend %titulo-base;
-font-style: normal;
-padding: 5px;
-font-size: nth($tamaños, 7);
-}
-
+/*-----------INDEX------------*/
 .info{text-align: center;
-height: 420px;
+height: 400px;
 padding: 20px;
-background-color: rgba(29, 34, 35, 0.705);
-h2 {padding-top: 30px;
+background-color: $cuarto-color;
+
+h2 {padding-top: 10px;
 font-size:nth($tamaños, 6);
 font-weight: 500;}
 
-h3 {padding-top: 30px;
+h3 {padding-top: 20px;
 font-weight: 400;
 font-size:nth($tamaños, 5);}
 
@@ -25,19 +20,23 @@ p {padding-top: 30px;
 font-size: nth($tamaños, 3);}
 }
 
+.fondo-index {background: #000000;
+background: linear-gradient(90deg,rgba(0, 0, 0, 1) 0%, rgba(1, 12, 23, 1) 24%, rgba(6, 28, 48, 1) 54%, rgba(6, 28, 68, 1) 79%, rgba(4, 126, 148, 1) 100%);}
+
 .subtitulo {
-h2 {padding-top: 30px;
-font-size:nth($tamaños, 6); 
-@extend %titulo-base}}
+h2 {@extend %titulo-base;
+padding: 20px;
+font-size:nth($tamaños, 6);
+text-shadow:2px 1px 2px $color-principal;
+}}
 
 .grid-destacados { 
 width: 100%;
 display: grid ;
 grid-template-columns: 1fr 1fr 1fr;
 grid-template-rows: 350px;
-gap: 10px;
-margin-top: 50px;
-row-gap: 20px;
+gap: 20px 10px;
+margin-top: 10px;
 justify-items: center;
 margin-bottom: 40px;
 }
@@ -49,13 +48,12 @@ text-align: center;
 display: flex;
 flex-direction: column;
 align-items: center;
-background-color: rgba(29, 34, 35, 0.705);
+background-color: $cuarto-color;
 padding: 10px;
 border-radius: 10px;
 
 img {width: 80%;
 height: 300px;
-
 margin-top: 10px;}
 
 h3 {font-size:nth($tamaños, 3);
@@ -74,22 +72,26 @@ transform: scale(1.05)
 margin-left: 60%;
 margin-top: 10%;
 padding: 50px;
-background-color: rgba(29, 34, 35, 0.705);
+background-color: $cuarto-color;
 font-size:nth($tamaños, 1);
 max-width: 300px;
 z-index: 1;
 border-radius: 10px;
 color: white;
 
-h4 {font-size:nth($tamaños, 3); color: white; font-weight: 500;}
+h4 {font-size:nth($tamaños, 3);
+color: white;
+font-weight: 500;}
 
 p {font-size:nth($tamaños, 1);}
 }
 
 .contact-box {animation-name: slidein;
 animation-duration: 3s;
-@keyframes slidein {from {margin-left: 75%; width: 300px;}
-to {margin-left: 60%; width: 300px;}}
+@keyframes slidein {from {margin-left: 75%;
+width: 300px;}
+to {margin-left: 60%;
+width: 300px;}}
 }
 
 .mapa-container {position: relative;
@@ -108,76 +110,77 @@ width: 80px;
 height: 80px;
 
 img {width: 100%;
-height: 100%;
+height: 100%;}
 }
 
-&:hover {transform: scale(1.2); transition: 1s;}
+//------Pagina Compañias------//
+
+.titulo-companias h1 {@extend %titulo-base;
+padding:20px;
+color: $color-secundario;
+text-shadow:2px 2px 4px $color-principal;
 }
 
-.carousel img {height: 550px;
-object-fit: cover;}
-//------Pagina Companñias------//
+.fondo-companias {background-image: url(../img/fondocompanias.jpg);
+background-size:cover;
+background-position: top;
+background-repeat: no-repeat;
+min-height: 135vh;}
 
-.titulocompanias h1 {padding:0px;
-@extend %titulo-base;
-;margin-top: 10px
-}
-
-.subtitulocompanias {@extend %fondo-seccion;
-background-image: url(../img/zurich.jpg);
+.subtitulo-companias {
 margin-top: 10px;
-padding: 60px;
-height: 600px;
+padding: 10px;
 
-div h3 {font-style: italic;
-color: $color-principal;
+div h2 {font-style: italic;
 text-align: center;
 margin-left: 100px;
-margin-right: 100px;}}
+margin-right: 100px;
+text-shadow:2px 2px 4px $color-principal}}
 
-.flex-contenido {margin-top: 80px;
+.flex-contenido {margin-top: 20px;
 width: 80%;
 margin-left: auto;
 margin-right: auto;
-}
 
-.flex-contenido img {width: 200px; height: 200px;object-fit: fill; border-radius: 10px}
-
-.flex-contenido div { @include flex( flex, row, center, center,nowrap);
+div { @include flex( flex, row, center, center,nowrap);
 gap: 50px;
 margin: 20px;
 padding: 50px;
 border-style: solid;
 border-color: $color-terciario;
-background-color: rgba(34, 80, 95, 0.223);
-background: #01131c;
-background: linear-gradient(319deg,rgba(1, 19, 28, 1) 0%, rgb(12, 78, 117) 59%, rgba(8, 97, 115, 1) 100%);
+background-color: rgba(21, 24, 24, 0.868);
 border-radius: 10px;
 
-transition: all 0.3s ease;
-&:hover {
-transform: scale(1.02);
-}}
-
+img {width: 200px;
+height: 200px;
+object-fit: fill;
+border-radius: 10px}}}
 
 
 /*--------------Pagina Productos -----------*/
 .titulo-productos {
-h1{margin: 10px; 
+h1{color: $color-principal;
 @extend %titulo-base;
 padding: 10px;
-margin-bottom: 20px;}}
+margin-bottom: 10px;
+text-shadow:2px 1px 2px $color-principal}
+}
 
-.subtitulo-productos h2 {font-style: italic;
-background-color: rgb(21, 24, 24);
-padding: 10px;
-text-align: center;}
+.fondo-pagina {background-image: url(../img/fondoproductos.jpg);
+@extend %fondo-seccion;
+min-height: 135vh;
+margin-bottom: 30px;
+}
 
-.subtitulo-productos-2 h2 {margin-top: 30px;
-font-style: italic;
-background-color: rgb(21, 24, 24); 
-padding: 10px;
-text-align: center;} 
+.subtitulo-productos h2 {@extend %subtitulo-productos;
+color:$color-principal;
+font-weight: 600;
+}
+
+.subtitulo-productos-2 h2 {@extend %subtitulo-productos;
+color: $color-secundario;
+margin-top: 30px;
+} 
 
 .grid-productos {display: grid;
 grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -195,18 +198,17 @@ height: 100px;
 text-align: center;
 font-weight: 100;
 align-content: center;
-background: #01131c;
-background: linear-gradient(319deg,rgba(1, 19, 28, 1) 0%, rgba(12, 78, 117, 1) 59%, rgba(8, 97, 115, 1) 100%);
+background-color: rgba(21, 24, 24, 0.747);
 border-radius: 10px;
 }
 
 .cotizacion {
-margin-top: 50px;
-margin-bottom: 50px;
+margin-top: 20px;
+margin-bottom: 30px;
 display: flex;
 justify-content: center;
 
-a {text-decoration: none; color: antiquewhite;
+a {text-decoration: none; color:$color-secundario;
 background-color: rgb(51, 141, 153);
 padding: 20px;
 display: flex;
@@ -225,25 +227,39 @@ box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);}}
 }
 
 /*--------------Pagina siniestros -----------*/
-.titulo-siniestros {margin: 0px;
-@extend %titulo-base;
-padding: 10px;}
 
-.subtitulo-siniestros {margin-top: 0px; text-align: center;
 
-h2{background-color: rgb(21, 24, 24); padding: 20px;}
+.imagen-sinietro{background-image: url(../img/fondosiniestros.jpg);
+background-size: cover;
+background-position: center 85%;
+background-repeat: no-repeat;
+padding: 60px;
+min-height: 50vh;
+}
 
-p {margin-top: 30px; font-size:nth($tamaños, 3)}}
+.titulo-siniestros {
+h1 {margin-top: 180px;
+text-align: center;
+color: $color-secundario;
+font-weight: 500;
+text-shadow:2px 2px 4px $color-principal;}
+
+p {margin-top: 30px;
+font-size:nth($tamaños, 3);
+background-color: rgb(21, 24, 24);
+text-align: center;
+border-radius: 10px;}}
 
 .accordion-button {
-background-color: rgb(34, 80, 95);
-color: antiquewhite;
+background: #01131c;
+background: linear-gradient(103deg,rgba(1, 19, 28, 1) 1%, rgba(8, 58, 86, 1) 38%, rgba(12, 78, 117, 1) 61%);
+color: $color-secundario;
 font-weight: bold;
 }
 
 .accordion-button:not(.collapsed) {
-background-color: rgb(34, 80, 95);
-color: antiquewhite;
+background-color: $color-terciario;
+color: $color-secundario;
 }
 .accordion-button:focus {
 box-shadow: none;
@@ -251,15 +267,14 @@ box-shadow: none;
 
 .accordion-body {
 background-color: rgb(21, 24, 24);
-color:antiquewhite;
+color: $color-secundario;
 font-size:nth($tamaños, 1);
 padding: 20px;
+h3 {font-size: nth($tamaños,2);}
 }
 
 .accordion-item {
 border-radius: 10px;
-margin-bottom: 10px;
-overflow: hidden;
 }
 
 .video {display: flex;
@@ -267,19 +282,21 @@ justify-content: center;
 margin-top: 50px;
 margin-bottom: 100px;}
 
+.fondo-seccion {background: #01131c;
+background: linear-gradient(319deg,rgba(1, 19, 28, 1) 0%, rgba(12, 78, 117, 1) 58%, rgba(8, 97, 115, 1) 100%);}
+
 .telefonos-utiles h2 {
-margin-top: 20px;
 text-align: center;
-margin-bottom: 0px;
 font-style: italic;
 padding: 20px;
-background-color: rgba(29, 34, 35, 0.705);}
+background-color:rgb(21, 24, 24) ;}
 
 .grid-numeros {
 display: grid;
 grid-template-columns: 1fr 1fr 1fr 1fr;
 gap: 20px;
 margin: 10px;
+padding-bottom: 50px;
 }
 
 .telefono-tarjeta {
@@ -298,24 +315,24 @@ transform: scale(1.05)
 }}
 
 
-
-
-
 /*--------------Pagina Contacto -----------*/
-.titulo-contacto {text-align: center;
-margin: 10px; font-style: italic;}
+.imagen-fondo{background-image: url(../img/contacto.jpg);
+@extend %fondo-seccion;
+padding: 60px;
+min-height: 100vh;}
 
-.formulario-contacto {background-image: url(../img/pexels-karolina-grabowska-5387294.jpg);
-background-size: cover;
-background-position: center;
-background-repeat: no-repeat;  padding: 60px;
-min-height: 100vh;
+
+.titulo-contacto h1 {@extend %titulo-base;
+color:$color-principal;
+text-shadow:2px 2px 4px grey;
+font-weight: 600;}
+
 
 form {margin-top: 20px;
-    margin-left: 30%;
-text-align: center;
 display: flex;
 flex-direction: column;
+margin-left: auto;
+margin-right: auto;
 gap: 10px;
 width: 100%;
 max-width: $form-max-width;
@@ -338,17 +355,19 @@ resize: vertical;
 }
 
 input[type="submit"] {
-background-color: white;width: 100px;
-color: black; align-self: center; border-style:solid; border-radius: 12px;
+background-color: white;
+width: 100px;
+color: $color-principal;
+align-self: center;
+border-style:solid;
+border-radius: 12px;
 
 &:hover {
-background-color: $color-terciario; color:$color-secundario;
+background-color: $color-terciario;
+color:$color-secundario;
 transition: 1s;}}}
-}
-
 
 .subtitulo-mapa{padding: 20px;
-margin-top: 0px;
 text-align: center;
 font-style: italic;
 background-color:rgba(29, 34, 35, 0.705) }
@@ -369,7 +388,6 @@ font-size: nth($tamaños, 2);
 max-width: 300px;
 z-index: 1;
 border-radius: 10px;
-
 }
 
 
