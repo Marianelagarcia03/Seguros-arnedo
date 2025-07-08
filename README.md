@@ -4,6 +4,8 @@
 En **Seguros Arnedo**, no solo te informamos: te acompañamos para que tomes la mejor decisión y puedas solicitar tu seguro en pocos pasos. Ya sea que busques protección para tu auto, tu comercio o tu hogar, este sitio es tu punto de partida.
 
 Podes acceder desde aca: https://marianelagarcia03.github.io/Seguros-arnedo/
+o 
+desde el servidor netlify aqui: https://seguros-arnedo.netlify.app/
 
 ## Descripcion del proyecto
 Este proyecto fue creado como Proyecto final para el curso de Desarrollo Web de Coderhouse, con el objetivo de aplicar todos los conocimientos adquiridos durante la cursada.
