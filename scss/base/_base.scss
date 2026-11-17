@@ -1,58 +1,164 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-
-/*---Reset---*/
-*{margin: 0;
-padding: 0;
+/* --------------------------------------------------------------------------
+   Base y utilidades
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-body {background-color: $color-principal;
-font-size: nth($tamaños, 2);
-color: $color-secundario;
-font-family: "Montserrat", sans-serif;}
-
-.carousel-caption {@extend %letras-carousel}
-
-#texto-claro  {@extend %letras-carousel}
-
-.titulo-superior-carousel {position: absolute;
-top: 20px;
-width: 100%;
-text-align: center;
-z-index: 10;
-
-h1 {color: $color-secundario;
-font-size: nth($tamaños,7);
-text-shadow:2px 2px 4px $color-principal;}
+* {
+  margin: 0;
+  padding: 0;
 }
 
-.carousel img {height: 550px;
-object-fit: cover;}
-
-.overlay {
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background-color: rgba(0, 0, 0, 0.4);
-z-index: 1;
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + 16px);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
-.btn { text-decoration: none;
-padding: 8px;
-background-color: rgb(34, 100, 110);
-color: $color-secundario;
-font-size: nth($tamaños,3);
-font-weight: 500;
-padding-left: 15px;
-padding-right: 15px;
-border: none;
-border-radius: 10px;
-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4); 
-z-index: 3;
+body {
+  min-height: 100vh;
+  background-color: var(--c-bg);
+  color: var(--c-text);
+  font-family: var(--font);
+  font-size: var(--fs-base);
+  line-height: 1.65;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
 
-transition: all 0.4s ease;
+img,
+svg,
+iframe,
+video {
+  display: block;
+  max-width: 100%;
+}
 
-&:hover {transform: translateY(-5px);
-background-color:$color-terciario; color: $color-secundario;}
+img {
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1.18;
+  font-weight: 700;
+  color: var(--c-cream);
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+strong {
+  color: var(--c-cream);
+  font-weight: 600;
+}
+
+:focus-visible {
+  outline: 3px solid var(--c-aqua);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+::selection {
+  background: var(--c-teal-2);
+  color: var(--c-cream);
+}
+
+.icon {
+  width: 1.25em;
+  height: 1.25em;
+  flex-shrink: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: clamp(1.1rem, 4vw, 2rem);
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -100px;
+  z-index: 2000;
+  padding: 0.75rem 1.1rem;
+  background: var(--c-cream);
+  color: var(--c-bg);
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* Animación de aparición, discreta (se desactiva con reduced-motion) */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+  }
 }

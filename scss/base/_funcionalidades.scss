@@ -1,48 +1,64 @@
+/* --------------------------------------------------------------------------
+   Tokens de diseño — paleta original de JMA Seguros
+   Origen de cada color (CSS/SCSS anteriores y logo):
+   - Negro de fondo ($color-principal: black)
+   - Antiquewhite para textos ($color-secundario)
+   - Verde azulado rgb(34,80,95) ($color-terciario) y rgb(34,100,110) de botones
+   - Verde agua rgb(43,163,137) de hover y rgb(51,141,153) del botón cotizar
+   - Azules noche del degradado: rgb(1,12,23) · rgb(6,28,48) · rgb(4,126,148)
+   - Azul marino y dorado del logo: #0F1D37 / #B8A03E
+   -------------------------------------------------------------------------- */
+:root {
+  /* Fondos */
+  --c-black: #000000;
+  --c-bg: #010c17;            /* rgb(1,12,23) */
+  --c-bg-2: #061c30;          /* rgb(6,28,48) */
+  --c-navy: #0f1d37;          /* fondo del logo */
+  --c-surface: #0a1826;
+  --c-surface-2: #0f2234;
+  --c-line: rgba(250, 235, 215, 0.12);
+  --c-line-strong: rgba(250, 235, 215, 0.22);
 
-//*variables
-$color-principal:black;
-$color-secundario:antiquewhite;
-$color-terciario:rgb(34, 80, 95);
-$cuarto-color: rgba(29, 34, 35, 0.705);
+  /* Textos */
+  --c-cream: #faebd7;         /* antiquewhite */
+  --c-text: #f3e6d4;
+  --c-muted: rgba(250, 235, 215, 0.74);
+  --c-soft: rgba(250, 235, 215, 0.56);
 
-//*listas
-$tamaños: 14px, 16px, 18px, 20px, 25px, 30px, 50px;
+  /* Marca */
+  --c-teal: #22505f;          /* rgb(34,80,95) */
+  --c-teal-2: #22646e;        /* rgb(34,100,110) */
+  --c-teal-3: #2a7882;
+  --c-aqua: #2ba389;          /* rgb(43,163,137) */
+  --c-cyan: #338d99;          /* rgb(51,141,153) */
+  --c-ocean: #047e94;         /* rgb(4,126,148) */
+  --c-gold: #c9ad55;          /* dorado del logo, uso puntual */
 
-//*extend
-%titulo-base {
-font-style: normal;
-font-weight: 500;
-text-align: center;
+  /* Funcionales */
+  --c-whatsapp: #1fa855;
+  --c-whatsapp-hover: #17904a;
+  --c-danger: #e0675f;
+  --c-success: #3fbf98;
+
+  /* Tipografía */
+  --font: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --fs-xs: 0.8125rem;
+  --fs-sm: 0.9375rem;
+  --fs-base: 1.0625rem;
+  --fs-lg: 1.1875rem;
+  --fs-h3: clamp(1.15rem, 1.05rem + 0.4vw, 1.35rem);
+  --fs-h2: clamp(1.6rem, 1.25rem + 1.4vw, 2.4rem);
+  --fs-h1: clamp(2.05rem, 1.4rem + 2.8vw, 3.6rem);
+
+  /* Espaciado y forma */
+  --space-section: clamp(4rem, 3rem + 4vw, 6.5rem);
+  --radius-sm: 10px;
+  --radius: 16px;
+  --radius-lg: 24px;
+  --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.25);
+  --shadow: 0 14px 40px rgba(0, 0, 0, 0.38);
+  --shadow-glow: 0 10px 30px rgba(34, 100, 110, 0.45);
+  --container: 1180px;
+  --header-h: 74px;
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
-
-%fondo-seccion {
-background-size: cover;
-background-position: center;
-background-repeat: no-repeat;
-width: 100%;
-}
-
-%letras-carousel {color: $color-secundario;
-font-weight: 500;
-font-style: italic;
-font-size: nth($tamaños,4);
-z-index: 2;
-text-shadow: 2px 2px 4px $color-principal;}
-
-%subtitulo-productos {
-font-style: italic;
-font-weight: 500;
-padding: 10px;
-text-align: start;}
-
-
-//* mixin
-@mixin flex($flex, $direction, $justify, $align, $wrap) {
-display: flex;
-flex-direction: $direction;
-justify-content: $justify;
-align-items: $align;
-flex-wrap: $wrap;
-}
-/*----------formulario contacto--------*/
-$form-max-width: 500px;

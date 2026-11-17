@@ -1,0 +1,610 @@
+/* --------------------------------------------------------------------------
+   Páginas internas: encabezado de página, productos, compañías, siniestros
+   -------------------------------------------------------------------------- */
+
+/* ---------- Encabezado de página interna ---------- */
+.page-hero {
+  position: relative;
+  padding: calc(var(--header-h) + clamp(3rem, 2rem + 4vw, 5.5rem)) 0 clamp(3rem, 2rem + 3vw, 4.5rem);
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.page-hero > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+
+.page-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(90deg, rgba(1, 12, 23, 0.96) 0%, rgba(1, 12, 23, 0.82) 50%, rgba(6, 28, 48, 0.55) 100%),
+    linear-gradient(0deg, var(--c-bg) 0%, rgba(1, 12, 23, 0) 45%);
+}
+
+.page-hero h1 {
+  font-size: clamp(1.9rem, 1.35rem + 2.4vw, 3.1rem);
+  margin-bottom: 0.9rem;
+  max-width: 18em;
+}
+
+.page-hero .lead {
+  max-width: 40em;
+}
+
+.page-hero .hero-actions {
+  margin: 1.8rem 0 0;
+}
+
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1.2rem;
+  list-style: none;
+  font-size: var(--fs-xs);
+  color: var(--c-soft);
+}
+
+.breadcrumb li + li::before {
+  content: "/";
+  margin-right: 0.4rem;
+  color: var(--c-soft);
+}
+
+.breadcrumb a:hover {
+  color: var(--c-cream);
+}
+
+/* ---------- Productos ---------- */
+.chip-nav {
+  position: sticky;
+  top: var(--header-h);
+  z-index: 50;
+  background: rgba(1, 12, 23, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-block: 1px solid var(--c-line);
+}
+
+.chip-list {
+  display: flex;
+  gap: 0.5rem;
+  padding-block: 0.75rem;
+  overflow-x: auto;
+  list-style: none;
+  scrollbar-width: none;
+}
+
+.chip-list::-webkit-scrollbar {
+  display: none;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 0.95rem;
+  white-space: nowrap;
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--c-muted);
+  border: 1px solid var(--c-line-strong);
+  border-radius: 999px;
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease), background-color 0.2s var(--ease);
+}
+
+.chip:hover,
+.chip.is-active {
+  color: var(--c-cream);
+  border-color: var(--c-aqua);
+  background: rgba(43, 163, 137, 0.12);
+}
+
+.chip .icon {
+  width: 1.05em;
+  height: 1.05em;
+  color: var(--c-aqua);
+}
+
+.product-detail {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: clamp(1.8rem, 1rem + 3vw, 3.5rem);
+  align-items: start;
+  padding-block: clamp(3rem, 2rem + 3vw, 4.5rem);
+  border-bottom: 1px solid var(--c-line);
+}
+
+.product-detail:last-of-type {
+  border-bottom: 0;
+}
+
+.product-detail-media {
+  position: sticky;
+  top: calc(var(--header-h) + 80px);
+}
+
+.product-detail-media img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--c-line);
+}
+
+.product-detail-head {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-bottom: 0.9rem;
+}
+
+.product-detail-head .product-badge {
+  position: static;
+  border: 0;
+}
+
+.product-detail h2 {
+  font-size: clamp(1.5rem, 1.25rem + 1vw, 2rem);
+}
+
+.product-detail .lead {
+  margin-bottom: 1.6rem;
+}
+
+.info-blocks {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.6rem;
+}
+
+.info-block {
+  padding: 1.2rem 1.25rem;
+  background: var(--c-surface);
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius);
+}
+
+.info-block--full {
+  grid-column: 1 / -1;
+}
+
+.info-block h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  margin-bottom: 0.6rem;
+}
+
+.info-block h3 .icon {
+  color: var(--c-aqua);
+}
+
+.info-block p,
+.info-block li {
+  font-size: var(--fs-sm);
+  color: var(--c-muted);
+}
+
+.info-block ul {
+  display: grid;
+  gap: 0.35rem;
+  padding-left: 1.1rem;
+}
+
+.info-block li::marker {
+  color: var(--c-aqua);
+}
+
+.detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  list-style: none;
+}
+
+.tag-cloud li {
+  padding: 0.5rem 0.95rem;
+  font-size: var(--fs-sm);
+  color: var(--c-muted);
+  background: var(--c-surface);
+  border: 1px solid var(--c-line);
+  border-radius: 999px;
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.4rem;
+}
+
+.panel {
+  padding: clamp(1.4rem, 1rem + 1.5vw, 2rem);
+  background: var(--c-surface);
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius-lg);
+}
+
+.panel h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.2rem;
+  margin-bottom: 1.1rem;
+}
+
+.panel h3 .icon {
+  color: var(--c-aqua);
+}
+
+/* ---------- Compañías ---------- */
+.company-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.4rem;
+  list-style: none;
+}
+
+.company-card {
+  display: grid;
+  grid-template-columns: 152px 1fr;
+  gap: 1.4rem;
+  height: 100%;
+  padding: 1.4rem;
+  background: var(--c-surface);
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius-lg);
+  transition: border-color 0.25s var(--ease), transform 0.25s var(--ease);
+}
+
+.company-card:hover {
+  border-color: rgba(43, 163, 137, 0.45);
+  transform: translateY(-3px);
+}
+
+.company-logo {
+  width: 152px;
+  height: 114px;
+  border-radius: var(--radius);
+  object-fit: contain;
+  border: 1px solid var(--c-line);
+}
+
+.company-card h2 {
+  font-size: 1.25rem;
+  margin-bottom: 0.4rem;
+}
+
+.company-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.7rem;
+  list-style: none;
+}
+
+.company-facts li {
+  padding: 0.2rem 0.6rem;
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  color: var(--c-aqua);
+  background: rgba(43, 163, 137, 0.1);
+  border-radius: 999px;
+}
+
+.company-card p {
+  font-size: var(--fs-sm);
+  color: var(--c-muted);
+  margin-bottom: 1rem;
+}
+
+.company-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.2rem;
+}
+
+/* ---------- Siniestros ---------- */
+.emergency {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1rem 1.5rem;
+  align-items: center;
+  padding: 1.2rem 1.4rem;
+  background: rgba(224, 103, 95, 0.1);
+  border: 1px solid rgba(224, 103, 95, 0.4);
+  border-radius: var(--radius);
+}
+
+.emergency-title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 700;
+  color: #f6c9c5;
+}
+
+.emergency-title .icon {
+  width: 24px;
+  height: 24px;
+}
+
+.emergency-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  list-style: none;
+}
+
+.emergency-list a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.9rem;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--c-cream);
+  background: rgba(1, 12, 23, 0.6);
+  border: 1px solid var(--c-line-strong);
+  border-radius: 999px;
+}
+
+.emergency-list a:hover {
+  border-color: #f19a93;
+}
+
+.emergency-list b {
+  font-size: 1.05rem;
+  color: #ffffff;
+}
+
+.timeline {
+  display: grid;
+  gap: 1rem;
+  list-style: none;
+  counter-reset: tl;
+}
+
+.timeline > li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  gap: 1.1rem;
+  padding: 1.3rem 1.4rem;
+  background: var(--c-surface);
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius);
+  counter-increment: tl;
+}
+
+.timeline > li::before {
+  content: counter(tl);
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--c-cream);
+  background: linear-gradient(135deg, var(--c-teal-3), var(--c-teal));
+  border-radius: 14px;
+}
+
+.timeline h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.3rem;
+}
+
+.timeline p {
+  color: var(--c-muted);
+  font-size: var(--fs-sm);
+}
+
+.timeline .btn {
+  margin-top: 0.8rem;
+}
+
+.assist-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 1rem;
+  list-style: none;
+}
+
+.assist-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.3rem;
+  background: var(--c-surface);
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius);
+}
+
+.assist-head {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.assist-head img {
+  width: 64px;
+  height: 48px;
+  border-radius: 10px;
+  object-fit: contain;
+}
+
+.assist-head h3 {
+  font-size: 1.1rem;
+}
+
+.assist-list {
+  display: grid;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  list-style: none;
+}
+
+.assist-list li {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 0.6rem;
+  font-size: var(--fs-sm);
+  color: var(--c-muted);
+}
+
+.assist-list .icon {
+  width: 18px;
+  height: 18px;
+  margin-top: 0.2rem;
+  color: var(--c-aqua);
+}
+
+.assist-list a {
+  color: var(--c-cream);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: rgba(43, 163, 137, 0.6);
+  text-underline-offset: 3px;
+}
+
+.assist-list a:hover {
+  color: var(--c-aqua);
+}
+
+.assist-card .link-arrow {
+  margin-top: auto;
+  font-size: var(--fs-sm);
+}
+
+/* Acordeones nativos (details/summary) */
+.accordion {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.accordion details {
+  background: var(--c-surface);
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.accordion details[open] {
+  border-color: rgba(43, 163, 137, 0.45);
+}
+
+.accordion summary {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 1.1rem 1.3rem;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--c-cream);
+  cursor: pointer;
+  list-style: none;
+}
+
+.accordion summary::-webkit-details-marker {
+  display: none;
+}
+
+.accordion summary .quick-icon {
+  width: 42px;
+  height: 42px;
+}
+
+.accordion summary .chev {
+  margin-left: auto;
+  width: 22px;
+  height: 22px;
+  color: var(--c-soft);
+  transition: transform 0.25s var(--ease);
+}
+
+.accordion details[open] summary .chev {
+  transform: rotate(180deg);
+}
+
+.accordion summary:hover {
+  background: rgba(250, 235, 215, 0.03);
+}
+
+.accordion-body {
+  padding: 0.4rem 1.3rem 1.5rem;
+  border-top: 1px solid var(--c-line);
+}
+
+.accordion-body h3 {
+  font-size: 1rem;
+  margin: 1.2rem 0 0.5rem;
+  color: var(--c-aqua);
+}
+
+.accordion-body p,
+.accordion-body li {
+  font-size: var(--fs-sm);
+  color: var(--c-muted);
+}
+
+.accordion-body ol {
+  display: grid;
+  gap: 0.5rem;
+  padding-left: 1.3rem;
+}
+
+.accordion-body li::marker {
+  color: var(--c-aqua);
+  font-weight: 700;
+}
+
+.video-wrap {
+  margin-top: 1.4rem;
+  aspect-ratio: 16 / 9;
+  max-width: 720px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--c-line);
+  background: var(--c-black);
+}
+
+.video-wrap iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Página 404 */
+.error-page {
+  min-height: 80vh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: calc(var(--header-h) + 3rem) 0 4rem;
+}
+
+.error-page .big {
+  font-size: clamp(4rem, 3rem + 6vw, 7rem);
+  font-weight: 800;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 2px var(--c-aqua);
+  margin-bottom: 1rem;
+}

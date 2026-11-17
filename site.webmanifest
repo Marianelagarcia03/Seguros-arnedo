@@ -1,0 +1,14 @@
+{
+  "name": "JMA Seguros",
+  "short_name": "JMA Seguros",
+  "description": "Productor Asesor de Seguros Juan Manuel Arnedo, Córdoba.",
+  "start_url": "./index.html",
+  "display": "browser",
+  "background_color": "#010c17",
+  "theme_color": "#010c17",
+  "lang": "es-AR",
+  "icons": [
+    { "src": "img/web/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "img/logo.png", "sizes": "300x300", "type": "image/png" }
+  ]
+}

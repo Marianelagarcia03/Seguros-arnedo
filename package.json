@@ -1,9 +1,9 @@
 {
-  "name": "proyecto-coder",
+  "name": "jma-seguros",
   "version": "1.0.0",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build:css": "node scripts/build-css.mjs",
+    "sass": "npx sass scss/style.scss css/style.css --no-source-map"
   },
   "repository": {
     "type": "git",
@@ -14,6 +14,6 @@
   "bugs": {
     "url": "https://github.com/Marianelagarcia03/Seguros-arnedo/issues"
   },
-  "homepage": "https://github.com/Marianelagarcia03/Seguros-arnedo#readme",
-  "description": ""
+  "homepage": "https://segurosarnedo.com/",
+  "description": "Sitio web de JMA Seguros - Productor Asesor de Seguros Juan Manuel Arnedo (Córdoba, Argentina)"
 }

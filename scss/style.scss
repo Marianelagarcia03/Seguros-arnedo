@@ -1,7 +1,17 @@
-@import"./base/funcionalidades";
-@import"./base/base";
-@import"./componentes/header";
-@import"./componentes/main";
-@import"./componentes/footer";
-@import"./base/mq";
-
+/* ==========================================================================
+   JMA Seguros — hoja de estilos principal
+   --------------------------------------------------------------------------
+   Los parciales están escritos con sintaxis compatible con CSS (variables
+   nativas `var(--...)`, sin anidamiento), así que el resultado es el mismo
+   compilando con Sass (`npx sass scss/style.scss css/style.css`) o con el
+   script sin dependencias `node scripts/build-css.mjs`.
+   El orden de los @import define el orden en css/style.css.
+   ========================================================================== */
+@import "./base/funcionalidades";
+@import "./base/base";
+@import "./componentes/header";
+@import "./componentes/main";
+@import "./componentes/formularios";
+@import "./componentes/paginas";
+@import "./componentes/footer";
+@import "./base/mq";

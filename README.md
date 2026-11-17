@@ -1,50 +1,66 @@
-# 🚗🏠🛡️ Bienvenidos a Seguros Arnedo
- **¿Querés asegurar lo que más te importa? Este sitio está diseñado para ayudarte a contratar el seguro que necesitas de forma rápida, clara y confiable.**
+# 🛡️ JMA Seguros — Seguros Arnedo
 
-En **Seguros Arnedo**, no solo te informamos: te acompañamos para que tomes la mejor decisión y puedas solicitar tu seguro en pocos pasos. Ya sea que busques protección para tu auto, tu comercio o tu hogar, este sitio es tu punto de partida.
+**Sitio web de JMA Seguros, del Productor Asesor de Seguros Juan Manuel Arnedo (Córdoba, Argentina).**
+Pensado para que cualquier persona encuentre rápido el seguro que necesita, pida una cotización, escriba por WhatsApp y sepa cómo actuar ante un siniestro.
 
-Podes acceder desde aca: https://marianelagarcia03.github.io/Seguros-arnedo/
-o 
-desde el servidor netlify aqui: https://seguros-arnedo.netlify.app/
+- Dominio oficial: https://segurosarnedo.com/
+- GitHub Pages: https://marianelagarcia03.github.io/Seguros-arnedo/
+- Netlify: https://seguros-arnedo.netlify.app/
 
-## Descripcion del proyecto
-Este proyecto fue creado como Proyecto final para el curso de Desarrollo Web de Coderhouse, con el objetivo de aplicar todos los conocimientos adquiridos durante la cursada.
+## Descripción del proyecto
+Proyecto creado originalmente como proyecto final del curso de Desarrollo Web de Coderhouse y luego rediseñado y optimizado con foco comercial (UX, conversión, SEO, accesibilidad y rendimiento), conservando la identidad visual de la marca.
 
-## 🖥️ Tecnologías utilizadas
-
-- `HTML5`
-- `CSS3` con estructura `SCSS`
-- `Bootstrap 5`
+## 🖥️ Tecnologías
+- `HTML5` semántico (sin frameworks)
+- `CSS3` con estructura `SCSS` (parciales en `scss/`)
+- `JavaScript` sin dependencias (`js/main.js`)
+- Formulario de contacto con [Formspree](https://formspree.io/)
 - `Git & GitHub`
 
-**Entre sus secciones se destacan**:
-- ✨ Página principal con un **carrusel de imágenes** y mensaje institucional
-- 🏢 Información sobre seguros para **personas y empresas**
-- 📞 Teléfonos útiles en caso de **accidentes**
-- 💬 Formulario de **contacto directo**
-- 📍 Mapa de ubicación y horarios
+## 📄 Páginas
+| Página | Contenido |
+| --- | --- |
+| `index.html` | Hero, accesos rápidos, seguros, asesor, compañías, formulario de cotización (WhatsApp / correo), siniestros, contacto y mapa |
+| `pages/productos.html` | Ficha de cada seguro: qué es, qué puede cubrir, para quién es, qué consultar y cómo cotizar |
+| `pages/companias.html` | Las 7 compañías con logo, datos verificables, sitio oficial y acceso a su asistencia |
+| `pages/siniestros.html` | Emergencias, pasos a seguir, checklist, teléfonos de asistencia por compañía y guías por tipo de seguro |
+| `pages/contacto.html` | Canales de contacto, formulario (Formspree) y mapa |
+| `404.html` | Página de error con accesos útiles |
 
-🤝 Contacto
- Consultas o sugerencias
-📧 Email: marianela971@gmail.com
+## 📁 Estructura
+```
+├── index.html
+├── pages/                 Páginas internas
+├── css/style.css          CSS final (generado desde scss/)
+├── scss/                  Fuentes de estilos (tokens, base, componentes, responsive)
+├── js/main.js             Menú, WhatsApp, formularios, animaciones
+├── img/                   Imágenes originales
+├── img/web/               Versiones optimizadas (WebP) que usa el sitio
+├── scripts/build-css.mjs  Compila scss → css sin dependencias
+├── robots.txt · sitemap.xml · site.webmanifest
+```
 
-⭐ Autor
-Marianela García
+## 🎨 Estilos
+Los colores de marca están centralizados en `scss/base/_funcionalidades.scss` como variables CSS.
+Después de editar cualquier archivo de `scss/`, regenerá el CSS con:
+
+```bash
+node scripts/build-css.mjs        # sin dependencias
+# o, si tenés Sass:
+npx sass scss/style.scss css/style.css --no-source-map
+```
+
+## ⚙️ Datos que se configuran en un solo lugar
+- **WhatsApp y correo:** `CONFIG` al inicio de `js/main.js` (los enlaces del HTML también los incluyen para funcionar sin JavaScript).
+- **Formulario de contacto:** `action` del formulario en `pages/contacto.html` (endpoint de Formspree).
 
 ## 📂 Cómo clonar el proyecto
-
-Si querés clonar este proyecto y ejecutarlo localmente:
 
 ```bash
 git clone https://github.com/Marianelagarcia03/Seguros-arnedo.git
 cd Seguros-arnedo
+python3 -m http.server 8000   # y abrir http://localhost:8000
+```
 
-
-
-
-
-
-
-
-
-
+## ⭐ Autora
+Marianela García — marianela971@gmail.com
