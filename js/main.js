@@ -13,8 +13,42 @@
   var CONFIG = {
     whatsapp: "5493515161257", // +54 9 351 516-1257
     email: "juanmanuelarnedo@gmail.com",
-    defaultMessage: "Hola Juan Manuel, quisiera hacer una consulta."
+    defaultMessage: "Hola Juan Manuel, quisiera hacer una consulta.",
+    // Google Analytics 4: pegá acá el ID de medición (ej. "G-ABC123XYZ").
+    // Vacío = la medición queda desactivada y no se carga ningún script de Google.
+    ga4Id: ""
   };
+
+  /* ---------- Medición (GA4) ---------- */
+  function track(name, params) {
+    if (typeof window.gtag === "function") window.gtag("event", name, params || {});
+  }
+  if (CONFIG.ga4Id) {
+    var s = document.createElement("script");
+    s.async = true;
+    s.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(CONFIG.ga4Id);
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag("js", new Date());
+    window.gtag("config", CONFIG.ga4Id);
+  }
+  // Clics en WhatsApp, teléfono e Instagram (se registran en toda la web)
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest("a[href]");
+    if (!a) return;
+    var href = a.getAttribute("href");
+    var place = a.className.indexOf("wa-float") > -1 ? "boton_flotante" : (document.body.getAttribute("data-page") || "web");
+    if (href.indexOf("wa.me/" + CONFIG.whatsapp) > -1) {
+      track("click_whatsapp", { ubicacion: place, mensaje: decodeURIComponent((href.split("text=")[1] || "")).slice(0, 90) });
+    } else if (href.indexOf("wa.me/") > -1) {
+      track("click_whatsapp_aseguradora", { destino: href });
+    } else if (href.indexOf("tel:") === 0) {
+      track("click_telefono", { numero: href.slice(4), ubicacion: place });
+    } else if (href.indexOf("instagram.com") > -1) {
+      track("click_instagram", { ubicacion: place });
+    }
+  });
 
   // Mensajes sugeridos por tipo de seguro (se usan en botones y en el formulario)
   var PRODUCTS = {
@@ -161,6 +195,7 @@
       if (!validate(quoteForm)) return;
       var via = (e.submitter && e.submitter.value) || "whatsapp";
       var message = buildMessage();
+      track("generate_lead", { formulario: "cotizacion", tipo_seguro: quoteForm.seguro.value, via: via });
       if (via === "email") {
         window.location.href =
           "mailto:" + CONFIG.email +
@@ -194,6 +229,7 @@
       })
         .then(function (res) {
           if (!res.ok) throw new Error("HTTP " + res.status);
+          track("generate_lead", { formulario: "contacto", motivo: contactForm.motivo ? contactForm.motivo.value : "" });
           contactForm.reset();
           status(contactForm, "ok", "¡Gracias! Recibimos tu mensaje y te vamos a responder a la brevedad.");
         })

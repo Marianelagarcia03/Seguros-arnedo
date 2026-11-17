@@ -2079,6 +2079,16 @@ a.channel-card:hover {
   color: var(--c-soft);
 }
 
+.ssn-note {
+  margin-top: 1rem;
+  font-size: var(--fs-xs);
+  color: var(--c-soft);
+}
+
+.ssn-note a {
+  text-decoration: underline;
+}
+
 /* --------------------------------------------------------------------------
    Responsive (desktop first, puntos de corte unificados)
    1100px · 960px (menú móvil) · 720px · 480px

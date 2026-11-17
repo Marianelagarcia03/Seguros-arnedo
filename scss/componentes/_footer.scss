@@ -105,3 +105,13 @@
   font-size: var(--fs-xs);
   color: var(--c-soft);
 }
+
+.ssn-note {
+  margin-top: 1rem;
+  font-size: var(--fs-xs);
+  color: var(--c-soft);
+}
+
+.ssn-note a {
+  text-decoration: underline;
+}
