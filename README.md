@@ -68,8 +68,9 @@ Marianela García — marianela971@gmail.com
 ## Formulario «Denuncia de siniestro» (`/pages/denuncia.html`)
 
 El formulario envía los datos a una Netlify Function (`netlify/functions/denuncia/`, ruta `/api/denuncia`),
-que valida todo de nuevo y manda un correo con las fotos del carnet adjuntas a través de [Resend](https://resend.com).
-Las fotos no se guardan en ningún lado: viajan solo como adjuntos del correo.
+que valida todo de nuevo y manda un correo con las fotos adjuntas (carnet, daños y papeles de terceros)
+a través de [Resend](https://resend.com). Las fotos no se guardan en ningún lado: viajan solo como adjuntos.
+Mientras falte `RESEND_API_KEY`, el formulario muestra un aviso con WhatsApp y no deja enviar.
 
 Variables de entorno (Netlify → Site configuration → Environment variables, alcance «Functions»):
 
@@ -78,7 +79,33 @@ Variables de entorno (Netlify → Site configuration → Environment variables, 
 | `RESEND_API_KEY` | Sí | Clave de API de Resend (empieza con `re_`). Marcar como secreta. |
 | `DENUNCIA_TO` | No | Destinatario. Por defecto `juanmanuelarnedo@gmail.com`. |
 | `DENUNCIA_FROM` | No | Remitente. Por defecto `Web JMA Seguros <onboarding@resend.dev>`. Con el dominio verificado en Resend: `JMA Seguros <denuncias@segurosarnedo.com>`. |
+| `DENUNCIA_COPIA_CLIENTE` | No | `si` para mandarle al cliente una copia con su número de denuncia. **Requiere el dominio verificado en Resend.** |
+| `SHEETS_WEBHOOK_URL` | No | URL de la aplicación web de Google Apps Script que registra cada denuncia en una planilla. |
+| `SHEETS_TOKEN` | No | Clave compartida con el Apps Script, para que nadie más pueda escribir en la planilla. |
 | `DENUNCIA_ORIGINS` | No | Dominios extra desde los que se permite enviar, separados por coma. |
 
 Sin dominio verificado, Resend solo entrega a la dirección con la que se creó la cuenta:
 crear la cuenta con `juanmanuelarnedo@gmail.com` o verificar `segurosarnedo.com` en Resend.
+
+### Registro en Google Sheets (opcional)
+
+1. Crear una planilla en Google Sheets → Extensiones → Apps Script, pegar este código y cambiar `TOKEN`:
+
+```js
+const TOKEN = 'CAMBIAR-POR-UNA-CLAVE-LARGA';
+const COLS = ['ref', 'enviada', 'tipo', 'asegurado', 'telefono', 'email', 'compania', 'poliza', 'patente',
+  'fecha_hecho', 'hora', 'direccion', 'lesionados', 'policia', 'terceros', 'plazo_vence', 'estado'];
+function doPost(e) {
+  const d = JSON.parse(e.postData.contents);
+  if (d.token !== TOKEN) return ContentService.createTextOutput('forbidden');
+  const book = SpreadsheetApp.getActiveSpreadsheet();
+  const sh = book.getSheetByName('Denuncias') || book.insertSheet('Denuncias');
+  if (sh.getLastRow() === 0) sh.appendRow(COLS);
+  sh.appendRow(COLS.map((c) => (d[c] === undefined ? '' : d[c])));
+  return ContentService.createTextOutput('ok');
+}
+```
+
+2. Implementar → Nueva implementación → Aplicación web. Ejecutar como «Yo», acceso «Cualquier persona».
+3. Copiar la URL en `SHEETS_WEBHOOK_URL` y la clave en `SHEETS_TOKEN`.
+La planilla registra los datos principales (sin fotos ni relato). Si falla, la denuncia se envía igual por correo.

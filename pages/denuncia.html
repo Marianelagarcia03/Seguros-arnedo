@@ -79,130 +79,235 @@
         <noscript>
           <div class="form-status is-visible is-error">Para enviar la denuncia desde este formulario necesitás tener JavaScript activado. También podés escribirnos por <a href="https://wa.me/5493515161257?text=Hola%20Juan%20Manuel%2C%20tuve%20un%20siniestro%20y%20necesito%20asesoramiento.">WhatsApp</a>.</div>
         </noscript>
+        <div class="form-status is-error" id="denuncia-off" role="alert">El envío online de denuncias no está disponible en este momento. Mientras tanto, mandanos los datos por <a href="https://wa.me/5493515161257?text=Hola%20Juan%20Manuel%2C%20tuve%20un%20siniestro%20y%20necesito%20asesoramiento." target="_blank" rel="noopener">WhatsApp</a> y te ayudamos con la denuncia.</div>
+        <div class="draft-banner" id="draft-banner" hidden>
+          <p><strong>Recuperamos los datos que habías cargado.</strong> Las fotos no se guardan: vas a tener que volver a agregarlas.</p>
+          <button class="btn btn-outline btn-sm" type="button" id="draft-clear">Empezar de cero</button>
+        </div>
 
         <form class="form-card claim-form" id="denuncia-form" action="/api/denuncia" method="POST" enctype="multipart/form-data" novalidate>
-          <p class="claim-intro">Los campos marcados con <span class="req" aria-hidden="true">*</span> son obligatorios. Tené a mano tu carnet de conducir y, si hubo terceros, sus datos.</p>
+          <p class="claim-intro">Los campos marcados con <span class="req" aria-hidden="true">*</span> son obligatorios. Lo que vas escribiendo se guarda en este dispositivo, así no lo perdés si se corta la conexión o se cierra la página.</p>
           <div class="hp-field" aria-hidden="true"><label for="d-web">No completar</label><input id="d-web" type="text" name="sitio_web" tabindex="-1" autocomplete="off"></div>
 
-          <!-- 1. Datos del siniestro -->
-          <fieldset class="form-section">
-            <legend class="form-section-title"><span class="form-section-num" aria-hidden="true">1</span>Datos del siniestro</legend>
+          <fieldset class="form-section" data-section="tipo">
+            <legend class="form-section-title"><span class="form-section-num" aria-hidden="true"></span>Tipo de siniestro</legend>
+            <fieldset class="choice" data-choice="tipo">
+              <legend>¿Qué pasó? <span class="req" aria-hidden="true">*</span></legend>
+              <div class="choice-options choice-options--grid"><label class="choice-option choice-option--card"><input type="radio" name="tipo" value="choque" required><span>Choque o accidente de tránsito</span></label><label class="choice-option choice-option--card"><input type="radio" name="tipo" value="robo"><span>Robo o hurto</span></label><label class="choice-option choice-option--card"><input type="radio" name="tipo" value="incendio"><span>Incendio</span></label><label class="choice-option choice-option--card"><input type="radio" name="tipo" value="granizo"><span>Granizo o fenómeno climático</span></label><label class="choice-option choice-option--card"><input type="radio" name="tipo" value="cristales"><span>Rotura de cristales o cerraduras</span></label><label class="choice-option choice-option--card"><input type="radio" name="tipo" value="otro"><span>Otro</span></label></div>
+              <span class="field-error" aria-live="polite"></span>
+            </fieldset>
+            <p class="form-hint">¿Es un siniestro de hogar o comercio? Escribinos por <a href="https://wa.me/5493515161257?text=Hola%20Juan%20Manuel%2C%20tuve%20un%20siniestro%20y%20necesito%20asesoramiento." target="_blank" rel="noopener">WhatsApp</a> y te guiamos.</p>
+          </fieldset>
+
+          <fieldset class="form-section" data-section="asegurado">
+            <legend class="form-section-title"><span class="form-section-num" aria-hidden="true"></span>Tus datos</legend>
             <div class="form-grid">
-              <div class="field">
-                <label for="d-fecha">Fecha <span class="req" aria-hidden="true">*</span></label>
-                <input id="d-fecha" name="fecha" type="date" required>
-                <span class="field-error" aria-live="polite"></span>
+                <div class="field field--full">
+                  <label for="d-a-nombre">Apellido y nombre del asegurado <span class="req" aria-hidden="true">*</span></label>
+                  <input id="d-a-nombre" name="asegurado_nombre" type="text" required maxlength="120" autocomplete="name">
+                  <span class="field-error" aria-live="polite"></span>
+                </div>
+                <div class="field">
+                  <label for="d-a-telefono">Teléfono o celular <span class="req" aria-hidden="true">*</span></label>
+                  <input id="d-a-telefono" name="asegurado_telefono" type="tel" required placeholder="Ej.: 351 123-4567" inputmode="tel" maxlength="30" autocomplete="tel" data-type="phone">
+                  <span class="field-error" aria-live="polite"></span>
+                </div>
+                <div class="field">
+                  <label for="d-a-email">Correo electrónico <span class="opt">(opcional)</span></label>
+                  <input id="d-a-email" name="asegurado_email" type="email" placeholder="tu@correo.com" maxlength="120" autocomplete="email" data-type="email">
+                  <span class="field-error" aria-live="polite"></span>
+                </div>
+                <div class="field">
+                  <label for="d-compania">Compañía aseguradora <span class="req" aria-hidden="true">*</span></label>
+                  <select id="d-compania" name="compania" required><option value="" disabled selected>Elegí la compañía</option><option>Zurich</option><option>La Segunda</option><option>Federación Patronal</option><option>San Cristóbal</option><option>Sancor Seguros</option><option>Galicia Seguros</option><option>Mercantil Andina</option><option>No lo sé</option></select>
+                  <span class="field-error" aria-live="polite"></span>
+                </div>
+                <div class="field">
+                  <label for="d-poliza">Número de póliza <span class="opt">(opcional)</span></label>
+                  <input id="d-poliza" name="poliza" type="text" placeholder="Si lo tenés a mano" maxlength="40" autocomplete="off">
+                  <span class="field-error" aria-live="polite"></span>
+                </div>
+            </div>
+            <p class="form-hint form-hint--small">Si cargás tu correo, Juan Manuel puede responderte por ahí.</p>
+          </fieldset>
+
+          <fieldset class="form-section" data-section="siniestro">
+            <legend class="form-section-title"><span class="form-section-num" aria-hidden="true"></span>Datos del siniestro</legend>
+            <div class="form-grid">
+                <div class="field">
+                  <label for="d-fecha">Fecha <span class="req" aria-hidden="true">*</span></label>
+                  <input id="d-fecha" name="fecha" type="date" required>
+                  <span class="field-error" aria-live="polite"></span>
+                </div>
+                <div class="field">
+                  <label for="d-hora">Hora <span class="req" aria-hidden="true">*</span></label>
+                  <input id="d-hora" name="hora" type="time" required>
+                  <span class="field-error" aria-live="polite"></span>
+                </div>
+              <p class="deadline field--full" id="plazo" hidden></p>
+                <div class="field field--full">
+                  <label for="d-direccion">Dirección del hecho <span class="req" aria-hidden="true">*</span></label>
+                  <input id="d-direccion" name="direccion" type="text" required placeholder="Calle, altura o intersección y localidad" maxlength="200">
+                  <span class="field-error" aria-live="polite"></span>
+                </div>
+              <div class="field--full guided" data-when="choque">
+                <div class="field field--full">
+                  <label for="d-circulacion">¿Por qué calle circulabas y hacia dónde? <span class="req" aria-hidden="true">*</span></label>
+                  <textarea id="d-circulacion" name="circulacion" required placeholder="Ej.: por Av. Colón hacia el oeste, por el carril derecho" rows="2" maxlength="600" data-req-when="choque"></textarea>
+                  <span class="field-error" aria-live="polite"></span>
+                </div>
+                <div class="field field--full">
+                  <label for="d-otro-vehiculo">¿Qué hizo el otro vehículo o qué provocó el hecho? <span class="req" aria-hidden="true">*</span></label>
+                  <textarea id="d-otro-vehiculo" name="otro_vehiculo" required placeholder="Ej.: no respetó el semáforo y me cruzó desde la derecha" rows="2" maxlength="600" data-req-when="choque"></textarea>
+                  <span class="field-error" aria-live="polite"></span>
+                </div>
+                <div class="field field--full">
+                  <label for="d-impacto">¿En qué parte de tu vehículo fue el impacto? <span class="req" aria-hidden="true">*</span></label>
+                  <input id="d-impacto" name="impacto" type="text" required placeholder="Ej.: lateral delantero derecho" maxlength="200" data-req-when="choque">
+                  <span class="field-error" aria-live="polite"></span>
+                </div>
               </div>
-              <div class="field">
-                <label for="d-hora">Hora <span class="req" aria-hidden="true">*</span></label>
-                <input id="d-hora" name="hora" type="time" required>
-                <span class="field-error" aria-live="polite"></span>
+                <div class="field field--full">
+                  <label for="d-relato">Relato detallado de los hechos <span class="req" aria-hidden="true">*</span></label>
+                  <textarea id="d-relato" name="relato" required placeholder="Contá con tus palabras cómo ocurrió y cualquier detalle que te parezca importante." rows="6" maxlength="5000"></textarea>
+                  <span class="field-error" aria-live="polite"></span>
+                </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="form-section" data-section="circunstancias">
+            <legend class="form-section-title"><span class="form-section-num" aria-hidden="true"></span>Lesionados, policía y testigos</legend>
+            <fieldset class="choice " data-choice="lesionados" >
+              <legend>¿Hubo personas lesionadas? <span class="req" aria-hidden="true">*</span></legend>
+              <div class="choice-options"><label class="choice-option"><input type="radio" name="lesionados" value="si" required><span>Sí</span></label><label class="choice-option"><input type="radio" name="lesionados" value="no"><span>No</span></label></div>
+              <span class="field-error" aria-live="polite"></span>
+            </fieldset>
+            <div class="reveal-block" data-show="lesionados">
+              <div class="form-grid">
+                <div class="field field--full">
+                  <label for="d-lesionados-det">¿Cuántas personas y quiénes? ¿Las atendieron? <span class="req" aria-hidden="true">*</span></label>
+                  <textarea id="d-lesionados-det" name="lesionados_detalle" required placeholder="Ej.: una persona, el conductor del otro auto; la trasladó el 107 al Hospital de Urgencias" rows="3" maxlength="1500" data-req-when="lesionados"></textarea>
+                  <span class="field-error" aria-live="polite"></span>
+                </div>
               </div>
-              <div class="field field--full">
-                <label for="d-direccion">Dirección del hecho <span class="req" aria-hidden="true">*</span></label>
-                <input id="d-direccion" name="direccion" type="text" maxlength="200" required placeholder="Calle, altura o intersección y localidad">
-                <span class="field-error" aria-live="polite"></span>
+            </div>
+            <fieldset class="choice " data-choice="policia" >
+              <legend>¿Intervino la policía o hiciste denuncia policial? <span class="req" aria-hidden="true">*</span></legend>
+              <div class="choice-options"><label class="choice-option"><input type="radio" name="policia" value="si" required><span>Sí</span></label><label class="choice-option"><input type="radio" name="policia" value="no"><span>No</span></label></div>
+              <span class="field-error" aria-live="polite"></span>
+            </fieldset>
+            <div class="reveal-block" data-show="policia">
+              <div class="form-grid">
+                <div class="field field--full">
+                  <label for="d-policia-det">Comisaría y número de denuncia <span class="opt">(opcional)</span></label>
+                  <textarea id="d-policia-det" name="policia_detalle" placeholder="Ej.: Comisaría 3ra, denuncia N° 12345" rows="2" maxlength="600"></textarea>
+                  <span class="field-error" aria-live="polite"></span>
+                </div>
               </div>
-              <div class="field field--full">
-                <label for="d-relato">Relato detallado de los hechos <span class="req" aria-hidden="true">*</span></label>
-                <textarea id="d-relato" name="relato" rows="7" maxlength="5000" required placeholder="Contá cómo ocurrió: hacia dónde circulabas, qué hizo el otro vehículo, cómo fue el impacto, si hubo lesionados, testigos o intervención policial."></textarea>
-                <span class="field-error" aria-live="polite"></span>
+            </div>
+            <fieldset class="choice " data-choice="testigos" >
+              <legend>¿Hubo testigos? <span class="req" aria-hidden="true">*</span></legend>
+              <div class="choice-options"><label class="choice-option"><input type="radio" name="testigos" value="si" required><span>Sí</span></label><label class="choice-option"><input type="radio" name="testigos" value="no"><span>No</span></label></div>
+              <span class="field-error" aria-live="polite"></span>
+            </fieldset>
+            <div class="reveal-block" data-show="testigos">
+              <div class="form-grid">
+                <div class="field field--full">
+                  <label for="d-testigos-det">Nombre y teléfono de los testigos <span class="req" aria-hidden="true">*</span></label>
+                  <textarea id="d-testigos-det" name="testigos_detalle" required rows="2" maxlength="800" data-req-when="testigos"></textarea>
+                  <span class="field-error" aria-live="polite"></span>
+                </div>
               </div>
             </div>
           </fieldset>
 
-          <!-- 2. Datos del conductor -->
-          <fieldset class="form-section">
-            <legend class="form-section-title"><span class="form-section-num" aria-hidden="true">2</span>Datos del conductor</legend>
-            <fieldset class="choice" data-choice="asegurado_conducia">
+          <fieldset class="form-section" data-section="conductor" data-when="choque otro">
+            <legend class="form-section-title"><span class="form-section-num" aria-hidden="true"></span>Datos del conductor</legend>
+            <fieldset class="choice " data-choice="asegurado_conducia" >
               <legend>¿El asegurado conducía el vehículo? <span class="req" aria-hidden="true">*</span></legend>
-              <div class="choice-options">
-                <label class="choice-option"><input type="radio" name="asegurado_conducia" value="si" required><span>Sí</span></label>
-                <label class="choice-option"><input type="radio" name="asegurado_conducia" value="no"><span>No</span></label>
-              </div>
+              <div class="choice-options"><label class="choice-option"><input type="radio" name="asegurado_conducia" value="si" required><span>Sí</span></label><label class="choice-option"><input type="radio" name="asegurado_conducia" value="no"><span>No</span></label></div>
               <span class="field-error" aria-live="polite"></span>
             </fieldset>
-            <div class="reveal-block" id="conductor-otro" hidden>
+            <div class="reveal-block" id="conductor-otro" data-show="asegurado_conducia:no">
               <p class="form-hint">Completá los datos de la persona que manejaba el vehículo asegurado.</p>
               <div class="form-grid">
                 <div class="field field--full">
                   <label for="d-c-nombre">Apellido y nombre <span class="req" aria-hidden="true">*</span></label>
-                  <input id="d-c-nombre" name="conductor_nombre" type="text" maxlength="120" autocomplete="off" data-req-when="conductor">
+                  <input id="d-c-nombre" name="conductor_nombre" type="text" required maxlength="120" autocomplete="off" data-req-when="conductor">
                   <span class="field-error" aria-live="polite"></span>
                 </div>
                 <div class="field">
                   <label for="d-c-dni">DNI <span class="req" aria-hidden="true">*</span></label>
-                  <input id="d-c-dni" name="conductor_dni" type="text" inputmode="numeric" maxlength="12" placeholder="Ej.: 30123456" data-req-when="conductor" data-type="dni">
+                  <input id="d-c-dni" name="conductor_dni" type="text" required placeholder="Ej.: 30123456" inputmode="numeric" maxlength="12" data-req-when="conductor" data-type="dni">
                   <span class="field-error" aria-live="polite"></span>
                 </div>
                 <div class="field">
                   <label for="d-c-nacimiento">Fecha de nacimiento <span class="req" aria-hidden="true">*</span></label>
-                  <input id="d-c-nacimiento" name="conductor_nacimiento" type="date" data-req-when="conductor" data-type="birthdate">
+                  <input id="d-c-nacimiento" name="conductor_nacimiento" type="date" required data-req-when="conductor" data-type="birthdate">
                   <span class="field-error" aria-live="polite"></span>
                 </div>
                 <div class="field">
                   <label for="d-c-telefono">Teléfono o celular <span class="req" aria-hidden="true">*</span></label>
-                  <input id="d-c-telefono" name="conductor_telefono" type="tel" inputmode="tel" maxlength="30" placeholder="Ej.: 351 123-4567" data-req-when="conductor" data-type="phone">
+                  <input id="d-c-telefono" name="conductor_telefono" type="tel" required placeholder="Ej.: 351 123-4567" inputmode="tel" maxlength="30" data-req-when="conductor" data-type="phone">
                   <span class="field-error" aria-live="polite"></span>
                 </div>
                 <div class="field">
                   <label for="d-c-domicilio">Domicilio <span class="req" aria-hidden="true">*</span></label>
-                  <input id="d-c-domicilio" name="conductor_domicilio" type="text" maxlength="200" placeholder="Calle, número y localidad" data-req-when="conductor">
+                  <input id="d-c-domicilio" name="conductor_domicilio" type="text" required placeholder="Calle, número y localidad" maxlength="200" data-req-when="conductor">
                   <span class="field-error" aria-live="polite"></span>
                 </div>
               </div>
             </div>
           </fieldset>
 
-          <!-- 3. Vehículo asegurado -->
-          <fieldset class="form-section">
-            <legend class="form-section-title"><span class="form-section-num" aria-hidden="true">3</span>Vehículo asegurado</legend>
+          <fieldset class="form-section" data-section="vehiculo">
+            <legend class="form-section-title"><span class="form-section-num" aria-hidden="true"></span>Vehículo asegurado</legend>
             <div class="form-grid">
-              <div class="field">
-                <label for="d-patente">Patente <span class="req" aria-hidden="true">*</span></label>
-                <input id="d-patente" name="patente" type="text" maxlength="10" autocapitalize="characters" autocomplete="off" placeholder="Ej.: AB123CD" required data-type="plate">
-                <span class="field-error" aria-live="polite"></span>
-              </div>
-              <div class="field field--full">
-                <label for="d-danios">Daños del vehículo <span class="req" aria-hidden="true">*</span></label>
-                <textarea id="d-danios" name="danios" rows="4" maxlength="3000" required placeholder="Ej.: paragolpes delantero roto, faro izquierdo y capot abollado."></textarea>
+                <div class="field">
+                  <label for="d-patente">Patente <span class="req" aria-hidden="true">*</span></label>
+                  <input id="d-patente" name="patente" type="text" required placeholder="Ej.: AB123CD" maxlength="10" autocapitalize="characters" autocomplete="off" data-type="plate">
+                  <span class="field-error" aria-live="polite"></span>
+                </div>
+                <div class="field field--full">
+                  <label for="d-danios">Daños del vehículo <span class="req" aria-hidden="true">*</span></label>
+                  <textarea id="d-danios" name="danios" required placeholder="Ej.: paragolpes delantero roto, faro izquierdo y capot abollado. En robos: qué se llevaron." rows="4" maxlength="3000"></textarea>
+                  <span class="field-error" aria-live="polite"></span>
+                </div>
+              <div class="field field--full photo-picker" data-picker="foto_danio" data-max="4">
+                <span class="file-label" id="d-fotos-danios-lbl">Fotos de los daños y del lugar <span class="opt">(opcional)</span></span>
+                <p class="picker-hint">Hasta 4 fotos: los daños, los vehículos en la posición en que quedaron y el lugar.</p>
+                <ul class="picker-list" role="list"></ul>
+                <label class="btn btn-outline btn-sm picker-add" for="d-fotos-danios"><svg class="icon" aria-hidden="true" focusable="false" stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path><circle cx="12" cy="13" r="3"></circle></svg><span>Agregar fotos</span>
+                  <input id="d-fotos-danios" type="file" accept="image/*,.heic,.heif" multiple class="visually-hidden" aria-describedby="d-fotos-danios-lbl">
+                </label>
                 <span class="field-error" aria-live="polite"></span>
               </div>
             </div>
           </fieldset>
 
-          <!-- 4. Terceros involucrados -->
-          <fieldset class="form-section">
-            <legend class="form-section-title"><span class="form-section-num" aria-hidden="true">4</span>Terceros involucrados</legend>
-            <fieldset class="choice" data-choice="hubo_terceros">
+          <fieldset class="form-section" data-section="terceros" data-when="choque otro">
+            <legend class="form-section-title"><span class="form-section-num" aria-hidden="true"></span>Terceros involucrados</legend>
+            <fieldset class="choice " data-choice="hubo_terceros" >
               <legend>¿Hubo terceros involucrados? <span class="req" aria-hidden="true">*</span></legend>
-              <div class="choice-options">
-                <label class="choice-option"><input type="radio" name="hubo_terceros" value="si" required><span>Sí</span></label>
-                <label class="choice-option"><input type="radio" name="hubo_terceros" value="no"><span>No</span></label>
-              </div>
+              <div class="choice-options"><label class="choice-option"><input type="radio" name="hubo_terceros" value="si" required><span>Sí</span></label><label class="choice-option"><input type="radio" name="hubo_terceros" value="no"><span>No</span></label></div>
               <span class="field-error" aria-live="polite"></span>
             </fieldset>
-            <div class="reveal-block" id="terceros" hidden>
+            <div class="reveal-block" id="terceros" data-show="hubo_terceros:si">
               <p class="form-hint">Si no sabés algún dato, marcá «No lo sé» y seguí completando.</p>
               <div id="terceros-list"></div>
               <button class="btn btn-outline btn-sm" type="button" id="tercero-add"><svg class="icon" aria-hidden="true" focusable="false" stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>Agregar otro tercero</button>
             </div>
           </fieldset>
 
-          <!-- 5. Fotos del carnet -->
-          <fieldset class="form-section">
-            <legend class="form-section-title"><span class="form-section-num" aria-hidden="true">5</span>Fotos del carnet de conducir</legend>
+          <fieldset class="form-section" data-section="carnet" data-when="choque otro">
+            <legend class="form-section-title"><span class="form-section-num" aria-hidden="true"></span>Fotos del carnet de conducir</legend>
             <p class="form-hint">Las dos fotos tienen que ser del carnet de <strong>la persona que manejaba el vehículo asegurado</strong>, sea o no el asegurado. Podés sacarlas con el celular o elegirlas de la galería o la computadora.<br>Formatos: JPG, PNG, WEBP o HEIC. Tamaño máximo: 10 MB por foto.</p>
             <div class="file-grid">
               <div class="field file-field" data-file="carnet_frente">
                 <span class="file-label" id="lbl-frente">Frente del carnet de conducir <span class="req" aria-hidden="true">*</span></span>
                 <label class="file-drop" for="d-frente">
-                  <input id="d-frente" name="carnet_frente" type="file" accept="image/*,.heic,.heif" required aria-describedby="lbl-frente">
-                  <span class="file-empty">
-                    <svg class="icon" aria-hidden="true" focusable="false" stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path><circle cx="12" cy="13" r="3"></circle></svg>
-                    <b>Sacar foto o elegir archivo</b>
-                    <small>Frente</small>
-                  </span>
+                  <input id="d-frente" name="carnet_frente" type="file" accept="image/*,.heic,.heif" aria-describedby="lbl-frente">
+                  <span class="file-empty"><svg class="icon" aria-hidden="true" focusable="false" stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path><circle cx="12" cy="13" r="3"></circle></svg><b>Sacar foto o elegir archivo</b><small>Frente</small></span>
                   <span class="file-preview" hidden><img alt="Vista previa del frente del carnet"><span class="file-name"></span></span>
                 </label>
                 <span class="field-error" aria-live="polite"></span>
@@ -210,12 +315,8 @@
               <div class="field file-field" data-file="carnet_dorso">
                 <span class="file-label" id="lbl-dorso">Dorso del carnet de conducir <span class="req" aria-hidden="true">*</span></span>
                 <label class="file-drop" for="d-dorso">
-                  <input id="d-dorso" name="carnet_dorso" type="file" accept="image/*,.heic,.heif" required aria-describedby="lbl-dorso">
-                  <span class="file-empty">
-                    <svg class="icon" aria-hidden="true" focusable="false" stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path><circle cx="12" cy="13" r="3"></circle></svg>
-                    <b>Sacar foto o elegir archivo</b>
-                    <small>Dorso</small>
-                  </span>
+                  <input id="d-dorso" name="carnet_dorso" type="file" accept="image/*,.heic,.heif" aria-describedby="lbl-dorso">
+                  <span class="file-empty"><svg class="icon" aria-hidden="true" focusable="false" stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path><circle cx="12" cy="13" r="3"></circle></svg><b>Sacar foto o elegir archivo</b><small>Dorso</small></span>
                   <span class="file-preview" hidden><img alt="Vista previa del dorso del carnet"><span class="file-name"></span></span>
                 </label>
                 <span class="field-error" aria-live="polite"></span>
@@ -238,9 +339,11 @@
           <span class="claim-success-icon" aria-hidden="true"><svg class="icon" focusable="false" stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M20 6 9 17l-5-5"></path></svg></span>
           <h2>Tu denuncia fue enviada correctamente</h2>
           <p>La información fue enviada a Seguros Arnedo para su gestión. Juan Manuel la va a revisar y se va a comunicar con vos para los próximos pasos.</p>
-          <p class="text-muted">Recordá que, si hubo robo, incendio o personas lesionadas, también tenés que hacer la denuncia policial.</p>
+          <p class="claim-ref" id="denuncia-ref" hidden>Número de denuncia: <strong></strong><br><small>Guardalo para hacer el seguimiento.</small></p>
+          <p class="deadline" id="plazo-ok" hidden></p>
+          <p class="text-muted">Si hubo robo, incendio o personas lesionadas, recordá hacer también la denuncia policial.</p>
           <div class="form-actions">
-            <a class="btn btn-whatsapp" href="https://wa.me/5493515161257?text=Hola%20Juan%20Manuel%2C%20acabo%20de%20enviar%20una%20denuncia%20de%20siniestro%20desde%20la%20web." target="_blank" rel="noopener">Avisar por WhatsApp</a>
+            <a class="btn btn-whatsapp" id="ok-wa" href="https://wa.me/5493515161257?text=Hola%20Juan%20Manuel%2C%20acabo%20de%20enviar%20una%20denuncia%20de%20siniestro%20desde%20la%20web." target="_blank" rel="noopener">Avisar por WhatsApp</a>
             <a class="btn btn-outline" href="./siniestros.html">Volver a Siniestros</a>
           </div>
         </div>
@@ -261,6 +364,13 @@
           <div class="field" data-key="patente" data-label="Patente" data-max="10" data-type="plate"></div>
           <div class="field field--full" data-key="compania" data-label="Compañía aseguradora" data-max="120"></div>
           <div class="field field--full" data-key="danios" data-label="Daños del vehículo" data-max="3000" data-textarea></div>
+          <div class="field field--full photo-picker" data-picker="doc" data-max="3">
+            <span class="file-label">Fotos de los papeles del tercero <span class="opt">(opcional)</span></span>
+            <p class="picker-hint">Hasta 3 fotos: su carnet, la cédula del vehículo o la póliza. A veces es más fácil que tipear los datos.</p>
+            <ul class="picker-list" role="list"></ul>
+            <label class="btn btn-outline btn-sm picker-add"><svg class="icon" aria-hidden="true" focusable="false" stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path><circle cx="12" cy="13" r="3"></circle></svg><span>Agregar fotos</span><input type="file" accept="image/*,.heic,.heif" multiple class="visually-hidden"></label>
+            <span class="field-error" aria-live="polite"></span>
+          </div>
         </div>
       </div>
     </template>
