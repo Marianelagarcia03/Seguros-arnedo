@@ -21,8 +21,8 @@
     // la sección "Lo que dicen nuestros clientes" queda oculta.
     // googleReviewUrl: link "Pedir reseñas" del perfil (ej. "https://g.page/r/XXXX/review").
     // googleProfileUrl: link al perfil en Google Maps (para "Ver todas en Google").
-    googleReviewUrl: "",
-    googleProfileUrl: ""
+    googleReviewUrl: "https://g.page/r/Ca72rK53OKsXEBM/review",
+    googleProfileUrl: "https://www.google.com/maps?cid=1705518970572699310"
   };
 
   // Reseñas reales copiadas de Google (textuales, con el nombre como figura allí).
