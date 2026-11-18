@@ -87,25 +87,75 @@ Variables de entorno (Netlify → Site configuration → Environment variables, 
 Sin dominio verificado, Resend solo entrega a la dirección con la que se creó la cuenta:
 crear la cuenta con `juanmanuelarnedo@gmail.com` o verificar `segurosarnedo.com` en Resend.
 
+## Formulario «Pedí tu cotización» (`/pages/cotizar.html`, también `/cotizar`)
+
+Auto, hogar, accidentes personales, asistencia al viajero y otros seguros. Se envía a la Netlify Function
+`/api/cotizacion`, que valida todo de nuevo y manda el **detalle completo por correo** (con clave de
+idempotencia para que un doble clic no genere dos correos). «Recibimos tu solicitud» se muestra solo si el
+servidor acepta el envío; después se ofrece «Enviar solicitud por WhatsApp» con un **resumen sin DNI, CUIT,
+domicilios ni fechas de nacimiento**. El enlace anterior `/?seguro=auto#cotizar` redirige a `/cotizar` con Auto.
+
+| Variable | Obligatoria | Valor |
+|---|---|---|
+| `RESEND_API_KEY` | Sí | La misma que usa la denuncia. |
+| `COTIZACION_TO` | No | Destinatario. Por defecto `juanmanuelarnedo@gmail.com`. |
+| `COTIZACION_FROM` | No | Remitente. Por defecto usa `DENUNCIA_FROM`. Con el dominio verificado: `JMA Seguros <avisos@segurosarnedo.com>`. |
+| `COTIZACION_COPIA_CLIENTE` | No | `si` para mandarle al cliente la confirmación (sin datos sensibles). **Requiere el dominio verificado en Resend.** |
+
 ### Registro en Google Sheets (opcional)
 
-1. Crear una planilla en Google Sheets → Extensiones → Apps Script, pegar este código y cambiar `TOKEN`:
+Una sola planilla con dos hojas, «Cotizaciones» y «Denuncias», que se crean solas. Cada fila trae el número de
+solicitud; si llega dos veces el mismo número, no se duplica.
+
+1. Crear una planilla en Google Sheets → Extensiones → Apps Script y pegar este código:
 
 ```js
-const TOKEN = 'CAMBIAR-POR-UNA-CLAVE-LARGA';
-const COLS = ['ref', 'enviada', 'tipo', 'asegurado', 'telefono', 'email', 'compania', 'poliza', 'patente',
-  'fecha_hecho', 'hora', 'direccion', 'lesionados', 'policia', 'terceros', 'plazo_vence', 'estado'];
+// JMA Seguros · registro de solicitudes de la web (cotizaciones y denuncias).
+// La clave NO va en el código: Configuración del proyecto → Propiedades de la secuencia de comandos → TOKEN.
 function doPost(e) {
-  const d = JSON.parse(e.postData.contents);
-  if (d.token !== TOKEN) return ContentService.createTextOutput('forbidden');
-  const book = SpreadsheetApp.getActiveSpreadsheet();
-  const sh = book.getSheetByName('Denuncias') || book.insertSheet('Denuncias');
-  if (sh.getLastRow() === 0) sh.appendRow(COLS);
-  sh.appendRow(COLS.map((c) => (d[c] === undefined ? '' : d[c])));
-  return ContentService.createTextOutput('ok');
+  var lock = LockService.getScriptLock();
+  lock.waitLock(10000);
+  try {
+    var d = JSON.parse(e.postData.contents);
+    var token = PropertiesService.getScriptProperties().getProperty('TOKEN');
+    if (!token || d.token !== token) return out('forbidden');
+    delete d.token;
+    var name = d.hoja === 'Cotizaciones' ? 'Cotizaciones' : 'Denuncias';
+    delete d.hoja;
+    var book = SpreadsheetApp.getActiveSpreadsheet();
+    var sh = book.getSheetByName(name) || book.insertSheet(name);
+    var keys = Object.keys(d);
+    if (sh.getLastRow() === 0) {
+      sh.appendRow(keys);
+      sh.setFrozenRows(1);
+      sh.getRange(1, 1, 1, keys.length).setFontWeight('bold');
+    }
+    var header = sh.getRange(1, 1, 1, sh.getLastColumn()).getValues()[0];
+    keys.forEach(function (k) {
+      if (header.indexOf(k) === -1) { header.push(k); sh.getRange(1, header.length).setValue(k).setFontWeight('bold'); }
+    });
+    var col = header.indexOf('ref') + 1;
+    if (d.ref && col > 0 && sh.getLastRow() > 1) {
+      var refs = sh.getRange(2, col, sh.getLastRow() - 1, 1).getValues().map(function (r) { return r[0]; });
+      if (refs.indexOf(d.ref) > -1) return out('duplicado');
+    }
+    sh.appendRow(header.map(function (h) {
+      var v = d[h] === undefined ? '' : d[h];
+      return typeof v === 'string' && /^[=+\-@]/.test(v) ? "'" + v : v; // evita que un texto se tome como fórmula
+    }));
+    return out('ok');
+  } finally {
+    lock.releaseLock();
+  }
 }
+function out(t) { return ContentService.createTextOutput(t); }
 ```
 
-2. Implementar → Nueva implementación → Aplicación web. Ejecutar como «Yo», acceso «Cualquier persona».
-3. Copiar la URL en `SHEETS_WEBHOOK_URL` y la clave en `SHEETS_TOKEN`.
-La planilla registra los datos principales (sin fotos ni relato). Si falla, la denuncia se envía igual por correo.
+2. En el mismo Apps Script: Configuración del proyecto → Propiedades de la secuencia de comandos → agregar
+   `TOKEN` con una clave larga.
+3. Implementar → Nueva implementación → Aplicación web. Ejecutar como «Yo», acceso «Cualquier persona».
+4. En Netlify, cargar `SHEETS_WEBHOOK_URL` (la URL de la implementación) y `SHEETS_TOKEN` (la misma clave),
+   marcadas como secretas, y volver a publicar.
+
+Si la planilla falla, la solicitud se envía igual por correo. La planilla guarda el detalle completo (incluye DNI y
+domicilios): compartila solo con quien la necesite.
