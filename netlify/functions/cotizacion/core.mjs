@@ -255,6 +255,18 @@ function originAllowed(origin, env) {
     host === "localhost" || host === "127.0.0.1" || extra.includes(host);
 }
 
+/* Origen de la visita (fuente/medio/campaña/página de entrada). Solo va al correo interno. */
+export function origenTexto(o) {
+  if (!o || typeof o !== "object" || Array.isArray(o)) return "";
+  const c = (v, n) => String(v ?? "").replace(/[^\p{L}\p{N} ._\/()#:+-]/gu, "").trim().slice(0, n);
+  const fuente = c(o.fuente, 60), medio = c(o.medio, 40), campania = c(o.campania, 60), entrada = c(o.entrada, 120);
+  if (!fuente && !entrada) return "";
+  const partes = [`Origen: ${fuente || "(desconocido)"}${medio ? " / " + medio : ""}`];
+  if (campania) partes.push(`Campaña: ${campania}`);
+  if (entrada) partes.push(`Página de entrada: ${entrada}`);
+  return partes.join(" · ");
+}
+
 export async function handle(req, env = process.env, fetchImpl = fetch) {
   const configurado = Boolean(String(env.RESEND_API_KEY || "").trim());
   if (req.method === "GET") return json(200, { ok: true, configurado });
@@ -284,6 +296,7 @@ export async function handle(req, env = process.env, fetchImpl = fetch) {
   const ref = makeRef(idem || Math.random());
   const full = buildText(data, ref, true);
   const resumen = buildText(data, ref, false);
+  const origen = origenTexto(body.origen);
   const sentAt = new Intl.DateTimeFormat("es-AR", { timeZone: TZ, dateStyle: "short", timeStyle: "short" }).format(new Date());
   const nombre = nombreDe(data);
 
@@ -291,7 +304,7 @@ export async function handle(req, env = process.env, fetchImpl = fetch) {
     const id = await sendWithResend({
       to: env.COTIZACION_TO || env.DENUNCIA_TO || DEFAULT_TO,
       subject: `${TIPOS[data.tipo]} | ${nombre} | ${ref}`,
-      text: `${full}\n\nEnviada desde segurosarnedo.com el ${sentAt} (hora de Argentina).`,
+      text: `${full}\n\n${origen ? origen + "\n" : ""}Enviada desde segurosarnedo.com el ${sentAt} (hora de Argentina).`,
       replyTo: data.email || undefined,
       idempotencyKey: idem ? `cot-${idem}` : undefined,
     }, env, fetchImpl);

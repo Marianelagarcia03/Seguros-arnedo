@@ -10,6 +10,34 @@
 (function () {
   "use strict";
 
+  /* ---------- Origen de la visita (para saber de dónde llegan las cotizaciones) ----------
+     Guarda solo fuente/medio/campaña y página de entrada; nunca datos personales.
+     Regla "último origen no directo": una visita directa no pisa un origen anterior. */
+  (function () {
+    try {
+      var K = "sa_origen", q = new URLSearchParams(location.search), ref = "";
+      try { ref = sessionStorage.getItem("sa_ref") || ""; sessionStorage.removeItem("sa_ref"); } catch (e) {}
+      if (!ref && document.referrer) { try { ref = new URL(document.referrer).hostname; } catch (e) {} }
+      if (ref === location.hostname) ref = "";
+      var src = q.get("utm_source") || "", med = q.get("utm_medium") || "";
+      if (!src) {
+        if (q.get("gclid")) { src = "google"; med = "cpc"; }
+        else if (ref) {
+          src = ref.replace(/^(www|l|lm|m)\./, "");
+          med = /(^|\.)(google|bing|duckduckgo|yahoo|ecosia)\./.test(ref) ? "organic"
+            : /(instagram|facebook|fb)\.com$/.test(ref) ? "social" : "referral";
+        }
+      }
+      var prev = null;
+      try { prev = JSON.parse(localStorage.getItem(K) || "null"); } catch (e) {}
+      if (!src && prev && Date.now() - prev.t < 90 * 864e5) return;
+      localStorage.setItem(K, JSON.stringify({
+        s: (src || "(directo)").slice(0, 60), m: (med || "(ninguno)").slice(0, 40),
+        c: (q.get("utm_campaign") || "").slice(0, 60), l: location.pathname.slice(0, 120), t: Date.now()
+      }));
+    } catch (e) {}
+  })();
+
   var CONFIG = {
     whatsapp: "5493515161257", // +54 9 351 516-1257
     email: "juanmanuelarnedo@gmail.com",

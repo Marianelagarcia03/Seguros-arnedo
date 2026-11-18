@@ -243,6 +243,10 @@
   /* ---------- Datos a enviar ---------- */
   function collect() {
     var data = { tipo: val("tipo"), idem: idemKey, sitio_web: val("sitio_web") };
+    try {
+      var o = JSON.parse(localStorage.getItem("sa_origen") || "null");
+      if (o) data.origen = { fuente: o.s, medio: o.m, campania: o.c, entrada: o.l };
+    } catch (e) {}
     Array.prototype.forEach.call(form.elements, function (el) {
       if (!el.name || isHidden(el) || el.name === "tipo" || el.name === "sitio_web" || /^v\d+_/.test(el.name)) return;
       if (el.type === "radio" && !el.checked) return;
@@ -429,7 +433,7 @@
           okPanel.hidden = false;
           okPanel.focus();
           okPanel.scrollIntoView({ behavior: "smooth", block: "start" });
-          if (typeof window.gtag === "function") window.gtag("event", "generate_lead", { formulario: "cotizacion", tipo_seguro: data.tipo });
+          if (typeof window.gtag === "function") window.gtag("event", "generate_lead", { formulario: "cotizacion", tipo_seguro: data.tipo, origen_fuente: (data.origen && data.origen.fuente) || "", origen_medio: (data.origen && data.origen.medio) || "", pagina_entrada: (data.origen && data.origen.entrada) || "" });
           idemKey = newKey();
           return;
         }

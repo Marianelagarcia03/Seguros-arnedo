@@ -2544,7 +2544,8 @@ a.channel-card:hover {
   border-radius: var(--radius-lg);
 }
 
-.panel h3 {
+.panel h3,
+.panel h2 {
   display: flex;
   align-items: center;
   gap: 0.6rem;
@@ -2552,9 +2553,20 @@ a.channel-card:hover {
   margin-bottom: 1.1rem;
 }
 
-.panel h3 .icon {
+.panel h3 .icon,
+.panel h2 .icon {
   color: var(--c-aqua);
+  flex-shrink: 0;
 }
+
+/* Paneles con texto corrido (páginas de seguro por ciudad) */
+.panel p + p { margin-top: 0.8rem; }
+.panel p a:not(.btn) {
+  color: var(--c-aqua);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.panel .check-list + .form-hint { margin-top: 1.1rem; }
 
 /* ---------- Compañías ---------- */
 .company-grid {

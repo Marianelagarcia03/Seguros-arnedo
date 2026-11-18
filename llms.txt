@@ -13,6 +13,7 @@
 - [Inicio](https://segurosarnedo.com/): quiénes somos, seguros que ofrecemos y cómo trabajamos.
 - [Seguros](https://segurosarnedo.com/pages/productos.html): qué cubre cada seguro, para quién es y qué conviene consultar.
 - [Cotizar](https://segurosarnedo.com/pages/cotizar.html): formulario para pedir una cotización de auto, hogar, accidentes personales o asistencia al viajero.
+- [Seguro de auto en Córdoba](https://segurosarnedo.com/pages/seguro-de-auto-cordoba.html): cómo cotizar el seguro del auto en Córdoba Capital y alrededores, datos necesarios, coberturas y preguntas frecuentes.
 - [Siniestros](https://segurosarnedo.com/pages/siniestros.html): qué hacer ante un choque, robo, incendio o accidente, y teléfonos de asistencia de cada aseguradora.
 - [Denuncia de siniestro](https://segurosarnedo.com/pages/denuncia.html): formulario para enviar los datos de un siniestro.
 - [Compañías](https://segurosarnedo.com/pages/companias.html): aseguradoras con las que trabajamos.
