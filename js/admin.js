@@ -434,7 +434,7 @@
               allFiles.push({ id: x.id, name: f.id + (files[f.id].length > 1 ? "-" + (i + 1) : "") + "." + x.ext });
               var img = /^image\/(jpeg|png|webp)$/.test(x.type);
               return '<figure class="ad-thumb">' + (img ? '<a href="' + fileUrl(x.id, true) + '" target="_blank" rel="noopener"><img src="' + fileUrl(x.id, true) + '" alt="' + esc(f.label) + '" loading="lazy"></a>' : '<a class="ad-thumb-doc" href="' + fileUrl(x.id, true) + '" target="_blank" rel="noopener">' + esc(x.ext.toUpperCase()) + "</a>") +
-                '<figcaption><a href="' + fileUrl(x.id) + '" download>Descargar</a> · ' + (x.size / 1024 / 1024).toFixed(1).replace(".", ",") + " MB</figcaption></figure>";
+                '<figcaption><a href="' + fileUrl(x.id) + '" download>Descargar</a> · ' + (x.size < 1024 * 1024 ? Math.max(1, Math.round(x.size / 1024)) + " KB" : (x.size / 1024 / 1024).toFixed(1).replace(".", ",") + " MB") + "</figcaption></figure>";
             }).join("") + "</div></div>";
           }
           var sens = s.cifrados.indexOf(f.id) >= 0;
