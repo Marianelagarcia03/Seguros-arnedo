@@ -2,3 +2,9 @@
 # (carpeta y comando de build) sigue siendo la del panel de Netlify.
 [functions]
   directory = "netlify/functions"
+
+# Dirección corta para compartir: segurosarnedo.com/cotizar (conserva ?seguro=… y las utm)
+[[redirects]]
+  from = "/cotizar"
+  to = "/pages/cotizar.html"
+  status = 301

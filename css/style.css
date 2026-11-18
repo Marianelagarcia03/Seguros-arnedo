@@ -2042,6 +2042,93 @@ a.channel-card:hover {
 }
 
 /* --------------------------------------------------------------------------
+   Cotizar: selector del inicio y envío por WhatsApp
+   -------------------------------------------------------------------------- */
+.quote-picks {
+  display: grid;
+  gap: 0.6rem;
+  margin: 1rem 0 1.4rem;
+  list-style: none;
+}
+
+.quote-pick {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 56px;
+  padding: 0.8rem 1.1rem;
+  color: var(--c-cream);
+  background: rgba(1, 12, 23, 0.55);
+  border: 1px solid var(--c-line-strong);
+  border-radius: 14px;
+  text-decoration: none;
+  transition: border-color 0.2s var(--ease), background-color 0.2s var(--ease);
+}
+
+.quote-pick:hover,
+.quote-pick:focus-visible {
+  border-color: var(--c-aqua);
+  background: rgba(43, 163, 137, 0.08);
+}
+
+.quote-pick span {
+  display: grid;
+  gap: 0.1rem;
+}
+
+.quote-pick strong {
+  font-size: var(--fs-sm);
+}
+
+.quote-pick small {
+  font-size: var(--fs-xs);
+  color: var(--c-soft);
+}
+
+.quote-pick .icon {
+  flex: none;
+  color: var(--c-aqua);
+}
+
+.quote-cta {
+  width: 100%;
+  justify-content: center;
+}
+
+.wa-alt {
+  display: grid;
+  justify-items: center;
+  gap: 0.5rem;
+  margin-top: 1.2rem;
+  padding: 1.1rem;
+  text-align: center;
+  background: rgba(37, 211, 102, 0.06);
+  border: 1px solid rgba(37, 211, 102, 0.3);
+  border-radius: 14px;
+}
+
+.wa-alt[hidden] {
+  display: none;
+}
+
+.wa-alt p {
+  margin: 0;
+  color: var(--c-muted);
+  font-size: var(--fs-sm);
+}
+
+.wa-alt .wa-note {
+  font-size: var(--fs-xs);
+  color: var(--c-soft);
+}
+
+.claim-success .wa-alt {
+  max-width: 30rem;
+  margin: 0 auto 1.2rem;
+}
+
+/* --------------------------------------------------------------------------
    Páginas internas: encabezado de página, productos, compañías, siniestros
    -------------------------------------------------------------------------- */
 

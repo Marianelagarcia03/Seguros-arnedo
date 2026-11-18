@@ -51,7 +51,7 @@
     var href = a.getAttribute("href");
     var place = a.className.indexOf("wa-float") > -1 ? "boton_flotante" : (document.body.getAttribute("data-page") || "web");
     if (href.indexOf("wa.me/" + CONFIG.whatsapp) > -1) {
-      track("click_whatsapp", { ubicacion: place, mensaje: decodeURIComponent((href.split("text=")[1] || "")).slice(0, 90) });
+      track("click_whatsapp", { ubicacion: place }); // sin el texto del mensaje: puede tener datos personales
     } else if (href.indexOf("wa.me/") > -1) {
       track("click_whatsapp_aseguradora", { destino: href });
     } else if (href.indexOf("tel:") === 0) {
