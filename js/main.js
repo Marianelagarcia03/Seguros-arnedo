@@ -16,7 +16,7 @@
     defaultMessage: "Hola Juan Manuel, quisiera hacer una consulta.",
     // Google Analytics 4: pegá acá el ID de medición (ej. "G-ABC123XYZ").
     // Vacío = la medición queda desactivada y no se carga ningún script de Google.
-    ga4Id: "",
+    ga4Id: "G-B2FYNW5WKG",
     // Reseñas de Google (Perfil de Empresa). Mientras googleReviewUrl esté vacío,
     // la sección "Lo que dicen nuestros clientes" queda oculta.
     // googleReviewUrl: link "Pedir reseñas" del perfil (ej. "https://g.page/r/XXXX/review").
