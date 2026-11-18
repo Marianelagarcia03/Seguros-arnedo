@@ -121,6 +121,16 @@
             <legend class="form-section-title"><span class="form-section-num" aria-hidden="true"></span>Datos del vehículo</legend>
             <div class="form-grid">
                 <div class="field">
+                  <label for="a-marca">Marca <span class="req" aria-hidden="true">*</span></label>
+                  <input id="a-marca" name="auto_marca" type="text" data-req placeholder="Ej.: TOYOTA" maxlength="40" autocapitalize="characters" autocomplete="off">
+                  <span class="field-error" aria-live="polite"></span>
+                </div>
+                <div class="field">
+                  <label for="a-modelo">Modelo <span class="req" aria-hidden="true">*</span></label>
+                  <input id="a-modelo" name="auto_modelo" type="text" data-req placeholder="Ej.: COROLLA 1.8 XEI" maxlength="80" autocapitalize="characters" autocomplete="off">
+                  <span class="field-error" aria-live="polite"></span>
+                </div>
+                <div class="field">
                   <label for="a-patente">Patente <span class="req" aria-hidden="true">*</span></label>
                   <input id="a-patente" name="auto_patente" type="text" data-req placeholder="Ej.: AB123CD" maxlength="10" autocapitalize="characters" autocomplete="off" data-type="plate">
                   <span class="field-error" aria-live="polite"></span>

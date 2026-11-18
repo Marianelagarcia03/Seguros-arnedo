@@ -76,6 +76,8 @@ export function validate(body) {
     need("auto_dni", "dni", 12);
     need("auto_domicilio", null, 160);
     need("auto_localidad", null, 80);
+    need("auto_marca", null, 40);
+    need("auto_modelo", null, 80);
     need("auto_patente", "plate", 10);
     pick("auto_gnc", ["si", "no"]);
     pick("auto_pago", ["tarjeta", "cbu"]);
@@ -154,7 +156,7 @@ export function buildText(d, ref, completo) {
   };
   if (d.tipo === "auto") {
     sec("Datos personales", [["Nombre y apellido", d.auto_nombre], ["DNI", d.auto_dni, 1], ["Domicilio", d.auto_domicilio, 1], ["Localidad", d.auto_localidad]]);
-    sec("Datos del vehículo", [["Patente", d.auto_patente], ["¿Tiene GNC?", siNo(d.auto_gnc)]]);
+    sec("Datos del vehículo", [["Marca", d.auto_marca], ["Modelo", d.auto_modelo], ["Patente", d.auto_patente], ["¿Tiene GNC?", siNo(d.auto_gnc)]]);
     const rows = [["Forma de pago preferida", PAGO[d.auto_pago]], ["¿Actualmente tiene seguro?", siNo(d.auto_tiene_seguro)]];
     if (d.auto_tiene_seguro === "si") rows.push(["Compañía actual", d.auto_cia_actual], ["Tipo de cobertura actual", d.auto_cobertura_actual], ["Cuota actual", d.auto_cuota_actual ? `$ ${d.auto_cuota_actual}` : ""]);
     rows.push(["¿Siniestro en los últimos 15 días?", siNo(d.auto_siniestro)]);

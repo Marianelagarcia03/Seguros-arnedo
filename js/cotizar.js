@@ -244,7 +244,7 @@
     var siNo = function (v) { return v === "si" ? "Sí" : v === "no" ? "No" : ""; };
     if (d.tipo === "auto") {
       sec("Datos personales", [["Nombre y apellido", d.auto_nombre], ["Localidad", d.auto_localidad]]);
-      sec("Datos del vehículo", [["Patente", d.auto_patente], ["¿Tiene GNC?", siNo(d.auto_gnc)]]);
+      sec("Datos del vehículo", [["Marca", d.auto_marca], ["Modelo", d.auto_modelo], ["Patente", d.auto_patente], ["¿Tiene GNC?", siNo(d.auto_gnc)]]);
       var rows = [["Forma de pago preferida", COBERTURA[d.auto_pago]], ["¿Actualmente tiene seguro?", siNo(d.auto_tiene_seguro)]];
       if (d.auto_tiene_seguro === "si") rows.push(["Compañía actual", d.auto_cia_actual], ["Tipo de cobertura actual", d.auto_cobertura_actual], ["Cuota actual", d.auto_cuota_actual ? "$ " + d.auto_cuota_actual : ""]);
       rows.push(["¿Siniestro en los últimos 15 días?", siNo(d.auto_siniestro)]);
