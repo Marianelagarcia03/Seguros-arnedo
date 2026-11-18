@@ -197,16 +197,14 @@
         }
       });
     }
-    var consent = form.elements.consentimiento;
-    fail(consent, consent.checked ? "" : "Necesitamos tu autorización para preparar la cotización.");
     return first;
   }
 
   /* ---------- Datos a enviar ---------- */
   function collect() {
-    var data = { tipo: val("tipo"), idem: idemKey, sitio_web: val("sitio_web"), consentimiento: val("consentimiento") };
+    var data = { tipo: val("tipo"), idem: idemKey, sitio_web: val("sitio_web") };
     Array.prototype.forEach.call(form.elements, function (el) {
-      if (!el.name || isHidden(el) || el.name === "tipo" || el.name === "sitio_web" || el.name === "consentimiento" || /^v\d+_/.test(el.name)) return;
+      if (!el.name || isHidden(el) || el.name === "tipo" || el.name === "sitio_web" || /^v\d+_/.test(el.name)) return;
       if (el.type === "radio" && !el.checked) return;
       if (el.type === "checkbox") { if (el.checked) data[el.name] = el.value; return; }
       var v = String(el.value || "").trim();

@@ -136,7 +136,6 @@ export function validate(body) {
 
   need("telefono", "phone", 30);
   need("email", "email", 120, true);
-  if (clean(body.consentimiento) !== "si") errors.consentimiento = "Necesitamos tu autorización para preparar la cotización.";
 
   return { ok: Object.keys(errors).length === 0, errors, data: d };
 }
@@ -290,7 +289,7 @@ export async function handle(req, env = process.env, fetchImpl = fetch) {
     const id = await sendWithResend({
       to: env.COTIZACION_TO || env.DENUNCIA_TO || DEFAULT_TO,
       subject: `${TIPOS[data.tipo]} | ${nombre} | ${ref}`,
-      text: `${full}\n\nEnviada desde segurosarnedo.com el ${sentAt} (hora de Argentina).\nLa persona aceptó el uso de sus datos para preparar la cotización (Ley 25.326).`,
+      text: `${full}\n\nEnviada desde segurosarnedo.com el ${sentAt} (hora de Argentina).`,
       replyTo: data.email || undefined,
       idempotencyKey: idem ? `cot-${idem}` : undefined,
     }, env, fetchImpl);
