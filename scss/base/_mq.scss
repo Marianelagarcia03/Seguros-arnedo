@@ -245,3 +245,26 @@
     display: none;
   }
 }
+
+/* Logos de compañías en pantallas chicas: filas centradas, sin huecos */
+@media (max-width: 1100px) {
+  .logo-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    > li {
+      flex: 0 0 calc((100% - 3 * 0.9rem) / 4);
+    }
+  }
+}
+
+@media (max-width: 720px) {
+  .logo-grid {
+    gap: 0.6rem;
+
+    > li {
+      flex-basis: calc((100% - 2 * 0.6rem) / 3);
+    }
+  }
+}

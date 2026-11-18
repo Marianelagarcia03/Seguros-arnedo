@@ -610,6 +610,71 @@
   margin-top: 2.2rem;
 }
 
+/* Sección de compañías: más compacta */
+.section--companias {
+  padding-block: clamp(2.5rem, 2rem + 2.5vw, 4rem);
+
+  .section-head {
+    margin-bottom: clamp(1.3rem, 1rem + 1vw, 1.8rem);
+  }
+
+  .section-head h2 {
+    margin-bottom: 0.5rem;
+  }
+
+  .center-cta {
+    margin-top: 1.2rem;
+  }
+}
+
+/* Respaldo del broker */
+.broker-strip {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  width: fit-content;
+  max-width: 100%;
+  margin: 1.4rem auto 0;
+  padding: 0.5rem 1.1rem 0.5rem 0.5rem;
+  border: 1px solid var(--c-line);
+  border-radius: 999px;
+  background: var(--c-surface-2);
+  color: var(--c-muted);
+  font-size: var(--fs-sm);
+  line-height: 1.35;
+  text-decoration: none;
+  transition: border-color 0.25s var(--ease), transform 0.25s var(--ease);
+
+  img {
+    flex: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+  }
+
+  strong {
+    color: var(--c-text, #faebd7);
+    font-weight: 600;
+    margin-right: 0.25rem;
+  }
+
+  &:hover {
+    border-color: var(--c-aqua);
+    transform: translateY(-2px);
+  }
+}
+
+@media (max-width: 480px) {
+  .broker-strip {
+    border-radius: var(--radius);
+    padding-right: 0.8rem;
+
+    strong {
+      display: block;
+    }
+  }
+}
+
 /* ---------- Banda CTA (siniestros) ---------- */
 .cta-band {
   display: grid;
