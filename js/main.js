@@ -16,8 +16,19 @@
     defaultMessage: "Hola Juan Manuel, quisiera hacer una consulta.",
     // Google Analytics 4: pegá acá el ID de medición (ej. "G-ABC123XYZ").
     // Vacío = la medición queda desactivada y no se carga ningún script de Google.
-    ga4Id: ""
+    ga4Id: "",
+    // Reseñas de Google (Perfil de Empresa). Mientras googleReviewUrl esté vacío,
+    // la sección "Lo que dicen nuestros clientes" queda oculta.
+    // googleReviewUrl: link "Pedir reseñas" del perfil (ej. "https://g.page/r/XXXX/review").
+    // googleProfileUrl: link al perfil en Google Maps (para "Ver todas en Google").
+    googleReviewUrl: "",
+    googleProfileUrl: ""
   };
+
+  // Reseñas reales copiadas de Google (textuales, con el nombre como figura allí).
+  // Ejemplo: { nombre: "María P.", estrellas: 5, fecha: "noviembre 2026", texto: "..." }
+  // Si la lista está vacía, solo se muestra el botón para dejar una reseña.
+  var REVIEWS = [];
 
   /* ---------- Medición (GA4) ---------- */
   function track(name, params) {
@@ -275,6 +286,43 @@
       if (section) spy.observe(section);
     });
   }
+
+  /* ---------- Reseñas ---------- */
+  (function () {
+    var section = document.getElementById("resenas");
+    if (!section || !CONFIG.googleReviewUrl) return;
+    var STAR = '<svg class="icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.94 5.96 6.58.96-4.76 4.64 1.12 6.55L12 17.52l-5.88 3.09 1.12-6.55L2.48 9.42l6.58-.96z"/></svg>';
+    function esc(t) {
+      var d = document.createElement("div");
+      d.textContent = String(t == null ? "" : t);
+      return d.innerHTML;
+    }
+    var write = document.getElementById("review-write");
+    write.href = CONFIG.googleReviewUrl;
+    if (CONFIG.googleProfileUrl) {
+      var all = document.getElementById("review-all");
+      all.href = CONFIG.googleProfileUrl;
+      all.hidden = false;
+    }
+    var list = document.getElementById("reviews-list");
+    if (REVIEWS.length) {
+      list.innerHTML = REVIEWS.map(function (r) {
+        var n = Math.max(1, Math.min(5, Math.round(r.estrellas || 5))), stars = "";
+        for (var i = 1; i <= 5; i++) stars += i <= n ? STAR : STAR.replace('class="icon"', 'class="icon is-off"');
+        return '<li class="reveal"><figure class="review">' +
+          '<span class="review-stars" role="img" aria-label="' + n + ' de 5 estrellas">' + stars + '</span>' +
+          '<blockquote>“' + esc(r.texto) + '”</blockquote>' +
+          '<figcaption><strong>' + esc(r.nombre) + '</strong><span>' + esc(r.fecha ? "Google · " + r.fecha : "Reseña de Google") + '</span></figcaption>' +
+          '</figure></li>';
+      }).join("");
+      list.hidden = false;
+    }
+    section.hidden = false;
+    section.addEventListener("click", function (e) {
+      var a = e.target.closest && e.target.closest("#review-write, #review-all");
+      if (a) track(a.id === "review-write" ? "click_dejar_resena" : "click_ver_resenas", { ubicacion: "inicio" });
+    });
+  })();
 
   /* ---------- Animaciones de aparición ---------- */
   var reveals = document.querySelectorAll(".reveal");

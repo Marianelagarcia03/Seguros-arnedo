@@ -162,3 +162,7 @@ strong {
     transform: none;
   }
 }
+
+[hidden] {
+  display: none !important;
+}
