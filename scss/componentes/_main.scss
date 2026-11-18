@@ -643,7 +643,6 @@
   font-size: var(--fs-sm);
   line-height: 1.35;
   text-decoration: none;
-  transition: border-color 0.25s var(--ease), transform 0.25s var(--ease);
 
   img {
     flex: none;
@@ -658,10 +657,6 @@
     margin-right: 0.25rem;
   }
 
-  &:hover {
-    border-color: var(--c-aqua);
-    transform: translateY(-2px);
-  }
 }
 
 @media (max-width: 480px) {
@@ -737,7 +732,6 @@
   background: var(--c-surface);
   border: 1px solid var(--c-line);
   border-radius: var(--radius);
-  transition: border-color 0.25s var(--ease), transform 0.25s var(--ease);
 }
 
 a.channel-card:hover {
