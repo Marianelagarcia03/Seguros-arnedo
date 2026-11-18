@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
+# Funciones internas, panel privado y formularios privados para clientes
+Disallow: /api/
+Disallow: /admin/
+Disallow: /f/
 
 Sitemap: https://segurosarnedo.com/sitemap.xml

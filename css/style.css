@@ -1372,6 +1372,18 @@ a.channel-card:hover {
   color: inherit;
 }
 
+/* Inicio: la búsqueda principal forma parte del H1 sin cambiar el diseño */
+.hero h1 .hero-kicker {
+  display: flex;
+  width: fit-content;
+  margin-bottom: 0.85rem;
+  line-height: 1.4;
+}
+
+.hero h1 .hero-slogan {
+  display: block;
+}
+
 /* --------------------------------------------------------------------------
    Formularios (cotización y contacto)
    -------------------------------------------------------------------------- */
@@ -2926,7 +2938,8 @@ a.channel-card:hover {
   margin-bottom: 1.2rem;
 }
 
-.site-footer h2 {
+.site-footer h2,
+.site-footer .footer-heading {
   font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 0.12em;
