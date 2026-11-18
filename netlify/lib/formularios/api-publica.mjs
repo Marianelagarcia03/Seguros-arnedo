@@ -148,7 +148,7 @@ async function notify(form, sub, env, fetchImpl) {
   const key = (env.RESEND_API_KEY || "").trim();
   if (!key) return;
   const to = env.FORMULARIOS_AVISO_A || env.DENUNCIA_TO || "juanmanuelarnedo@gmail.com";
-  const from = env.FORMULARIOS_FROM || env.COTIZACION_FROM || env.DENUNCIA_FROM || "JMA Seguros <onboarding@resend.dev>";
+  const from = env.FORMULARIOS_FROM || env.COTIZACION_FROM || env.DENUNCIA_FROM || '"SegurosArnedo.com" <onboarding@resend.dev>';
   const base = (env.URL || "https://segurosarnedo.com").replace(/\/$/, "");
   const link = `${base}/admin/formularios#/respuestas/${sub.id}`;
   const text = `Llegó una nueva respuesta al formulario «${form.title}».\n\nReferencia: ${sub.ref}\nRamo: ${form.ramo}\n\nVer la respuesta en el panel (requiere iniciar sesión):\n${link}\n\nEste aviso no incluye datos personales.`;

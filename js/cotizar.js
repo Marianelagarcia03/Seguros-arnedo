@@ -1,5 +1,5 @@
 /* ==========================================================================
-   JMA Seguros — Formulario «Pedí tu cotización» (pages/cotizar.html)
+   SegurosArnedo.com — Formulario «Pedí tu cotización» (pages/cotizar.html)
    - Un formulario por tipo de seguro: auto, hogar, accidentes personales,
      asistencia al viajero y otros seguros
    - Envío seguro a /api/cotizacion (correo con el detalle completo).

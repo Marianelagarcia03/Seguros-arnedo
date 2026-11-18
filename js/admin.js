@@ -1,4 +1,4 @@
-/* Panel privado de formularios — JMA Seguros.
+/* Panel privado de formularios — SegurosArnedo.com.
    Toda la información se pide a /api/admin, que comprueba la sesión en el
    servidor. Esta página no contiene datos ni claves. */
 (function () {
@@ -93,7 +93,7 @@
   function showLogin(msg) {
     setTop(false);
     app.innerHTML = '<section class="ad-card ad-narrow ad-login"><img src="/img/web/logo-160.webp" alt="" width="64" height="64">' +
-      '<h1 class="ad-h1">Panel de formularios</h1><p class="ad-muted">Acceso privado de JMA Seguros.</p>' +
+      '<h1 class="ad-h1">Panel de formularios</h1><p class="ad-muted">Acceso privado de SegurosArnedo.com.</p>' +
       '<form id="ad-login" novalidate><div class="field"><label for="ad-user">Usuario</label><input id="ad-user" autocomplete="username" autocapitalize="off" spellcheck="false" required></div>' +
       '<div class="field"><label for="ad-pass">Contraseña</label><input id="ad-pass" type="password" autocomplete="current-password" required></div>' +
       '<div class="form-status' + (msg ? " is-visible is-error" : "") + '" id="ad-login-msg" role="alert">' + esc(msg || "") + "</div>" +

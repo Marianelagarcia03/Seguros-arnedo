@@ -1,5 +1,5 @@
 /* ==========================================================================
-   JMA Seguros — interacciones del sitio (JavaScript sin dependencias)
+   SegurosArnedo.com — interacciones del sitio (JavaScript sin dependencias)
    - Menú responsive (cierra al elegir opción, con Escape o tocando afuera)
    - Encabezado fijo con estado al desplazarse
    - Enlaces de WhatsApp con mensajes personalizados por producto

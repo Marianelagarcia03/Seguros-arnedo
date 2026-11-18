@@ -1,5 +1,5 @@
 /* ==========================================================================
-   JMA Seguros — Formulario «Denuncia de siniestro» (pages/denuncia.html)
+   SegurosArnedo.com — Formulario «Denuncia de siniestro» (pages/denuncia.html)
    - Secciones según el tipo de siniestro y preguntas Sí / No
    - Terceros dinámicos (Tercero 1, 2, 3…) con «No lo sé» y fotos de sus papeles
    - Fotos: carnet (frente y dorso), daños y papeles del tercero. Se validan,

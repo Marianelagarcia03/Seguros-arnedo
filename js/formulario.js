@@ -105,7 +105,7 @@
   function build() {
     $("fx-ramo").textContent = def.ramo || "";
     $("fx-title").textContent = def.title;
-    document.title = def.title + " | JMA Seguros";
+    document.title = def.title + " | SegurosArnedo.com";
     $("fx-desc").textContent = def.description || "";
     $("fx-desc").hidden = !def.description;
     $("fx-submit").textContent = def.submitLabel || "Enviar información";

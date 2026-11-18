@@ -12,7 +12,7 @@ export const LIMITS = {
 };
 
 const DEFAULT_TO = "juanmanuelarnedo@gmail.com";
-const DEFAULT_FROM = "Web JMA Seguros <onboarding@resend.dev>";
+const DEFAULT_FROM = '"Web SegurosArnedo.com" <onboarding@resend.dev>';
 const TZ = "America/Argentina/Cordoba";
 
 export const TIPOS = {
@@ -302,7 +302,7 @@ function buildClientCopy(d, ref, email) {
     "",
     email.text.split("\n").slice(3).join("\n"),
     "",
-    "JMA Seguros · Juan Manuel Arnedo, Productor Asesor de Seguros (Matrícula SSN N° 86525)",
+    "SegurosArnedo.com · Juan Manuel Arnedo, Productor Asesor de Seguros (Matrícula SSN N° 86525)",
     "WhatsApp: +54 9 351 516-1257",
   ].join("\n");
   return { subject: `Recibimos tu denuncia de siniestro ${ref}`, text };

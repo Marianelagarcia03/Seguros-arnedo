@@ -5,7 +5,7 @@
 import { createHash } from "node:crypto";
 
 const DEFAULT_TO = "juanmanuelarnedo@gmail.com";
-const DEFAULT_FROM = "Web JMA Seguros <onboarding@resend.dev>";
+const DEFAULT_FROM = '"Web SegurosArnedo.com" <onboarding@resend.dev>';
 const TZ = "America/Argentina/Cordoba";
 const MAX_BODY = 64 * 1024;
 const MAX_VIAJEROS = 10;
@@ -312,7 +312,7 @@ export async function handle(req, env = process.env, fetchImpl = fetch) {
       "",
       buildText(data, "", false),
       "",
-      "JMA Seguros · Juan Manuel Arnedo, Productor Asesor de Seguros (Matrícula SSN N° 86525)",
+      "SegurosArnedo.com · Juan Manuel Arnedo, Productor Asesor de Seguros (Matrícula SSN N° 86525)",
       "WhatsApp: +54 9 351 516-1257 · segurosarnedo.com",
     ].join("\n");
     extras.push(sendWithResend({ to: data.email, subject: `Recibimos tu solicitud de cotización ${ref}`, text: texto, idempotencyKey: idem ? `cot-copia-${idem}` : undefined }, env, fetchImpl)

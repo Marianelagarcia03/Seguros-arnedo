@@ -1,6 +1,6 @@
-# 🛡️ JMA Seguros — Seguros Arnedo
+# 🛡️ SegurosArnedo.com — Seguros Arnedo
 
-**Sitio web de JMA Seguros, del Productor Asesor de Seguros Juan Manuel Arnedo (Córdoba, Argentina).**
+**Sitio web de SegurosArnedo.com, del Productor Asesor de Seguros Juan Manuel Arnedo (Córdoba, Argentina).**
 Pensado para que cualquier persona encuentre rápido el seguro que necesita, pida una cotización, escriba por WhatsApp y sepa cómo actuar ante un siniestro.
 
 - Dominio oficial: https://segurosarnedo.com/
@@ -78,7 +78,7 @@ Variables de entorno (Netlify → Site configuration → Environment variables, 
 |---|---|---|
 | `RESEND_API_KEY` | Sí | Clave de API de Resend (empieza con `re_`). Marcar como secreta. |
 | `DENUNCIA_TO` | No | Destinatario. Por defecto `juanmanuelarnedo@gmail.com`. |
-| `DENUNCIA_FROM` | No | Remitente. Por defecto `Web JMA Seguros <onboarding@resend.dev>`. Con el dominio verificado en Resend: `JMA Seguros <denuncias@segurosarnedo.com>`. |
+| `DENUNCIA_FROM` | No | Remitente (el nombre va entre comillas porque lleva un punto). Por defecto `"Web SegurosArnedo.com" <onboarding@resend.dev>`. Con el dominio verificado en Resend: `"SegurosArnedo.com" <denuncias@segurosarnedo.com>`. |
 | `DENUNCIA_COPIA_CLIENTE` | No | `si` para mandarle al cliente una copia con su número de denuncia. **Requiere el dominio verificado en Resend.** |
 | `SHEETS_WEBHOOK_URL` | No | URL de la aplicación web de Google Apps Script que registra cada denuncia en una planilla. |
 | `SHEETS_TOKEN` | No | Clave compartida con el Apps Script, para que nadie más pueda escribir en la planilla. |
@@ -99,7 +99,7 @@ domicilios ni fechas de nacimiento**. El enlace anterior `/?seguro=auto#cotizar`
 |---|---|---|
 | `RESEND_API_KEY` | Sí | La misma que usa la denuncia. |
 | `COTIZACION_TO` | No | Destinatario. Por defecto `juanmanuelarnedo@gmail.com`. |
-| `COTIZACION_FROM` | No | Remitente. Por defecto usa `DENUNCIA_FROM`. Con el dominio verificado: `JMA Seguros <avisos@segurosarnedo.com>`. |
+| `COTIZACION_FROM` | No | Remitente. Por defecto usa `DENUNCIA_FROM`. Con el dominio verificado: `"SegurosArnedo.com" <avisos@segurosarnedo.com>`. |
 | `COTIZACION_COPIA_CLIENTE` | No | `si` para mandarle al cliente la confirmación (sin datos sensibles). **Requiere el dominio verificado en Resend.** |
 
 ### Registro en Google Sheets (opcional)
@@ -110,7 +110,7 @@ solicitud; si llega dos veces el mismo número, no se duplica.
 1. Crear una planilla en Google Sheets → Extensiones → Apps Script y pegar este código:
 
 ```js
-// JMA Seguros · registro de solicitudes de la web (cotizaciones y denuncias).
+// SegurosArnedo.com · registro de solicitudes de la web (cotizaciones y denuncias).
 // La clave NO va en el código: Configuración del proyecto → Propiedades de la secuencia de comandos → TOKEN.
 function doPost(e) {
   var lock = LockService.getScriptLock();
