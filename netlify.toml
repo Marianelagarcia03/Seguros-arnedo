@@ -8,3 +8,48 @@
   from = "/cotizar"
   to = "/pages/cotizar.html"
   status = 301
+
+# ---------- Panel privado y formularios para clientes ----------
+# El panel vive en /admin/formularios (no aparece en el menú). Los datos solo
+# se leen desde /api/admin, que exige sesión. Los formularios para clientes
+# se abren en /f/<enlace aleatorio>.
+[[redirects]]
+  from = "/admin"
+  to = "/admin/formularios"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/admin/formularios"
+  to = "/admin/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/admin/formularios/*"
+  to = "/admin/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/f/*"
+  to = "/f/index.html"
+  status = 200
+
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "no-store"
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "no-referrer"
+    Content-Security-Policy = "default-src 'self'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'"
+
+[[headers]]
+  for = "/f/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "no-store"
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "no-referrer"
+    Content-Security-Policy = "default-src 'self'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'"

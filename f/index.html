@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#010c17">
+  <title>Formulario | JMA Seguros</title>
+  <link rel="icon" href="/img/asegurar.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&amp;display=swap">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/panel.css">
+</head>
+<body class="fx-body">
+  <header class="fx-top">
+    <a class="brand" href="/" aria-label="JMA Seguros">
+      <img src="/img/web/logo-160.webp" alt="" width="46" height="46">
+      <span class="brand-text">JMA Seguros<small>Productor Asesor de Seguros</small></span>
+    </a>
+  </header>
+
+  <main class="fx-wrap" id="contenido">
+    <div class="fx-card" id="fx-loading" aria-live="polite">
+      <p class="fx-muted">Cargando el formulario…</p>
+    </div>
+
+    <div class="fx-card" id="fx-error" hidden>
+      <h1 class="fx-title">Formulario no disponible</h1>
+      <p class="fx-muted" id="fx-error-text"></p>
+      <a class="btn btn-whatsapp" href="https://wa.me/5493515161257" target="_blank" rel="noopener">Escribinos por WhatsApp</a>
+    </div>
+
+    <form class="fx-card" id="fx-form" novalidate hidden>
+      <p class="eyebrow" id="fx-ramo"></p>
+      <h1 class="fx-title" id="fx-title"></h1>
+      <p class="fx-desc" id="fx-desc"></p>
+
+      <div class="fx-progress" aria-hidden="true">
+        <div class="fx-progress-bar"><span id="fx-bar"></span></div>
+      </div>
+      <p class="fx-step-label" id="fx-step-label" aria-live="polite"></p>
+
+      <div id="fx-steps"></div>
+
+      <div class="form-status" id="fx-status" role="alert"></div>
+      <input type="text" name="website" id="fx-website" tabindex="-1" autocomplete="off" class="visually-hidden" aria-hidden="true">
+
+      <div class="fx-nav">
+        <button class="btn btn-outline" type="button" id="fx-prev">Atrás</button>
+        <button class="btn btn-primary" type="button" id="fx-next">Siguiente</button>
+        <button class="btn btn-primary" type="submit" id="fx-submit" hidden>Enviar información</button>
+      </div>
+      <p class="fx-secure"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Conexión segura. Tus datos y archivos solo los ve tu productor asesor.</p>
+    </form>
+
+    <div class="fx-card fx-done" id="fx-done" hidden tabindex="-1">
+      <div class="fx-done-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+      <h1 class="fx-title">¡Listo!</h1>
+      <p class="fx-desc" id="fx-done-text"></p>
+      <p class="fx-muted">Referencia: <b id="fx-ref"></b></p>
+      <a class="btn btn-whatsapp" href="https://wa.me/5493515161257" target="_blank" rel="noopener">¿Dudas? Escribinos por WhatsApp</a>
+    </div>
+  </main>
+
+  <footer class="fx-foot">
+    <p>JMA Seguros · Juan Manuel Arnedo, Productor Asesor de Seguros · Matrícula SSN 86525</p>
+    <p><a href="/pages/privacidad.html" target="_blank" rel="noopener">Política de privacidad</a></p>
+  </footer>
+
+  <script src="/js/formulario.js" defer></script>
+</body>
+</html>

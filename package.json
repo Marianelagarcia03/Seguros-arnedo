@@ -15,5 +15,8 @@
     "url": "https://github.com/Marianelagarcia03/Seguros-arnedo/issues"
   },
   "homepage": "https://segurosarnedo.com/",
-  "description": "Sitio web de JMA Seguros - Productor Asesor de Seguros Juan Manuel Arnedo (Córdoba, Argentina)"
+  "description": "Sitio web de JMA Seguros - Productor Asesor de Seguros Juan Manuel Arnedo (Córdoba, Argentina)",
+  "dependencies": {
+    "@netlify/blobs": "^8.1.0"
+  }
 }

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#010c17">
+  <title>Panel de formularios | JMA Seguros</title>
+  <link rel="icon" href="/img/asegurar.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&amp;display=swap">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/panel.css">
+</head>
+<body class="ad-body">
+  <header class="ad-top" id="ad-top" hidden>
+    <div class="ad-top-in">
+      <a class="brand" href="#/formularios" aria-label="Panel de formularios">
+        <img src="/img/web/logo-160.webp" alt="" width="40" height="40">
+        <span class="brand-text">JMA Seguros<small>Panel de formularios</small></span>
+      </a>
+      <nav class="ad-tabs" aria-label="Secciones del panel">
+        <a href="#/formularios" data-tab="formularios">Formularios</a>
+        <a href="#/respuestas" data-tab="respuestas">Respuestas</a>
+      </nav>
+      <div class="ad-top-actions">
+        <a class="ad-link" href="/api/admin/respaldo" id="ad-backup" title="Descarga todas las respuestas en un archivo (sin fotos)">Respaldo</a>
+        <button class="ad-link" type="button" id="ad-logout">Salir</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="ad-main" id="app" aria-live="polite">
+    <p class="ad-muted">Cargando…</p>
+  </main>
+
+  <div class="ad-toast" id="ad-toast" role="status" aria-live="polite" hidden></div>
+
+  <div class="ad-modal" id="ad-modal" hidden>
+    <div class="ad-modal-box" role="dialog" aria-modal="true" aria-labelledby="ad-modal-title">
+      <h2 id="ad-modal-title"></h2>
+      <div id="ad-modal-body"></div>
+      <div class="ad-modal-actions">
+        <button class="btn btn-outline btn-sm" type="button" id="ad-modal-cancel">Cancelar</button>
+        <button class="btn btn-primary btn-sm" type="button" id="ad-modal-ok">Aceptar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/admin.js" defer></script>
+</body>
+</html>
