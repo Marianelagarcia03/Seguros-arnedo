@@ -129,14 +129,54 @@
     // Se conservan los viajeros que siguen en la solicitud; se agregan o quitan los del final
     for (var i = items.length; i < n; i++) vList.appendChild(buildViajero());
     for (var j = items.length - 1; j >= n; j--) items[j].remove();
-    vItems().forEach(function (item, k) { item.querySelector(".tercero-title").textContent = "Viajero " + (k + 1); });
+    refreshViajeros();
   }
+  function refreshViajeros() {
+    var items = vItems();
+    items.forEach(function (item, k) {
+      item.querySelector(".tercero-title").textContent = "Viajero " + (k + 1);
+      item.querySelector("[data-viajero-remove]").hidden = items.length < 2;
+    });
+    var cant = form.elements.viaje_cantidad;
+    if (items.length) cant.value = items.length;
+    document.querySelectorAll("[data-step]").forEach(function (b) {
+      var step = Number(b.getAttribute("data-step"));
+      b.disabled = step < 0 ? items.length <= 1 : items.length >= MAX_VIAJEROS;
+    });
+    $("viajero-add").hidden = items.length >= MAX_VIAJEROS;
+  }
+  function setCantidad(n) {
+    form.elements.viaje_cantidad.value = Math.max(1, Math.min(MAX_VIAJEROS, n));
+    setError(form.elements.viaje_cantidad, "");
+    renderViajeros();
+  }
+  document.querySelectorAll("[data-step]").forEach(function (b) {
+    b.addEventListener("click", function () { setCantidad(vItems().length + Number(b.getAttribute("data-step"))); });
+  });
+  $("viajero-add").addEventListener("click", function () {
+    setCantidad(vItems().length + 1);
+    var items = vItems(), last = items[items.length - 1];
+    var first = last && last.querySelector("input[data-key='nombre']");
+    if (first) { try { first.focus({ preventScroll: true }); } catch (e) { first.focus(); } last.scrollIntoView({ behavior: "smooth", block: "center" }); }
+  });
+  vList.addEventListener("click", function (e) {
+    var btn = e.target.closest("[data-viajero-remove]");
+    if (!btn) return;
+    var item = btn.closest("[data-viajero]");
+    if (vItems().length < 2) return;
+    item.remove();
+    refreshViajeros();
+    $("viajero-add").focus();
+  });
   form.elements.viaje_cantidad.addEventListener("input", function () {
     var v = parseInt(this.value, 10);
     if (v > MAX_VIAJEROS) this.value = MAX_VIAJEROS;
     if (v >= 1) renderViajeros();
   });
-  form.elements.viaje_cantidad.addEventListener("change", renderViajeros);
+  form.elements.viaje_cantidad.addEventListener("change", function () {
+    if (!(parseInt(this.value, 10) >= 1)) this.value = vItems().length || 1;
+    renderViajeros();
+  });
   $("v-salida").min = todayISO();
   $("v-regreso").min = todayISO();
   $("v-salida").addEventListener("change", function () { $("v-regreso").min = this.value || todayISO(); });

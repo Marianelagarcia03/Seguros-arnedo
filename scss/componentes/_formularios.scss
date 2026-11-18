@@ -854,3 +854,63 @@
   max-width: 30rem;
   margin: 0 auto 1.2rem;
 }
+
+/* ---------- Cotizar viajero: cantidad con − / + ---------- */
+.stepper {
+  display: flex;
+  align-items: stretch;
+  gap: 0.4rem;
+  max-width: 190px;
+
+  input {
+    flex: 1;
+    min-width: 0;
+    text-align: center;
+    font-weight: 600;
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+.stepper-btn {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  font: inherit;
+  color: var(--c-cream);
+  background: var(--c-surface-2);
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: border-color 0.2s var(--ease), background 0.2s var(--ease);
+
+  &:hover:not(:disabled) {
+    border-color: var(--c-aqua);
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  .icon {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.stepper + .form-hint--small {
+  display: block;
+  margin-top: 0.45rem;
+}
+
+.tercero-add-row {
+  margin-top: 0.4rem;
+}

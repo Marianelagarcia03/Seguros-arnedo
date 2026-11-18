@@ -263,6 +263,7 @@
           </fieldset>
           <fieldset class="form-section" data-section="viaje" data-when="viajero">
             <legend class="form-section-title"><span class="form-section-num" aria-hidden="true"></span>Datos del viaje</legend>
+            <p class="form-hint">Con estos datos te enviamos las opciones disponibles para tu viaje.</p>
             <div class="form-grid">
                 <div class="field field--full">
                   <label for="v-destino">Destino <span class="req" aria-hidden="true">*</span></label>
@@ -281,7 +282,12 @@
                 </div>
                 <div class="field">
                   <label for="v-cantidad">Cantidad de viajeros <span class="req" aria-hidden="true">*</span></label>
-                  <input id="v-cantidad" name="viaje_cantidad" type="number" data-req placeholder="1" min="1" max="10" step="1" inputmode="numeric" data-type="int">
+                  <div class="stepper">
+                    <button class="stepper-btn" type="button" data-step="-1" aria-label="Un viajero menos"><svg class="icon" aria-hidden="true" focusable="false" stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14"></path></svg></button>
+                    <input id="v-cantidad" name="viaje_cantidad" type="number" data-req value="1" min="1" max="10" step="1" inputmode="numeric" data-type="int">
+                    <button class="stepper-btn" type="button" data-step="1" aria-label="Un viajero más"><svg class="icon" aria-hidden="true" focusable="false" stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg></button>
+                  </div>
+                  <span class="form-hint form-hint--small">Abajo cargás los datos y la edad de cada uno.</span>
                   <span class="field-error" aria-live="polite"></span>
                 </div>
             </div>
@@ -289,6 +295,9 @@
           <fieldset class="form-section" data-section="viajeros" data-when="viajero">
             <legend class="form-section-title"><span class="form-section-num" aria-hidden="true"></span>Datos de cada viajero</legend>
             <div id="viajeros-list"></div>
+            <div class="tercero-add-row">
+              <button class="btn btn-outline btn-sm" type="button" id="viajero-add"><svg class="icon" aria-hidden="true" focusable="false" stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>Agregar otro viajero</button>
+            </div>
           </fieldset>
           <fieldset class="form-section" data-section="otro" data-when="otro">
             <legend class="form-section-title"><span class="form-section-num" aria-hidden="true"></span>Tu consulta</legend>
@@ -358,7 +367,7 @@
 
     <template id="viajero-template">
       <div class="tercero" data-viajero>
-        <div class="tercero-head"><h3 class="tercero-title">Viajero 1</h3></div>
+        <div class="tercero-head"><h3 class="tercero-title">Viajero 1</h3><button class="tercero-remove" type="button" data-viajero-remove hidden><svg class="icon" aria-hidden="true" focusable="false" stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg><span>Quitar</span></button></div>
         <div class="form-grid">
           <div class="field field--full"><label data-for="nombre">Nombre y apellido <span class="req" aria-hidden="true">*</span></label><input type="text" data-key="nombre" maxlength="120" autocomplete="off"><span class="field-error" aria-live="polite"></span></div>
           <div class="field"><label data-for="dni">DNI <span class="req" aria-hidden="true">*</span></label><input type="text" data-key="dni" inputmode="numeric" maxlength="12" data-type="dni" autocomplete="off"><span class="field-error" aria-live="polite"></span></div>
@@ -408,6 +417,7 @@
             <li><a href="./productos.html#moto">Seguro de Moto</a></li>
             <li><a href="./productos.html#retiro">Seguro de Retiro</a></li>
             <li><a href="./productos.html#comercio">Integral de Comercio</a></li>
+            <li><a href="./productos.html#viajero">Asistencia al Viajero</a></li>
           </ul>
         </div>
         <div>
