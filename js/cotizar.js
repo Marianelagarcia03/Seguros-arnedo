@@ -275,14 +275,51 @@
   }
 
   var lastData = null;
-  function openWhatsApp() {
+  function waUrl() {
     var d = lastData || collect();
-    var url = "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(lastSummary || waSummary(d, lastRef));
-    if (typeof window.gtag === "function") window.gtag("event", "click_whatsapp", { ubicacion: "cotizar_resumen", tipo_seguro: d.tipo });
+    return "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(lastSummary || waSummary(d, lastRef));
+  }
+  function trackWa(ubicacion) {
+    var d = lastData || {};
+    if (typeof window.gtag === "function") window.gtag("event", "click_whatsapp", { ubicacion: ubicacion, tipo_seguro: d.tipo });
+  }
+  function openWhatsApp() {
+    var url = waUrl();
+    trackWa("cotizar_resumen");
     var w = window.open(url, "_blank", "noopener");
     if (!w) window.location.href = url;
   }
   document.querySelectorAll("[data-wa-send]").forEach(function (b) { b.addEventListener("click", openWhatsApp); });
+
+  /* Apertura automática de WhatsApp: la pestaña se abre en el mismo toque de
+     «Enviar solicitud» (si se abriera después de la respuesta del servidor, los
+     celulares la bloquean) y recién se dirige a WhatsApp cuando el correo salió.
+     Si el envío falla, se cierra. */
+  var waWin = null;
+  function preOpenWa() {
+    waWin = null;
+    try {
+      var w = window.open("", "_blank");
+      if (!w) return;
+      try { w.opener = null; } catch (e) {}
+      try {
+        w.document.title = "Abriendo WhatsApp…";
+        w.document.body.style.cssText = "font-family:system-ui,sans-serif;display:grid;place-items:center;min-height:90vh;margin:0;color:#334;";
+        w.document.body.textContent = "Enviando tu solicitud… En unos segundos se abre WhatsApp.";
+      } catch (e) {}
+      waWin = w;
+    } catch (e) { waWin = null; }
+  }
+  function finishWa(ok) {
+    var w = waWin;
+    waWin = null;
+    if (!w) return false;
+    try {
+      if (ok) { w.location.href = waUrl(); trackWa("cotizar_auto"); return true; }
+      w.close();
+    } catch (e) {}
+    return false;
+  }
 
   /* ---------- Envío ---------- */
   function setSending(on) {
@@ -326,6 +363,7 @@
     lastRef = "";
     lastSummary = "";
     setSending(true);
+    preOpenWa();
     var ctrl = window.AbortController ? new AbortController() : null;
     var timer = ctrl && setTimeout(function () { ctrl.abort(); }, 30000);
     fetch(ENDPOINT, {
@@ -341,6 +379,12 @@
           lastSummary = r.body.resumen || "";
           if (lastRef) { $("cotizar-ref").querySelector("strong").textContent = lastRef; $("cotizar-ref").hidden = false; }
           $("ok-texto").textContent = "Tu solicitud de " + TIPOS[data.tipo].toLowerCase() + " nos llegó. Te vamos a responder al " + data.telefono + " de lunes a viernes, de 9 a 18.";
+          var abierto = finishWa(true);
+          $("wa-ok-titulo").textContent = abierto
+            ? "Se abrió WhatsApp con tu solicitud lista. Tocá Enviar para enviárnosla."
+            : "Último paso: enviala también por WhatsApp.";
+          $("wa-ok-btn-text").textContent = abierto ? "¿No se abrió? Abrir WhatsApp" : "Enviar solicitud por WhatsApp";
+          $("wa-ok-nota").hidden = abierto;
           form.hidden = true;
           okPanel.hidden = false;
           okPanel.focus();
@@ -349,6 +393,7 @@
           idemKey = newKey();
           return;
         }
+        finishWa(false);
         var first = applyServerErrors(r.body && r.body.errors);
         if (first) {
           showStatus((r.body && r.body.message) || "Revisá los campos marcados en rojo.");
@@ -360,6 +405,7 @@
         statusBox.focus();
       })
       .catch(function () {
+        finishWa(false);
         showStatus("No pudimos enviar la solicitud por un problema de conexión. Tus datos siguen cargados: podés volver a intentar o mandárnosla por WhatsApp.");
         waAlt.hidden = false;
         statusBox.focus();
@@ -386,6 +432,7 @@
     lastRef = "";
     lastSummary = "";
     $("cotizar-ref").hidden = true;
+    $("wa-ok-nota").hidden = false;
     okPanel.hidden = true;
     form.hidden = false;
     sync();
