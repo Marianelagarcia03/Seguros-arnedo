@@ -312,7 +312,7 @@ function buildClientCopy(d, ref, email) {
 export async function sendWithResend(msg, env, fetchImpl = fetch) {
   const res = await fetchImpl("https://api.resend.com/emails", {
     method: "POST",
-    headers: { Authorization: `Bearer ${env.RESEND_API_KEY}`, "Content-Type": "application/json" },
+    headers: { Authorization: `Bearer ${String(env.RESEND_API_KEY).trim()}`, "Content-Type": "application/json" },
     body: JSON.stringify({
       from: env.DENUNCIA_FROM || DEFAULT_FROM,
       to: [msg.to],
@@ -386,7 +386,7 @@ function originAllowed(origin, env) {
 
 export async function handle(req, env = process.env, fetchImpl = fetch) {
   // Consulta de estado: el formulario la usa para avisar si el envío no está habilitado.
-  if (req.method === "GET") return json(200, { ok: true, configurado: Boolean(env.RESEND_API_KEY) });
+  if (req.method === "GET") return json(200, { ok: true, configurado: Boolean(String(env.RESEND_API_KEY || "").trim()) });
   if (req.method !== "POST") return json(405, { ok: false, message: "Método no permitido." });
   if (!originAllowed(req.headers.get("origin"), env)) return json(403, { ok: false, message: "Origen no permitido." });
   const len = Number(req.headers.get("content-length") || 0);
