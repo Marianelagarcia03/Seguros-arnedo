@@ -3260,8 +3260,47 @@ a.channel-card:hover {
   }
 }
 
-@media (max-width: 360px) {
-  .brand-text {
+/* Nombre «SegurosArnedo.com» completo también en celulares */
+@media (max-width: 480px) {
+  .site-header .brand {
+    gap: 0.5rem;
+    min-width: 0;
+    font-size: 0.98rem;
+    letter-spacing: 0;
+  }
+
+  .site-header .brand-text {
+    white-space: nowrap;
+  }
+
+  .site-header .nav-actions {
+    gap: 0.5rem;
+  }
+
+  .site-header .nav-actions .btn-cta-mobile {
+    padding-inline: 0.75rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .site-header .brand {
+    font-size: 0.86rem;
+  }
+
+  .site-header .brand img {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+@media (max-width: 374px) {
+  .site-header .brand {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 359px) {
+  .site-header .brand-text {
     display: none;
   }
 }
