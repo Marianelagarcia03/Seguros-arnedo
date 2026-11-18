@@ -56,6 +56,8 @@
       track("click_whatsapp_aseguradora", { destino: href });
     } else if (href.indexOf("tel:") === 0) {
       track("click_telefono", { numero: href.slice(4), ubicacion: place });
+    } else if (href.indexOf("sancristobal.com.ar/pas/") > -1) {
+      track("click_cotizar_sancristobal", { ubicacion: place });
     } else if (href.indexOf("instagram.com") > -1) {
       track("click_instagram", { ubicacion: place });
     }
