@@ -1,0 +1,4 @@
+# Solo define dónde están las funciones. La configuración de publicación
+# (carpeta y comando de build) sigue siendo la del panel de Netlify.
+[functions]
+  directory = "netlify/functions"

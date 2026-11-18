@@ -64,3 +64,21 @@ python3 -m http.server 8000   # y abrir http://localhost:8000
 
 ## ⭐ Autora
 Marianela García — marianela971@gmail.com
+
+## Formulario «Denuncia de siniestro» (`/pages/denuncia.html`)
+
+El formulario envía los datos a una Netlify Function (`netlify/functions/denuncia/`, ruta `/api/denuncia`),
+que valida todo de nuevo y manda un correo con las fotos del carnet adjuntas a través de [Resend](https://resend.com).
+Las fotos no se guardan en ningún lado: viajan solo como adjuntos del correo.
+
+Variables de entorno (Netlify → Site configuration → Environment variables, alcance «Functions»):
+
+| Variable | Obligatoria | Valor |
+|---|---|---|
+| `RESEND_API_KEY` | Sí | Clave de API de Resend (empieza con `re_`). Marcar como secreta. |
+| `DENUNCIA_TO` | No | Destinatario. Por defecto `juanmanuelarnedo@gmail.com`. |
+| `DENUNCIA_FROM` | No | Remitente. Por defecto `Web JMA Seguros <onboarding@resend.dev>`. Con el dominio verificado en Resend: `JMA Seguros <denuncias@segurosarnedo.com>`. |
+| `DENUNCIA_ORIGINS` | No | Dominios extra desde los que se permite enviar, separados por coma. |
+
+Sin dominio verificado, Resend solo entrega a la dirección con la que se creó la cuenta:
+crear la cuenta con `juanmanuelarnedo@gmail.com` o verificar `segurosarnedo.com` en Resend.
