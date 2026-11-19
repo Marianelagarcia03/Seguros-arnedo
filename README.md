@@ -102,7 +102,15 @@ domicilios ni fechas de nacimiento**. El enlace anterior `/?seguro=auto#cotizar`
 | `COTIZACION_FROM` | No | Remitente. Por defecto usa `DENUNCIA_FROM`. Con el dominio verificado: `"SegurosArnedo.com" <avisos@segurosarnedo.com>`. |
 | `COTIZACION_COPIA_CLIENTE` | No | `si` para mandarle al cliente la confirmación (sin datos sensibles). **Requiere el dominio verificado en Resend.** |
 
-### Registro en Google Sheets (opcional)
+### Registro en Google Sheets (activo)
+
+Desde el 19/11/2026 cada cotización y cada denuncia se guarda sola en la planilla **«Registro web SegurosArnedo»**
+(cuenta jma.seguroscba@gmail.com), a través del formulario de Google «Registro web SegurosArnedo (uso interno)».
+No requiere autorizaciones ni variables: el código está en `netlify/lib/planilla.mjs`. Para apagarlo, cargar
+`SHEETS_FORM_ID=off` en Netlify; para usar otro formulario, poner su ID. Si el formulario falla, el correo se envía igual.
+No cambiar el orden ni los nombres de las preguntas del formulario sin actualizar `CAMPOS` en ese archivo.
+
+### Registro con Apps Script (alternativa anterior, no usada)
 
 Una sola planilla con dos hojas, «Cotizaciones» y «Denuncias», que se crean solas. Cada fila trae el número de
 solicitud; si llega dos veces el mismo número, no se duplica.

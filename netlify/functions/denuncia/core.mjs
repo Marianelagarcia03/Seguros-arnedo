@@ -2,6 +2,8 @@
 // servidor, armado del correo y envío con adjuntos a través de Resend.
 // Sin dependencias externas (usa FormData, File y fetch nativos de Node 18+).
 
+import { enviarAPlanilla, formId } from "../../lib/planilla.mjs";
+
 export const LIMITS = {
   body: 4.5 * 1024 * 1024,   // margen bajo el límite de 6 MB de Netlify Functions
   carnet: 2 * 1024 * 1024,   // por foto del carnet, ya comprimida en el navegador
@@ -335,7 +337,7 @@ export async function sendWithResend(msg, env, fetchImpl = fetch) {
 
 /* ---------- Registro opcional en Google Sheets ---------- */
 async function logToSheets(d, ref, env, fetchImpl) {
-  if (!env.SHEETS_WEBHOOK_URL) return;
+  if (!env.SHEETS_WEBHOOK_URL && !formId(env)) return;
   const row = {
     token: env.SHEETS_TOKEN || "",
     ref,
@@ -356,6 +358,28 @@ async function logToSheets(d, ref, env, fetchImpl) {
     plazo_vence: dmy(plusDays(d.fecha, 3)),
     estado: "Nueva",
   };
+  if (formId(env)) {
+    return enviarAPlanilla({
+      hoja: "Denuncias",
+      ref,
+      enviada: row.enviada,
+      tipo: row.tipo,
+      nombre: row.asegurado,
+      telefono: row.telefono,
+      email: row.email,
+      localidad: row.direccion,
+      detalle: [
+        `Compañía: ${row.compania}`,
+        row.poliza ? `Póliza: ${row.poliza}` : "",
+        row.patente ? `Patente: ${row.patente}` : "",
+        `Fecha y hora del hecho: ${row.fecha_hecho} ${row.hora || ""}`.trim(),
+        `Lugar: ${row.direccion}`,
+        `Lesionados: ${row.lesionados} · Policía: ${row.policia} · Terceros: ${row.terceros}`,
+        `Plazo de denuncia vence: ${row.plazo_vence}`,
+      ].filter(Boolean).join("\n"),
+      origen: "",
+    }, env, fetchImpl);
+  }
   const res = await fetchImpl(env.SHEETS_WEBHOOK_URL, {
     method: "POST",
     headers: { "Content-Type": "application/json" },

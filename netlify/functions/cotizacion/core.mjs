@@ -3,6 +3,7 @@
 // y para la confirmación al cliente). Sin dependencias externas.
 
 import { createHash } from "node:crypto";
+import { enviarAPlanilla, formId } from "../../lib/planilla.mjs";
 
 const DEFAULT_TO = "juanmanuelarnedo@gmail.com";
 const DEFAULT_FROM = '"Web SegurosArnedo.com" <onboarding@resend.dev>';
@@ -218,7 +219,7 @@ export async function sendWithResend(msg, env, fetchImpl = fetch) {
 }
 
 async function logToSheets(d, ref, full, env, fetchImpl, origen = "") {
-  if (!env.SHEETS_WEBHOOK_URL) return;
+  if (!env.SHEETS_WEBHOOK_URL && !formId(env)) return;
   const row = {
     token: env.SHEETS_TOKEN || "",
     hoja: "Cotizaciones",
@@ -233,6 +234,7 @@ async function logToSheets(d, ref, full, env, fetchImpl, origen = "") {
     origen,
     estado: "Nueva",
   };
+  if (formId(env)) return enviarAPlanilla(row, env, fetchImpl);
   const res = await fetchImpl(env.SHEETS_WEBHOOK_URL, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
