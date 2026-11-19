@@ -2531,6 +2531,26 @@ a.channel-card:hover {
   border-radius: 999px;
 }
 
+/* Etiquetas con página propia: se ven como enlace */
+.tag-cloud li:has(> a) {
+  padding: 0;
+  border-color: rgba(43, 163, 137, 0.45);
+}
+
+.tag-cloud a {
+  display: block;
+  padding: 0.5rem 0.95rem;
+  color: var(--c-aqua);
+  text-decoration: none;
+  border-radius: inherit;
+}
+
+.tag-cloud a:hover,
+.tag-cloud a:focus-visible {
+  color: var(--c-cream);
+  background: rgba(43, 163, 137, 0.16);
+}
+
 .two-col {
   display: grid;
   grid-template-columns: 1fr 1fr;

@@ -24,7 +24,7 @@
     viajero: "Asistencia al viajero",
     otro: "Otro seguro"
   };
-  var OTROS = { moto: "Seguro de moto", vida: "Seguro de vida", retiro: "Seguro de retiro", comercio: "Integral de comercio", caucion: "Seguro de caución", agro: "Seguro agropecuario", art: "ART", otro: "Otro" };
+  var OTROS = { moto: "Seguro de moto", vida: "Seguro de vida", retiro: "Seguro de retiro", comercio: "Integral de comercio", caucion: "Seguro de caución", agro: "Seguro agropecuario", art: "ART", rc: "Responsabilidad civil", otro: "Otro" };
   var COBERTURA = { tarjeta: "Tarjeta de crédito", cbu: "Débito por CBU" };
 
   var $ = function (id) { return document.getElementById(id); };
@@ -493,6 +493,7 @@
     caucion: "Ej.: garantía de alquiler de un departamento, contrato de 3 años, alquiler mensual de $ 500.000",
     agro: "Ej.: granizo para 200 ha de soja en Marcos Juárez, sembrada en noviembre",
     art: "Ej.: empresa de 5 empleados, rubro construcción",
+    rc: "Ej.: RC para un salón de eventos de 200 m², me piden una suma de $ 50.000.000",
     otro: "Contanos qué seguro necesitás y para qué"
   };
   function syncEjemplo() {
@@ -504,7 +505,7 @@
   /* ---------- Preselección desde el enlace (?seguro=auto, moto, hogar…) ---------- */
   (function () {
     var p = new URLSearchParams(window.location.search).get("seguro");
-    var map = { auto: "auto", hogar: "hogar", ap: "ap", accidentes: "ap", viajero: "viajero", viaje: "viajero", otro: "otro", moto: "otro", vida: "otro", retiro: "otro", comercio: "otro", caucion: "otro", agro: "otro", art: "otro" };
+    var map = { auto: "auto", hogar: "hogar", ap: "ap", accidentes: "ap", viajero: "viajero", viaje: "viajero", otro: "otro", moto: "otro", vida: "otro", retiro: "otro", comercio: "otro", caucion: "otro", agro: "otro", art: "otro", rc: "otro" };
     var tipo = map[p];
     if (tipo) {
       var r = form.querySelector("input[name='tipo'][value='" + tipo + "']");
