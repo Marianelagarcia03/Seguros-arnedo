@@ -790,6 +790,40 @@ a.channel-card:hover {
   min-height: 420px;
 }
 
+/* Columna derecha de Contacto: foto de la oficina + mapa */
+.contact-side {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.contact-split .contact-side .map-wrap {
+  flex: 1;
+  min-height: 280px;
+}
+
+.office-photo {
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--c-line);
+  background: var(--c-surface);
+}
+
+.office-photo img {
+  display: block;
+  width: 100%;
+  height: clamp(240px, 26vw, 340px);
+  object-fit: cover;
+  object-position: center 62%;
+}
+
+.office-photo figcaption {
+  padding: 0.75rem 1rem;
+  font-size: var(--fs-sm);
+  color: var(--c-muted);
+}
+
 /* ---------- Botón flotante de WhatsApp ---------- */
 .wa-float {
   position: fixed;
