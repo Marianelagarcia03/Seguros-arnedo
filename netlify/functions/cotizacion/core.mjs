@@ -17,7 +17,7 @@ export const TIPOS = {
   viajero: "Asistencia al viajero",
   otro: "Otro seguro",
 };
-const OTROS = { moto: "Seguro de moto", vida: "Seguro de vida", retiro: "Seguro de retiro", comercio: "Integral de comercio", otro: "Otro" };
+const OTROS = { moto: "Seguro de moto", vida: "Seguro de vida", retiro: "Seguro de retiro", comercio: "Integral de comercio", caucion: "Seguro de caución", agro: "Seguro agropecuario", art: "ART", otro: "Otro" };
 const PAGO = { tarjeta: "Tarjeta de crédito", cbu: "Débito por CBU" };
 const COBERTURAS = ["Responsabilidad civil", "Terceros", "Terceros completo", "Todo riesgo", "No lo sé"];
 

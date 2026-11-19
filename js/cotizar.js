@@ -24,7 +24,7 @@
     viajero: "Asistencia al viajero",
     otro: "Otro seguro"
   };
-  var OTROS = { moto: "Seguro de moto", vida: "Seguro de vida", retiro: "Seguro de retiro", comercio: "Integral de comercio", otro: "Otro" };
+  var OTROS = { moto: "Seguro de moto", vida: "Seguro de vida", retiro: "Seguro de retiro", comercio: "Integral de comercio", caucion: "Seguro de caución", agro: "Seguro agropecuario", art: "ART", otro: "Otro" };
   var COBERTURA = { tarjeta: "Tarjeta de crédito", cbu: "Débito por CBU" };
 
   var $ = function (id) { return document.getElementById(id); };
@@ -484,16 +484,34 @@
     form.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 
+  /* ---------- Ejemplo del detalle según el seguro elegido ---------- */
+  var EJEMPLOS = {
+    moto: "Ej.: moto Honda Wave 2022, uso diario para ir a trabajar",
+    vida: "Ej.: seguro de vida para mí, 40 años, con mi familia como beneficiaria",
+    retiro: "Ej.: quiero empezar a ahorrar para el retiro, tengo 35 años",
+    comercio: "Ej.: kiosco de 40 m² alquilado en barrio General Paz, con alarma",
+    caucion: "Ej.: garantía de alquiler de un departamento, contrato de 3 años, alquiler mensual de $ 500.000",
+    agro: "Ej.: granizo para 200 ha de soja en Marcos Juárez, sembrada en noviembre",
+    art: "Ej.: empresa de 5 empleados, rubro construcción",
+    otro: "Contanos qué seguro necesitás y para qué"
+  };
+  function syncEjemplo() {
+    var sel = form.elements.otro_tipo, ta = form.elements.otro_detalle;
+    if (sel && ta && EJEMPLOS[sel.value]) ta.placeholder = EJEMPLOS[sel.value];
+  }
+  if (form.elements.otro_tipo) form.elements.otro_tipo.addEventListener("change", syncEjemplo);
+
   /* ---------- Preselección desde el enlace (?seguro=auto, moto, hogar…) ---------- */
   (function () {
     var p = new URLSearchParams(window.location.search).get("seguro");
-    var map = { auto: "auto", hogar: "hogar", ap: "ap", accidentes: "ap", viajero: "viajero", viaje: "viajero", otro: "otro", moto: "otro", vida: "otro", retiro: "otro", comercio: "otro" };
+    var map = { auto: "auto", hogar: "hogar", ap: "ap", accidentes: "ap", viajero: "viajero", viaje: "viajero", otro: "otro", moto: "otro", vida: "otro", retiro: "otro", comercio: "otro", caucion: "otro", agro: "otro", art: "otro" };
     var tipo = map[p];
     if (tipo) {
       var r = form.querySelector("input[name='tipo'][value='" + tipo + "']");
       if (r) r.checked = true;
       if (tipo === "otro" && OTROS[p]) form.elements.otro_tipo.value = p;
     }
+    syncEjemplo();
   })();
   sync();
 })();
