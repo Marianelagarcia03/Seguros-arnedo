@@ -217,7 +217,7 @@ export async function sendWithResend(msg, env, fetchImpl = fetch) {
   return body.id;
 }
 
-async function logToSheets(d, ref, full, env, fetchImpl) {
+async function logToSheets(d, ref, full, env, fetchImpl, origen = "") {
   if (!env.SHEETS_WEBHOOK_URL) return;
   const row = {
     token: env.SHEETS_TOKEN || "",
@@ -230,6 +230,7 @@ async function logToSheets(d, ref, full, env, fetchImpl) {
     email: d.email || "",
     localidad: d.auto_localidad || d.hogar_localidad || d.viaje_destino || "",
     detalle: full,
+    origen,
     estado: "Nueva",
   };
   const res = await fetchImpl(env.SHEETS_WEBHOOK_URL, {
@@ -331,7 +332,7 @@ export async function handle(req, env = process.env, fetchImpl = fetch) {
     extras.push(sendWithResend({ to: data.email, subject: `Recibimos tu solicitud de cotización ${ref}`, text: texto, idempotencyKey: idem ? `cot-copia-${idem}` : undefined }, env, fetchImpl)
       .catch((e) => console.error(`[cotizacion] ${ref} copia al cliente no enviada:`, e.message)));
   }
-  extras.push(logToSheets(data, ref, full, env, fetchImpl).catch((e) => console.error(`[cotizacion] ${ref} no se registró en Sheets:`, e.message)));
+  extras.push(logToSheets(data, ref, full, env, fetchImpl, origen).catch((e) => console.error(`[cotizacion] ${ref} no se registró en Sheets:`, e.message)));
   await Promise.all(extras);
 
   return json(200, { ok: true, ref, resumen });
