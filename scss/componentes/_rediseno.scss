@@ -13,11 +13,11 @@
 
 :root {
   /* Fondos claros (60 %) */
-  --c-bg: #f5f3ed;
+  --c-bg: #eae5da;            /* arena clara: fondo principal */
   --c-bg-2: #ffffff;
   --c-surface: #ffffff;
-  --c-surface-2: #fbfaf6;
-  --c-mint: #e8eeec;
+  --c-surface-2: #f6f3ec;
+  --c-mint: #dce5e1;          /* gris verdoso profundo: secciones alternas */
   --c-line: rgba(18, 55, 71, 0.12);
   --c-line-strong: rgba(18, 55, 71, 0.22);
 
@@ -25,7 +25,7 @@
   --c-cream: #123747;          /* títulos y énfasis */
   --c-text: #263943;           /* lectura */
   --c-muted: #4a5d66;
-  --c-soft: #5c6f78;
+  --c-soft: #4f626b;
 
   /* Marca */
   --c-petrol: #123747;
@@ -35,11 +35,11 @@
   --c-teal-2: #1d8077;         /* botones (texto blanco, contraste AA) */
   --c-teal-3: #1d8077;
   --c-aqua: #249b91;           /* íconos, bordes activos, rellenos sin texto */
-  --c-link: #1a7a72;           /* enlaces sobre claro */
+  --c-link: #146a63;           /* enlaces sobre claro */
   --c-cyan: #249b91;
   --c-ocean: #249b91;
   --c-gold: #e8b866;           /* detalles (5 %) */
-  --c-gold-text: #8a6326;      /* arena legible sobre claro */
+  --c-gold-text: #7a5520;      /* arena legible sobre claro */
   --c-whatsapp: #17834a;
   --c-whatsapp-hover: #126d3d;
   --c-danger: #b3452f;
@@ -281,13 +281,21 @@ body:not(.ad-body):not(.fx-body) .site-header.is-open {
 
 /* ---------- Secciones y separadores ---------- */
 .section--alt {
-  background: #ffffff;
+  background: var(--c-mint);
   border-top: 1px solid rgba(18, 55, 71, 0.07);
   border-bottom: 1px solid rgba(18, 55, 71, 0.07);
 }
 
 .section--companias {
   background: var(--c-mint);
+}
+
+.section {
+  padding-block: clamp(3rem, 2.2rem + 3vw, 4.75rem);
+}
+
+.section-head {
+  margin-bottom: clamp(1.6rem, 1.2rem + 1.5vw, 2.4rem);
 }
 
 .section--dark {
@@ -824,7 +832,7 @@ a.channel-card:hover {
 }
 
 .chip-nav {
-  background: rgba(245, 243, 237, 0.94);
+  background: rgba(234, 229, 218, 0.95);
 }
 
 .chip {
