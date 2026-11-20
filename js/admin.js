@@ -123,6 +123,7 @@
     if (parts[0] === "respuestas" && parts[1]) return viewRespuesta(parts[1]);
     if (parts[0] === "respuestas") return viewRespuestas(params);
     if (parts[0] === "formularios" && parts[1]) return viewEditor(parts[1]);
+    if (parts[0] === "productores" && window.JMAProductores) { dirty = false; return window.JMAProductores.route(parts.slice(1), params); }
     return viewFormularios();
   }
   var lastHash = location.hash, skip = false;
@@ -529,6 +530,9 @@
       setTimeout(function () { URL.revokeObjectURL(a.href); }, 4000);
     }).catch(function () { toast("No se pudieron descargar los archivos.", true); }).then(function () { btn.disabled = false; btn.textContent = "Descargar todos los archivos (.zip)"; });
   }
+
+  // Herramientas compartidas con otras secciones del panel (js/admin-productores.js).
+  window.JMAPanel = { app: app, api: api, esc: esc, fecha: fecha, toast: toast, modal: modal, copy: copy, setTop: setTop, waNumber: waNumber };
 
   boot();
 })();

@@ -118,6 +118,17 @@ export async function leerAseguradoras(store) {
 
 export const aseguradorasPublicas = (lista) => lista.filter((a) => a.activa).map(({ id, nombre }) => ({ id, nombre }));
 
+// Entrada liviana para el listado. Los datos de contacto van cifrados.
+export function indexDe(sol, datos, env) {
+  return {
+    id: sol.id, ref: sol.ref, tipo: sol.tipo, createdAt: sol.createdAt, updatedAt: sol.updatedAt || sol.createdAt,
+    estado: sol.estado, nombre: sol.resumen.nombre, localidad: sol.resumen.localidad, provincia: sol.resumen.provincia,
+    companias: (sol.gestiones || []).map((g) => g.id),
+    gestiones: (sol.gestiones || []).map((g) => ({ id: g.id, estado: g.estado })),
+    enc: datos ? encrypt(JSON.stringify({ dni: datos.dni || "", cuit: datos.cuit || "", matricula: datos.matricula || "", telefono: datos.telefono || "", email: datos.email || "" }), env) : "",
+  };
+}
+
 /* ---------- Validación ---------- */
 export function validate(body, aseguradoras) {
   const errors = {};
@@ -381,10 +392,7 @@ export async function handle(req, env = process.env, fetchImpl = fetch) {
       log: [{ at: ahora, accion: "Solicitud recibida desde la web" }],
     };
     await store.setJSON("prod/sol/" + id, sol);
-    await store.setJSON("prod/idx/" + id, {
-      id, ref, tipo: data.tipo, createdAt: ahora, estado: "recibida", nombre: data.nombre,
-      localidad: data.localidad, provincia: data.provincia, companias: (data.companias || []).slice(),
-    });
+    await store.setJSON("prod/idx/" + id, indexDe(sol, data, env));
   } catch (err) {
     console.error(`[productores] ${ref} no se guardó en el panel:`, err.message);
   }

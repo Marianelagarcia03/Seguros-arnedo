@@ -8,6 +8,7 @@ import {
 } from "./seguridad.mjs";
 import { normalizeForm, PLANTILLAS, ESTADOS, RAMOS, TIPOS, ILUSTRACIONES, mask } from "./esquema.mjs";
 import { indexEntry } from "./api-publica.mjs";
+import { handlePanel as handleProductores, respaldoProductores } from "../productores/panel.mjs";
 
 const ID_RE = /^[A-Za-z0-9_-]{8,40}$/;
 const newSlug = () => randomId(16); // 22 caracteres aleatorios: imposible de adivinar
@@ -79,6 +80,9 @@ export async function handle(req, env = process.env) {
 
   const session = readSession(req, env);
   if (!session) return json({ ok: false, error: "Tu sesión terminó. Volvé a ingresar." }, 401);
+
+  // ---------- Organización de Productores ----------
+  if (parts[0] === "productores") return handleProductores(req, env, store, parts.slice(1), session, url);
 
   // ---------- Datos de referencia para el editor ----------
   if (parts[0] === "catalogo" && m === "GET") {
@@ -237,7 +241,8 @@ export async function handle(req, env = process.env) {
   if (parts[0] === "respaldo" && m === "GET") {
     const forms = await listForms(store);
     const subs = (await getMany(store, await store.list("subs/"))).filter(Boolean).map(({ enc, ...s }) => s);
-    const body = JSON.stringify({ generado: new Date().toISOString(), formularios: forms, respuestas: subs }, null, 2);
+    const productores = await respaldoProductores(store);
+    const body = JSON.stringify({ generado: new Date().toISOString(), formularios: forms, respuestas: subs, productores }, null, 2);
     return new Response(body, {
       status: 200,
       headers: {
