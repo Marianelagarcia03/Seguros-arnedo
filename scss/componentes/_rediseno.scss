@@ -6,18 +6,19 @@
    alcanza con quitar su @import de scss/style.scss y regenerar el CSS.
 
    Paleta: azul petróleo #123747 · turquesa #249B91 · arena dorada #E8B866
-           blanco cálido #F5F3ED · grafito azulado #263943 · gris verdoso #E8EEEC
+           gris perla #E4E8EA (fondo) · gris verdoso #D7E0DE (secciones alternas)
+           grafito azulado #263943 · blanco para tarjetas y encabezado
    Contraste: los botones con texto usan un turquesa un tono más profundo
    (#1D8077) y los enlaces sobre fondo claro #1A7A72, para que se lean bien.
    ========================================================================== */
 
 :root {
   /* Fondos claros (60 %) */
-  --c-bg: #eae5da;            /* arena clara: fondo principal */
+  --c-bg: #e4e8ea;            /* gris perla azulado: fondo principal */
   --c-bg-2: #ffffff;
   --c-surface: #ffffff;
-  --c-surface-2: #f6f3ec;
-  --c-mint: #dce5e1;          /* gris verdoso profundo: secciones alternas */
+  --c-surface-2: #f4f6f7;
+  --c-mint: #d7e0de;          /* gris verdoso profundo: secciones alternas */
   --c-line: rgba(18, 55, 71, 0.12);
   --c-line-strong: rgba(18, 55, 71, 0.22);
 
@@ -397,7 +398,7 @@ body:not(.ad-body):not(.fx-body) .hero {
 /* ---------- Accesos rápidos ---------- */
 .quick {
   margin-top: 0;
-  padding: 1rem 0 clamp(1rem, 0.5rem + 2vw, 2rem);
+  padding: 1.75rem 0 clamp(1rem, 0.5rem + 2vw, 2rem);
 }
 
 .quick-card {
@@ -832,7 +833,7 @@ a.channel-card:hover {
 }
 
 .chip-nav {
-  background: rgba(234, 229, 218, 0.95);
+  background: rgba(228, 232, 234, 0.95);
 }
 
 .chip {
