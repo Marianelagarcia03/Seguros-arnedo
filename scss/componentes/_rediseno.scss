@@ -56,6 +56,7 @@
 }
 
 /* Bloques en azul petróleo (25 %): mismos componentes, colores invertidos */
+.hero,
 .page-hero,
 .section--dark,
 .advisor-card,
@@ -255,6 +256,7 @@ body:not(.ad-body):not(.fx-body) .site-header.is-open {
 }
 
 /* Dentro de bloques oscuros */
+.hero .btn-outline,
 .page-hero .btn-outline,
 .section--dark .btn-outline,
 .advisor-card .btn-outline,
@@ -264,6 +266,7 @@ body:not(.ad-body):not(.fx-body) .site-header.is-open {
   border-color: rgba(245, 243, 237, 0.55);
 }
 
+.hero .btn-outline:hover,
 .page-hero .btn-outline:hover,
 .section--dark .btn-outline:hover,
 .advisor-card .btn-outline:hover,
@@ -318,93 +321,74 @@ body:not(.ad-body):not(.fx-body) .site-header.is-open {
   color: var(--c-link);
 }
 
-/* ---------- Portada ---------- */
-body:not(.ad-body):not(.fx-body) .hero {
-  min-height: 0;
-  padding: calc(var(--header-h) + clamp(2.5rem, 1.5rem + 3vw, 4.5rem)) 0 clamp(3rem, 2rem + 3vw, 4.5rem);
-  background: var(--c-bg);
-}
-
+/* ---------- Portada ----------
+   Mantiene el formato original: foto a pantalla completa, sin achicarla,
+   con un velo azul petróleo para que el texto se lea bien. */
 .hero::before {
-  display: none;
-}
-
-.hero .container {
-  display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
-  gap: clamp(2rem, 1rem + 3vw, 3.5rem);
-  align-items: center;
-}
-
-.hero-media,
-.hero-media img {
-  position: absolute;
-  inset: auto;
-}
-
-/* La foto se muestra entera (proporción 3:2 del original), sin recortes */
-.hero-media {
-  position: absolute;
-  z-index: 0;
-  top: 50%;
-  bottom: auto;
-  left: auto;
-  right: max(1.25rem, calc((100vw - var(--container)) / 2 + 1.25rem));
-  width: calc(min(var(--container), 100vw - 2.5rem) * 0.47);
-  height: auto;
-  aspect-ratio: 3 / 2;
-  transform: translateY(calc(-50% + var(--header-h) / 2));
-  border-radius: 26px;
-  overflow: hidden;
-  box-shadow: var(--shadow);
-}
-
-.hero-media img {
-  position: static;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center;
-}
-
-.hero-content {
-  grid-column: 1;
-  max-width: 600px;
+  background:
+    linear-gradient(90deg, rgba(18, 55, 71, 0.95) 0%, rgba(18, 55, 71, 0.82) 42%, rgba(18, 55, 71, 0.38) 78%, rgba(18, 55, 71, 0.18) 100%),
+    linear-gradient(0deg, rgba(18, 55, 71, 0.55) 0%, rgba(18, 55, 71, 0) 35%);
 }
 
 .hero h1 {
-  color: var(--c-petrol);
+  color: #f5f3ed;
   line-height: 1.06;
 }
 
-.hero-kicker {
-  margin-bottom: 1rem;
-}
-
 .hero h1 .accent {
-  color: var(--c-petrol);
-  background: linear-gradient(transparent 66%, rgba(232, 184, 102, 0.55) 66%);
+  color: #5cc4b9;
 }
 
 .hero-lead {
-  color: var(--c-muted);
+  color: rgba(245, 243, 237, 0.86);
+}
+
+.hero .eyebrow--gold {
+  color: var(--c-gold);
 }
 
 .trust-list {
-  padding-top: 1.2rem;
-  border-top: 1px solid var(--c-line);
-  color: var(--c-text);
+  color: rgba(245, 243, 237, 0.86);
   font-weight: 600;
 }
 
 .trust-list .icon {
-  color: var(--c-aqua);
+  color: #5cc4b9;
+}
+
+/* Botones de la portada: los dos principales en fila y «Cotizá con San Cristóbal»
+   como enlace de texto debajo (mismo enlace, solo cambia cómo se ve). */
+.hero-actions {
+  align-items: center;
+  gap: 0.8rem 0.9rem;
+}
+
+.hero-actions .btn-light {
+  flex-basis: 100%;
+  justify-content: flex-start;
+  width: auto;
+  min-height: 44px;
+  padding: 0.3rem 0;
+  font-size: var(--fs-base);
+  color: #f5f3ed;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  text-decoration: underline;
+  text-decoration-color: rgba(232, 184, 102, 0.8);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+}
+
+.hero-actions .btn-light:hover {
+  color: var(--c-gold);
+  background: transparent;
+  transform: none;
 }
 
 /* ---------- Accesos rápidos ---------- */
 .quick {
-  margin-top: 0;
-  padding: 1.75rem 0 clamp(1rem, 0.5rem + 2vw, 2rem);
+  padding-bottom: clamp(1rem, 0.5rem + 2vw, 2rem);
 }
 
 .quick-card {
@@ -912,40 +896,19 @@ a.channel-card:hover {
     box-shadow: 0 18px 40px rgba(18, 55, 71, 0.12);
   }
 
-  .hero .container {
-    grid-template-columns: 1fr;
-  }
 
-  .hero-media {
-    position: relative;
-    top: auto;
-    right: auto;
-    width: auto;
-    height: auto;
-    transform: none;
-    align-self: stretch;
-    margin: 1.8rem 1.25rem 0;
-  }
 
-  body:not(.ad-body):not(.fx-body) .hero {
-    display: flex;
-    flex-direction: column-reverse;
-    padding-bottom: 2rem;
-  }
 }
 
 @media (max-width: 720px) {
-  body:not(.ad-body):not(.fx-body) .hero {
-    padding-top: calc(var(--header-h) + 1.8rem);
-  }
 
   .hero h1 {
     font-size: clamp(1.9rem, 1.4rem + 3vw, 2.4rem);
   }
 }
 
-@media (max-width: 600px) {
-  .quick {
-    margin-top: 0;
+@media (max-width: 960px) {
+  .hero::before {
+    background: linear-gradient(180deg, rgba(18, 55, 71, 0.8) 0%, rgba(18, 55, 71, 0.9) 60%, rgba(18, 55, 71, 0.94) 100%);
   }
 }
