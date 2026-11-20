@@ -839,23 +839,27 @@ a.channel-card:hover {
   border-color: var(--c-aqua);
 }
 
-/* Números de emergencia (siniestros): bloque azul petróleo, título a la izquierda
-   y los tres números en una fila pareja de tarjetas blancas. */
+/* Números de emergencia (siniestros): mismo orden que el rediseño (aviso a la
+   izquierda y tres tarjetas parejas), en rojo vino translúcido (como el aviso de
+   antes, más rojizo), y separado de la foto de arriba. */
 .emergency {
   grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.6fr);
   gap: 1.2rem 2rem;
-  padding: 1.4rem 1.6rem;
-  background: var(--c-petrol);
-  border: 0;
+  margin-top: clamp(1.5rem, 1rem + 1.5vw, 2.25rem);
+  padding: 1.3rem 1.6rem;
+  background: rgba(78, 22, 28, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(240, 130, 120, 0.55);
   border-radius: 20px;
-  box-shadow: var(--shadow);
+  box-shadow: 0 12px 30px rgba(78, 22, 28, 0.2);
 }
 
 .emergency-title {
   gap: 0.9rem;
   font-size: 1.05rem;
   line-height: 1.35;
-  color: #f5f3ed;
+  color: #ffd6d1;
 }
 
 .emergency-title .icon {
@@ -863,8 +867,8 @@ a.channel-card:hover {
   width: 44px;
   height: 44px;
   padding: 10px;
-  color: var(--c-gold);
-  background: rgba(232, 184, 102, 0.16);
+  color: #ffb3ab;
+  background: rgba(240, 130, 120, 0.2);
   border-radius: 12px;
 }
 
@@ -886,16 +890,16 @@ a.channel-card:hover {
   font-size: var(--fs-xs);
   font-weight: 600;
   line-height: 1.3;
-  color: var(--c-muted);
-  background: #ffffff;
-  border: 1.5px solid transparent;
+  color: rgba(255, 228, 224, 0.85);
+  background: rgba(40, 8, 12, 0.45);
+  border: 1px solid rgba(255, 200, 194, 0.22);
   border-radius: 14px;
   transition: border-color 0.2s var(--ease), transform 0.2s var(--ease);
 }
 
 .emergency-list a:hover,
 .emergency-list a:focus-visible {
-  border-color: var(--c-aqua);
+  border-color: #f19a93;
   transform: translateY(-2px);
 }
 
@@ -903,7 +907,7 @@ a.channel-card:hover {
   font-size: 1.5rem;
   font-weight: 800;
   line-height: 1.1;
-  color: var(--c-petrol);
+  color: #ffffff;
 }
 
 .accordion summary:hover {
