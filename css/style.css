@@ -4704,6 +4704,34 @@ a.channel-card:hover {
   color: var(--c-danger);
 }
 
+/* ---------- Siniestros: pasos y botón de denuncia ---------- */
+.timeline > li::before {
+  color: #ffffff;
+  background: var(--c-teal-2);
+}
+
+.btn-denuncia {
+  margin-top: 0.4rem;
+  padding: 0.85rem 1.5rem;
+  font-size: var(--fs-base);
+  font-weight: 800;
+  color: var(--c-petrol);
+  background: var(--c-gold);
+  border: 0;
+  box-shadow: 0 10px 24px rgba(232, 184, 102, 0.45);
+}
+
+.btn-denuncia .icon {
+  width: 22px;
+  height: 22px;
+}
+
+.btn-denuncia:hover {
+  color: var(--c-petrol);
+  background: #dfa94f;
+  box-shadow: 0 12px 28px rgba(223, 169, 79, 0.5);
+}
+
 /* ---------- Pie de página ---------- */
 .site-footer {
   background: var(--c-petrol);
