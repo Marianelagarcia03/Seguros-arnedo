@@ -496,6 +496,10 @@ body:not(.ad-body):not(.fx-body) .site-header.is-open {
 }
 
 /* ---------- Compañías ---------- */
+.logo-grid {
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+}
+
 .logo-tile {
   border: 0;
   border-radius: 14px;
@@ -983,6 +987,12 @@ a.channel-card:hover {
   }
 }
 
+@media (max-width: 1100px) {
+  .logo-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 960px) {
   .emergency {
     grid-template-columns: 1fr;
@@ -990,6 +1000,12 @@ a.channel-card:hover {
 
   .hero::before {
     background: linear-gradient(180deg, rgba(18, 55, 71, 0.8) 0%, rgba(18, 55, 71, 0.9) 60%, rgba(18, 55, 71, 0.94) 100%);
+  }
+}
+
+@media (max-width: 720px) {
+  .logo-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 

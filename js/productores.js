@@ -25,7 +25,7 @@
     { id: "zurich", nombre: "Zurich" }, { id: "lasegunda", nombre: "La Segunda" },
     { id: "federacion", nombre: "Federación Patronal" }, { id: "sancristobal", nombre: "San Cristóbal" },
     { id: "sancor", nombre: "Sancor Seguros" }, { id: "galicia", nombre: "Galicia Seguros" },
-    { id: "mercantil", nombre: "La Mercantil Andina" }
+    { id: "mercantil", nombre: "La Mercantil Andina" }, { id: "premiar", nombre: "Premiar Seguros" }
   ];
   var LEADS = {
     nuevo: "Completá tus datos y te contactamos para acompañarte en la apertura de tus primeros códigos.",
