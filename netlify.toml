@@ -9,6 +9,12 @@
   to = "/pages/cotizar.html"
   status = 301
 
+# Dirección corta para compartir: segurosarnedo.com/productores
+[[redirects]]
+  from = "/productores"
+  to = "/pages/organizacion-de-productores.html"
+  status = 301
+
 # ---------- Panel privado y formularios para clientes ----------
 # El panel vive en /admin/formularios (no aparece en el menú). Los datos solo
 # se leen desde /api/admin, que exige sesión. Los formularios para clientes

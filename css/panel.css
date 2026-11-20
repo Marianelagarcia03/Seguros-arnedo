@@ -1315,3 +1315,286 @@ a.ad-tr:hover {
   gap: 0.5rem;
   margin-top: 1.1rem;
 }
+
+/* ==========================================================================
+   Organización de Productores (js/admin-productores.js)
+   ========================================================================== */
+.pr-kpis {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0.7rem;
+  margin-bottom: 0.6rem;
+}
+
+.pr-kpi {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.2rem;
+  padding: 0.9rem 1rem;
+  font: inherit;
+  text-align: left;
+  color: var(--c-muted);
+  background: var(--c-surface);
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.pr-kpi b {
+  font-size: 1.7rem;
+  line-height: 1;
+  color: var(--c-cream);
+}
+
+.pr-kpi span {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+}
+
+.pr-kpi:hover,
+.pr-kpi.is-active {
+  border-color: var(--c-aqua);
+}
+
+.pr-kpi.is-active {
+  background: rgba(43, 163, 137, 0.08);
+}
+
+.pr-kpi--total b {
+  color: var(--c-gold);
+}
+
+.pr-kpi-note {
+  margin-bottom: 1.2rem;
+}
+
+.pr-filters {
+  grid-template-columns: 2fr 1.2fr 1fr 1fr;
+}
+
+.pr-table .ad-tr {
+  grid-template-columns: 1.7fr 1.2fr 1fr 1.6fr 0.8fr 1.3fr;
+}
+
+@media (max-width: 1000px) {
+  .pr-kpis {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .pr-filters {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .pr-filters .ad-f--wide {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 760px) {
+  .pr-kpis {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .pr-table .ad-tr {
+    grid-template-columns: 1fr auto;
+  }
+
+  .pr-table .ad-tr > :nth-child(5) {
+    display: none;
+  }
+
+  .pr-table .ad-tr > :nth-child(6) {
+    grid-column: 2;
+    grid-row: 1;
+  }
+}
+
+.pr-st {
+  display: inline-block;
+  padding: 0.22rem 0.6rem;
+  font-size: 0.74rem;
+  font-weight: 600;
+  border-radius: 999px;
+  color: var(--c-gold);
+  background: rgba(201, 173, 85, 0.12);
+}
+
+.pr-st--revision {
+  color: #7fc8e0;
+  background: rgba(51, 141, 153, 0.18);
+}
+
+.pr-st--documentacion {
+  color: #f3c27a;
+  background: rgba(240, 160, 60, 0.14);
+}
+
+.pr-st--gestion {
+  color: #b9a6f2;
+  background: rgba(140, 120, 220, 0.15);
+}
+
+.pr-st--aprobada {
+  color: var(--c-success);
+  background: rgba(63, 191, 152, 0.14);
+}
+
+.pr-st--rechazada {
+  color: #f0a39d;
+  background: rgba(224, 103, 95, 0.14);
+}
+
+.pr-gestion {
+  margin-top: 0.9rem;
+  padding: 1rem;
+  background: rgba(250, 235, 215, 0.03);
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius-sm);
+}
+
+.pr-gestion-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  margin-bottom: 0.8rem;
+}
+
+.pr-gestion-head h3 {
+  font-size: 1.05rem;
+}
+
+.pr-gestion-grid,
+.pr-edit {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem 0.9rem;
+}
+
+.pr-span {
+  grid-column: 1 / -1;
+}
+
+.pr-gestion-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.9rem;
+}
+
+.pr-err {
+  font-size: var(--fs-xs);
+  color: #f0a39d;
+}
+
+.pr-err:empty {
+  display: none;
+}
+
+.ad-f.has-error input,
+.ad-f.has-error select,
+.ad-f.has-error textarea {
+  border-color: var(--c-danger);
+}
+
+.pr-add {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.pr-add .ad-f {
+  flex: 1;
+  min-width: 200px;
+}
+
+.pr-files {
+  display: grid;
+  gap: 0.5rem;
+  padding-left: 1.1rem;
+  color: var(--c-cream);
+}
+
+.pr-files a {
+  color: var(--c-aqua);
+}
+
+.pr-notas {
+  display: grid;
+  gap: 0.6rem;
+  margin: 0.6rem 0 0.8rem;
+  list-style: none;
+}
+
+.pr-notas:empty {
+  display: none;
+}
+
+.pr-notas li {
+  padding: 0.6rem 0.7rem;
+  font-size: var(--fs-sm);
+  background: rgba(250, 235, 215, 0.04);
+  border-radius: var(--radius-sm);
+}
+
+.pr-notas b {
+  display: block;
+  font-size: var(--fs-xs);
+  color: var(--c-soft);
+}
+
+.pr-notas p {
+  margin-top: 0.2rem;
+  color: var(--c-cream);
+  white-space: pre-line;
+}
+
+.pr-aseg-list {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.pr-aseg {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.pr-aseg input[type="text"] {
+  flex: 1;
+  min-width: 200px;
+  padding: 0.6rem 0.8rem;
+  font: inherit;
+  color: var(--c-cream);
+  background: var(--c-bg);
+  border: 1px solid var(--c-line-strong);
+  border-radius: var(--radius-sm);
+}
+
+.pr-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-width: 100px;
+  font-size: var(--fs-sm);
+  color: var(--c-muted);
+  cursor: pointer;
+}
+
+.pr-switch input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--c-aqua);
+}
+
+@media (max-width: 600px) {
+  .pr-gestion-grid,
+  .pr-edit {
+    grid-template-columns: 1fr;
+  }
+}

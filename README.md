@@ -167,3 +167,48 @@ function out(t) { return ContentService.createTextOutput(t); }
 
 Si la planilla falla, la solicitud se envía igual por correo. La planilla guarda el detalle completo (incluye DNI y
 domicilios): compartila solo con quien la necesite.
+
+## Organización de Productores (`/pages/organizacion-de-productores.html`, también `/productores`)
+
+Sección para productores: **productor nuevo** (apertura de códigos), **productor activo** (sumar aseguradoras)
+y **pedido de información**. Cada opción abre su formulario; también se puede enlazar directo con
+`/productores#nuevo`, `#activo` o `#info`.
+
+El envío va a la Netlify Function `/api/productores` (`netlify/functions/productores/`, lógica en
+`netlify/lib/productores/core.mjs`), que:
+
+1. Valida todo de nuevo (DNI, CUIT con dígito verificador y coincidencia con el DNI, matrícula, teléfono, correo, provincia,
+   compañías activas), con campo trampa, tiempo mínimo de llenado y límite de 8 envíos por hora por conexión.
+2. Manda el detalle completo por correo (Resend) con los adjuntos y un enlace directo a WhatsApp del productor.
+3. Guarda la solicitud en el almacenamiento privado del panel (Netlify Blobs, claves `prod/…`), con los datos personales
+   **cifrados** con `DATA_KEY`, una gestión independiente por cada aseguradora pedida y los adjuntos.
+   Si falta `DATA_KEY`, la solicitud llega igual por correo pero no queda guardada (se avisa en el log).
+
+Adjuntos opcionales: hasta 3 archivos PDF, JPG, PNG o WEBP (las fotos grandes se achican en el navegador).
+La lista de aseguradoras se lee de `prod/aseguradoras`; mientras no exista se usan las 7 de la web
+(`ASEGURADORAS_INICIALES`). Se administra desde el panel.
+
+| Variable | Obligatoria | Valor |
+|---|---|---|
+| `RESEND_API_KEY` | Sí | La misma de cotizaciones y denuncias. |
+| `DATA_KEY` | Sí | La misma del panel de formularios (cifra los datos guardados). |
+| `PRODUCTORES_TO` | No | Destinatario de los avisos. Por defecto `juanmanuelarnedo@gmail.com`. |
+| `PRODUCTORES_FROM` | No | Remitente. Por defecto usa `COTIZACION_FROM` / `DENUNCIA_FROM`. |
+
+### Panel: pestaña «Productores» (`/admin/formularios#/productores`)
+
+Usa el mismo usuario, contraseña y sesión del panel de formularios. Código: `js/admin-productores.js` (pantallas),
+`netlify/lib/productores/panel.mjs` (API `/api/admin/productores/…`, que se engancha en `api-panel.mjs` después de
+comprobar la sesión) y los estilos `pr-*` al final de `css/panel.css`.
+
+- **Indicadores:** productores registrados (personas distintas por CUIT), nuevas, pendientes (en revisión + documentación
+  pendiente), en gestión, aprobadas y rechazadas. Se puede tocar cada uno para filtrar.
+- **Listado** con búsqueda por nombre, CUIT, DNI, matrícula o número, y filtros por estado, tipo y aseguradora.
+- **Ficha** con datos personales y profesionales, documentación, estado general, observaciones internas (no las ve el
+  productor), historial con fecha y usuario de cada cambio, WhatsApp, correo, edición de datos y eliminación.
+- **Seguimiento por aseguradora:** cada compañía con su estado, inicio, código asignado, fecha de habilitación y
+  observaciones. No se puede marcar «Aprobada» sin código y fecha de habilitación (confirmación de la aseguradora).
+- **Aseguradoras:** agregar, renombrar, activar o desactivar sin tocar el código. Las que ya tienen gestiones no se
+  pueden quitar, solo desactivar.
+- **Exportar** a Excel (CSV con «;»): productores (una fila por solicitud) o gestiones (una fila por aseguradora).
+- El **Respaldo** del panel incluye también las solicitudes de productores (con los datos cifrados, como se guardan).
