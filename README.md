@@ -167,3 +167,30 @@ function out(t) { return ContentService.createTextOutput(t); }
 
 Si la planilla falla, la solicitud se envía igual por correo. La planilla guarda el detalle completo (incluye DNI y
 domicilios): compartila solo con quien la necesite.
+
+## Organización de Productores (`/pages/organizacion-de-productores.html`, también `/productores`)
+
+Sección para productores: **productor nuevo** (apertura de códigos), **productor activo** (sumar aseguradoras)
+y **pedido de información**. Cada opción abre su formulario; también se puede enlazar directo con
+`/productores#nuevo`, `#activo` o `#info`.
+
+El envío va a la Netlify Function `/api/productores` (`netlify/functions/productores/`, lógica en
+`netlify/lib/productores/core.mjs`), que:
+
+1. Valida todo de nuevo (DNI, CUIT con dígito verificador y coincidencia con el DNI, matrícula, teléfono, correo, provincia,
+   compañías activas), con campo trampa, tiempo mínimo de llenado y límite de 8 envíos por hora por conexión.
+2. Manda el detalle completo por correo (Resend) con los adjuntos y un enlace directo a WhatsApp del productor.
+3. Guarda la solicitud en el almacenamiento privado del panel (Netlify Blobs, claves `prod/…`), con los datos personales
+   **cifrados** con `DATA_KEY`, una gestión independiente por cada aseguradora pedida y los adjuntos.
+   Si falta `DATA_KEY`, la solicitud llega igual por correo pero no queda guardada (se avisa en el log).
+
+Adjuntos opcionales: hasta 3 archivos PDF, JPG, PNG o WEBP (las fotos grandes se achican en el navegador).
+La lista de aseguradoras se lee de `prod/aseguradoras`; mientras no exista se usan las 7 de la web
+(`ASEGURADORAS_INICIALES`). Se administra desde el panel (etapa 2).
+
+| Variable | Obligatoria | Valor |
+|---|---|---|
+| `RESEND_API_KEY` | Sí | La misma de cotizaciones y denuncias. |
+| `DATA_KEY` | Sí | La misma del panel de formularios (cifra los datos guardados). |
+| `PRODUCTORES_TO` | No | Destinatario de los avisos. Por defecto `juanmanuelarnedo@gmail.com`. |
+| `PRODUCTORES_FROM` | No | Remitente. Por defecto usa `COTIZACION_FROM` / `DENUNCIA_FROM`. |

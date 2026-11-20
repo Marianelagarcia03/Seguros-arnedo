@@ -16,6 +16,48 @@
   }
 }
 
+/* Menú de escritorio con 6 opciones: se compacta antes de pasar al menú móvil */
+.nav-menu .nav-cta a.btn {
+  white-space: nowrap;
+}
+
+@media (max-width: 1440px) {
+  .nav-menu a {
+    padding: 0.55rem 0.65rem;
+  }
+}
+
+@media (max-width: 1180px) {
+  .nav {
+    gap: 0.75rem;
+  }
+
+  .nav-menu {
+    gap: 0;
+  }
+
+  .nav-menu a {
+    padding: 0.5rem 0.5rem;
+    font-size: 0.875rem;
+  }
+
+  .nav-cta {
+    margin-left: 0.25rem;
+  }
+
+  .nav-menu .nav-cta a.btn {
+    padding: 0.5rem 0.8rem;
+  }
+
+  .nav-menu .nav-cta .icon {
+    display: none;
+  }
+
+  .brand small {
+    display: none;
+  }
+}
+
 @media (max-width: 960px) {
   :root {
     --header-h: 66px;
