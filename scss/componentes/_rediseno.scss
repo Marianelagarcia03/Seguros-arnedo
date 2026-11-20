@@ -342,13 +342,18 @@ body:not(.ad-body):not(.fx-body) .hero {
   inset: auto;
 }
 
+/* La foto se muestra entera (proporción 3:2 del original), sin recortes */
 .hero-media {
   position: absolute;
   z-index: 0;
-  top: calc(var(--header-h) + clamp(2.5rem, 1.5rem + 3vw, 4.5rem));
-  bottom: clamp(3rem, 2rem + 3vw, 4.5rem);
+  top: 50%;
+  bottom: auto;
+  left: auto;
   right: max(1.25rem, calc((100vw - var(--container)) / 2 + 1.25rem));
   width: calc(min(var(--container), 100vw - 2.5rem) * 0.47);
+  height: auto;
+  aspect-ratio: 3 / 2;
+  transform: translateY(calc(-50% + var(--header-h) / 2));
   border-radius: 26px;
   overflow: hidden;
   box-shadow: var(--shadow);
@@ -358,7 +363,8 @@ body:not(.ad-body):not(.fx-body) .hero {
   position: static;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center;
 }
 
 .hero-content {
@@ -913,10 +919,10 @@ a.channel-card:hover {
   .hero-media {
     position: relative;
     top: auto;
-    bottom: auto;
     right: auto;
     width: auto;
-    height: clamp(200px, 45vw, 320px);
+    height: auto;
+    transform: none;
     align-self: stretch;
     margin: 1.8rem 1.25rem 0;
   }
