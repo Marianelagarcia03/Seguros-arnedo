@@ -1,6 +1,6 @@
 # SegurosArnedo.com
 
-> Juan Manuel Arnedo, Productor Asesor de Seguros matriculado ante la Superintendencia de Seguros de la Nación (matrícula SSN N.º 86525), en Córdoba, Argentina. Asesoramiento y venta de seguros para personas y empresas, con atención personalizada por WhatsApp y acompañamiento en siniestros. Marca anterior: JMA Seguros.
+> Juan Manuel Arnedo, Productor Asesor de Seguros matriculado ante la Superintendencia de Seguros de la Nación (matrícula SSN N.º 86525) y Organizador de Productores, en Córdoba, Argentina. Asesoramiento y venta de seguros para personas y empresas, con atención personalizada por WhatsApp y acompañamiento en siniestros. Como organizador, acompaña a productores asesores de seguros (recién matriculados o en actividad) en la apertura de códigos con compañías aseguradoras, con el respaldo de P&T Brokers Asesores de Seguros. Marca anterior: JMA Seguros.
 
 - Zona de atención: Córdoba Capital (barrios como Cerro de las Rosas, Urca, Alberdi y Centro) y el interior de la provincia de Córdoba (Villa Allende, Mendiolaza, Unquillo, Río Ceballos, La Calera, Villa Carlos Paz, La Falda, entre otras). Atención presencial con turno en Fernando Fader 4282, Córdoba.
 - Horario: lunes a viernes de 9 a 18 h.
@@ -27,5 +27,6 @@
 - [Seguro de responsabilidad civil en Córdoba](https://segurosarnedo.com/pages/seguro-de-responsabilidad-civil-cordoba.html): para comercios, profesionales, consorcios, eventos y particulares.
 - [Siniestros](https://segurosarnedo.com/pages/siniestros.html): qué hacer ante un choque, robo, incendio o accidente, y teléfonos de asistencia de cada aseguradora.
 - [Denuncia de siniestro](https://segurosarnedo.com/pages/denuncia.html): formulario para enviar los datos de un siniestro.
+- [Organización de Productores](https://segurosarnedo.com/pages/organizacion-de-productores.html): para productores asesores de seguros; apertura de códigos con aseguradoras y ampliación de cartera, con el respaldo de P&T Brokers. Formularios para productores nuevos y en actividad.
 - [Compañías](https://segurosarnedo.com/pages/companias.html): aseguradoras con las que trabajamos.
 - [Contacto](https://segurosarnedo.com/pages/contacto.html): canales y horarios.
