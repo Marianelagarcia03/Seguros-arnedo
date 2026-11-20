@@ -41,6 +41,7 @@ export const ASEGURADORAS_INICIALES = [
   { id: "sancor", nombre: "Sancor Seguros", activa: true },
   { id: "galicia", nombre: "Galicia Seguros", activa: true },
   { id: "mercantil", nombre: "La Mercantil Andina", activa: true },
+  { id: "premiar", nombre: "Premiar Seguros", activa: true },
 ];
 
 export const PROVINCIAS = [
