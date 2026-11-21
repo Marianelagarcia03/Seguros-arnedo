@@ -40,7 +40,7 @@
 
   var CONFIG = {
     whatsapp: "5493515161257", // +54 9 351 516-1257
-    email: "juanmanuelarnedo@gmail.com",
+    email: "",
     defaultMessage: "Hola Juan Manuel, quisiera hacer una consulta.",
     // Google Analytics 4: pegá acá el ID de medición (ej. "G-ABC123XYZ").
     // Vacío = la medición queda desactivada y no se carga ningún script de Google.
@@ -280,8 +280,7 @@
             "error",
             'No pudimos enviar el mensaje en este momento. Escribinos por <a href="' +
               waUrl(CONFIG.defaultMessage) +
-              '" target="_blank" rel="noopener">WhatsApp</a> o a <a href="mailto:' +
-              CONFIG.email + '">' + CONFIG.email + "</a>."
+              '" target="_blank" rel="noopener">WhatsApp</a>.'
           );
         })
         .then(function () {
