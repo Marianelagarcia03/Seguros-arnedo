@@ -1032,3 +1032,143 @@ a.channel-card:hover {
     font-size: 1.35rem;
   }
 }
+
+/* ---------- Panel privado y formularios para clientes: campos oscuros ----------
+   Las reglas de campos de arriba son para el sitio claro. El panel (.ad-body) y
+   los formularios /f/ (.fx-body) conservan el diseño oscuro, así que se
+   restauran acá los campos, opciones y mensajes con buen contraste. */
+.ad-body .field input,
+.ad-body .field select,
+.ad-body .field textarea,
+.fx-body .field input,
+.fx-body .field select,
+.fx-body .field textarea {
+  background: rgba(1, 12, 23, 0.75);
+  color: #faebd7;
+  border: 1px solid rgba(250, 235, 215, 0.28);
+  border-radius: 12px;
+}
+
+.ad-body .field select option,
+.fx-body .field select option {
+  background: #061c30;
+  color: #faebd7;
+}
+
+.ad-body .field input::placeholder,
+.ad-body .field textarea::placeholder,
+.fx-body .field input::placeholder,
+.fx-body .field textarea::placeholder {
+  color: rgba(250, 235, 215, 0.45);
+}
+
+.ad-body .field input:focus,
+.ad-body .field select:focus,
+.ad-body .field textarea:focus,
+.fx-body .field input:focus,
+.fx-body .field select:focus,
+.fx-body .field textarea:focus {
+  border-color: #2ba389;
+  box-shadow: 0 0 0 4px rgba(43, 163, 137, 0.25);
+  outline: none;
+}
+
+/* Que el autocompletado del navegador no ponga fondo claro con letra clara */
+.ad-body .field input:-webkit-autofill,
+.fx-body .field input:-webkit-autofill {
+  -webkit-text-fill-color: #faebd7;
+  -webkit-box-shadow: 0 0 0 1000px #0a1826 inset;
+  caret-color: #faebd7;
+}
+
+.ad-body .field label,
+.ad-body .choice legend,
+.ad-body .form-section-title,
+.fx-body .field label,
+.fx-body .choice legend,
+.fx-body .form-section-title {
+  color: #faebd7;
+}
+
+.ad-body .field-error,
+.fx-body .field-error {
+  color: #f19a93;
+}
+
+.ad-body .field.has-error input,
+.ad-body .field.has-error select,
+.ad-body .field.has-error textarea,
+.fx-body .field.has-error input,
+.fx-body .field.has-error select,
+.fx-body .field.has-error textarea {
+  border-color: #e0675f;
+}
+
+.ad-body .choice-option span,
+.fx-body .choice-option span {
+  color: #faebd7;
+  background: rgba(1, 12, 23, 0.75);
+  border: 1px solid rgba(250, 235, 215, 0.28);
+}
+
+.ad-body .choice-option:hover span,
+.fx-body .choice-option:hover span {
+  border-color: #2ba389;
+}
+
+.ad-body .choice-option input:checked + span,
+.fx-body .choice-option input:checked + span {
+  color: #010c17;
+  background: #2ba389;
+  border-color: #2ba389;
+}
+
+.ad-body .choice-option input:focus-visible + span,
+.fx-body .choice-option input:focus-visible + span {
+  box-shadow: 0 0 0 4px rgba(43, 163, 137, 0.35);
+}
+
+.ad-body .choice.has-error .choice-option span,
+.fx-body .choice.has-error .choice-option span {
+  border-color: #e0675f;
+}
+
+.ad-body .req,
+.fx-body .req {
+  color: #2ba389;
+}
+
+.ad-body .file-drop,
+.fx-body .file-drop {
+  background: rgba(1, 12, 23, 0.5);
+  border-color: rgba(250, 235, 215, 0.28);
+}
+
+.ad-body .file-drop:hover,
+.ad-body .file-drop:focus-within,
+.fx-body .file-drop:hover,
+.fx-body .file-drop:focus-within {
+  background: rgba(43, 163, 137, 0.08);
+  border-color: #2ba389;
+}
+
+.ad-body .form-status.is-success,
+.fx-body .form-status.is-success {
+  color: #8fe0c8;
+  background: rgba(43, 163, 137, 0.12);
+  border-color: rgba(43, 163, 137, 0.4);
+}
+
+.ad-body .form-status.is-error,
+.fx-body .form-status.is-error {
+  color: #f6b3ad;
+  background: rgba(224, 103, 95, 0.12);
+  border-color: rgba(224, 103, 95, 0.45);
+}
+
+.ad-body .check input,
+.ad-body .field .check input[type="checkbox"],
+.fx-body .check input,
+.fx-body .field .check input[type="checkbox"] {
+  accent-color: #2ba389;
+}
